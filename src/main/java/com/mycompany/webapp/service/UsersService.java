@@ -1,5 +1,8 @@
 package com.mycompany.webapp.service;
 
-public class UsersService {
+import org.springframework.stereotype.Service;
 
+@Service
+public class UsersService {
+	
 }

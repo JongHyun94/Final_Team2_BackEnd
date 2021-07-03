@@ -45,6 +45,11 @@ public class MainController {
 	 * return user; }
 	 */
 	
+	/*
+	 * @GetMapping("/test") public String test(){ String user =
+	 * 
+	 * return user; }
+	 */
 	
 	
 //	@RequestMapping("/sendRedisMessage")
