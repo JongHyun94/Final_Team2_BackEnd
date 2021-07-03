@@ -4,48 +4,32 @@ import java.util.Date;
 
 public class DrugsInjectionsLists {
 	
-	private int drugInjectionId;
-	private String drugInjectionDrugInjectionListId;
-	private int drugInjectionTreatmentId;
-	private String drugInjectionIdDoctorId;
-	private int drugInjectionPatientId;
-	private Date drugInjectionRegdate;
-	public int getDrugInjectionId() {
-		return drugInjectionId;
+	private String drug_injection_list_id;
+	private String drug_injection_list_name;
+	private String drug_injection_list_category;
+	
+	
+	public String getDrug_injection_list_id() {
+		return drug_injection_list_id;
 	}
-	public void setDrugInjectionId(int drugInjectionId) {
-		this.drugInjectionId = drugInjectionId;
+	public void setDrug_injection_list_id(String drug_injection_list_id) {
+		this.drug_injection_list_id = drug_injection_list_id;
 	}
-	public String getDrugInjectionDrugInjectionListId() {
-		return drugInjectionDrugInjectionListId;
+	public String getDrug_injection_list_name() {
+		return drug_injection_list_name;
 	}
-	public void setDrugInjectionDrugInjectionListId(String drugInjectionDrugInjectionListId) {
-		this.drugInjectionDrugInjectionListId = drugInjectionDrugInjectionListId;
+	public void setDrug_injection_list_name(String drug_injection_list_name) {
+		this.drug_injection_list_name = drug_injection_list_name;
 	}
-	public int getDrugInjectionTreatmentId() {
-		return drugInjectionTreatmentId;
+	public String getDrug_injection_list_category() {
+		return drug_injection_list_category;
 	}
-	public void setDrugInjectionTreatmentId(int drugInjectionTreatmentId) {
-		this.drugInjectionTreatmentId = drugInjectionTreatmentId;
+	public void setDrug_injection_list_category(String drug_injection_list_category) {
+		this.drug_injection_list_category = drug_injection_list_category;
 	}
-	public String getDrugInjectionIdDoctorId() {
-		return drugInjectionIdDoctorId;
-	}
-	public void setDrugInjectionIdDoctorId(String drugInjectionIdDoctorId) {
-		this.drugInjectionIdDoctorId = drugInjectionIdDoctorId;
-	}
-	public int getDrugInjectionPatientId() {
-		return drugInjectionPatientId;
-	}
-	public void setDrugInjectionPatientId(int drugInjectionPatientId) {
-		this.drugInjectionPatientId = drugInjectionPatientId;
-	}
-	public Date getDrugInjectionRegdate() {
-		return drugInjectionRegdate;
-	}
-	public void setDrugInjectionRegdate(Date drugInjectionRegdate) {
-		this.drugInjectionRegdate = drugInjectionRegdate;
-	}
+
+	
+	
 	
 	
 	
