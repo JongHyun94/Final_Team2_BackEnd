@@ -1,83 +1,85 @@
 package com.mycompany.webapp.dto;
 
 public class Hospitals {
-	private String hospitalId;
-	private String hospitalName;
-	private String hospitalTel;
-	private String hospitalZipcode;
-	private String hospitalAddress;
-	private String hospitalDetailAddress1;
-	private String hospitalDetailAddress2;
-	private int hospitalDoctors;
-	private int hospitalNurses;
-	private int hospitalInspectors;
-	private String hospitalUrl;
+	private String hospital_id;
+	private String hospital_name;
+	private String hospital_tel;
+	private String hospital_zipcode;
+	private String hospital_address;
+	private String hospital_detailaddress1;
+	private String hospital_detailaddress2;
+	private int hospital_doctors;
+	private int hospital_nurses;
+	private int hospital_inspectors;
+	private String hospital_url;
 	
-	public String getHospitalId() {
-		return hospitalId;
+	public String getHospital_id() {
+		return hospital_id;
 	}
-	public void setHospitalId(String hospitalId) {
-		this.hospitalId = hospitalId;
+	public void setHospital_id(String hospital_id) {
+		this.hospital_id = hospital_id;
 	}
-	public String getHospitalName() {
-		return hospitalName;
+	public String getHospital_name() {
+		return hospital_name;
 	}
-	public void setHospitalName(String hospitalName) {
-		this.hospitalName = hospitalName;
+	public void setHospital_name(String hospital_name) {
+		this.hospital_name = hospital_name;
 	}
-	public String getHospitalTel() {
-		return hospitalTel;
+	public String getHospital_tel() {
+		return hospital_tel;
 	}
-	public void setHospitalTel(String hospitalTel) {
-		this.hospitalTel = hospitalTel;
+	public void setHospital_tel(String hospital_tel) {
+		this.hospital_tel = hospital_tel;
 	}
-	public String getHospitalZipcode() {
-		return hospitalZipcode;
+	public String getHospital_zipcode() {
+		return hospital_zipcode;
 	}
-	public void setHospitalZipcode(String hospitalZipcode) {
-		this.hospitalZipcode = hospitalZipcode;
+	public void setHospital_zipcode(String hospital_zipcode) {
+		this.hospital_zipcode = hospital_zipcode;
 	}
-	public String getHospitalAddress() {
-		return hospitalAddress;
+	public String getHospital_address() {
+		return hospital_address;
 	}
-	public void setHospitalAddress(String hospitalAddress) {
-		this.hospitalAddress = hospitalAddress;
+	public void setHospital_address(String hospital_address) {
+		this.hospital_address = hospital_address;
 	}
-	public String getHospitalDetailAddress1() {
-		return hospitalDetailAddress1;
+	public String getHospital_detailaddress1() {
+		return hospital_detailaddress1;
 	}
-	public void setHospitalDetailAddress1(String hospitalDetailAddress1) {
-		this.hospitalDetailAddress1 = hospitalDetailAddress1;
+	public void setHospital_detailaddress1(String hospital_detailaddress1) {
+		this.hospital_detailaddress1 = hospital_detailaddress1;
 	}
-	public String getHospitalDetailAddress2() {
-		return hospitalDetailAddress2;
+	public String getHospital_detailaddress2() {
+		return hospital_detailaddress2;
 	}
-	public void setHospitalDetailAddress2(String hospitalDetailAddress2) {
-		this.hospitalDetailAddress2 = hospitalDetailAddress2;
+	public void setHospital_detailaddress2(String hospital_detailaddress2) {
+		this.hospital_detailaddress2 = hospital_detailaddress2;
 	}
-	public int getHospitalDoctors() {
-		return hospitalDoctors;
+	public int getHospital_doctors() {
+		return hospital_doctors;
 	}
-	public void setHospitalDoctors(int hospitalDoctors) {
-		this.hospitalDoctors = hospitalDoctors;
+	public void setHospital_doctors(int hospital_doctors) {
+		this.hospital_doctors = hospital_doctors;
 	}
-	public int getHospitalNurses() {
-		return hospitalNurses;
+	public int getHospital_nurses() {
+		return hospital_nurses;
 	}
-	public void setHospitalNurses(int hospitalNurses) {
-		this.hospitalNurses = hospitalNurses;
+	public void setHospital_nurses(int hospital_nurses) {
+		this.hospital_nurses = hospital_nurses;
 	}
-	public int getHospitalInspectors() {
-		return hospitalInspectors;
+	public int getHospital_inspectors() {
+		return hospital_inspectors;
 	}
-	public void setHospitalInspectors(int hospitalInspectors) {
-		this.hospitalInspectors = hospitalInspectors;
+	public void setHospital_inspectors(int hospital_inspectors) {
+		this.hospital_inspectors = hospital_inspectors;
 	}
-	public String getHospitalUrl() {
-		return hospitalUrl;
+	public String getHospital_url() {
+		return hospital_url;
 	}
-	public void setHospitalUrl(String hospitalUrl) {
-		this.hospitalUrl = hospitalUrl;
+	public void setHospital_url(String hospital_url) {
+		this.hospital_url = hospital_url;
 	}
+	
+
 	
 }
