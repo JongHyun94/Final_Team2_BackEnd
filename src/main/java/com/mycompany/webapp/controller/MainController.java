@@ -51,8 +51,12 @@ public class MainController {
 	@GetMapping("/test") 
 	public List<Users> test(){ 
 		List<Users> userList = usersService.getAllUsers();
-		logger.info("userList:", userList);
-	  
+		logger.info("userList:");
+		logger.info("" + userList.get(0).getUser_name());
+//		userList.get(0).getUser_name()
+		/*
+		 * for(int i=0; i<userList.size();i++) { System.out.println(userList[i].); }
+		 */
 		return userList;
 	}
 	 
