@@ -30,7 +30,7 @@ public class MainController {
 	public String home() {
 		try {
 		      Connection conn = (Connection) dataSource.getConnection();
-		      System.out.println("성공 : " + conn);
+		      System.out.println("성공: " + conn);
 		      
 		      } catch (Exception ex){
 		         System.out.println("실패..!");
@@ -39,6 +39,12 @@ public class MainController {
 		
 		return "home";
 	}
+	/*
+	 * @GetMapping("/test") public String test(){ String user =
+	 * 
+	 * return user; }
+	 */
+	
 	/*
 	 * @GetMapping("/test") public String test(){ String user =
 	 * 
