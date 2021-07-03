@@ -39,13 +39,11 @@ public class MainController {
 		
 		return "home";
 	}
-	@GetMapping("/test")
-	public String test(){
-		String user = 
-		
-		return user;
-	}
-	
+	/*
+	 * @GetMapping("/test") public String test(){ String user =
+	 * 
+	 * return user; }
+	 */
 	
 	
 //	@RequestMapping("/sendRedisMessage")

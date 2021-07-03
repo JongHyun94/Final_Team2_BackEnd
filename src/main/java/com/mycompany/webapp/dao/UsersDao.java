@@ -1,5 +1,8 @@
 package com.mycompany.webapp.dao;
 
-public class UsersDao {
+import org.apache.ibatis.annotations.Mapper;
 
+@Mapper
+public class UsersDao {
+	
 }
