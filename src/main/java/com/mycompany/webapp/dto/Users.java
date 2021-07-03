@@ -1,68 +1,68 @@
 package com.mycompany.webapp.dto;
 
 public class Users {
-	private String userId;
-	private String userHospitalId;
-	private String userPassword;
-	private String userName;
-	private String userTel;
-	private String userEmail; 
-	private String userSex;
-	private String userZipcode;
+	private String user_id;
+	private String user_hospital_id;
+	private String user_password;
+	private String user_name;
+	private String user_tel;
+	private String user_email; 
+	private String user_sex;
+	private String user_zipcode;
 	private String userAddress;
-	private String userDetailAddress1;
-	private String userDetailAddress2;
-	private String userRegdate;
-	private String userEnable;
-	private String userAuthority;
+	private String user_detailaddress1;
+	private String user_detailaddress2;
+	private String user_regdate;
+	private String user_enabled;
+	private String user_authority;
 	
-	public String getUserId() {
-		return userId;
+	public String getUser_id() {
+		return user_id;
 	}
-	public void setUserId(String userId) {
-		this.userId = userId;
+	public void setUser_id(String user_id) {
+		this.user_id = user_id;
 	}
-	public String getUserHospitalId() {
-		return userHospitalId;
+	public String getUser_hospital_id() {
+		return user_hospital_id;
 	}
-	public void setUserHospitalId(String userHospitalId) {
-		this.userHospitalId = userHospitalId;
+	public void setUser_hospital_id(String user_hospital_id) {
+		this.user_hospital_id = user_hospital_id;
 	}
-	public String getUserPassword() {
-		return userPassword;
+	public String getUser_password() {
+		return user_password;
 	}
-	public void setUserPassword(String userPassword) {
-		this.userPassword = userPassword;
+	public void setUser_password(String user_password) {
+		this.user_password = user_password;
 	}
-	public String getUserName() {
-		return userName;
+	public String getUser_name() {
+		return user_name;
 	}
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public void setUser_name(String user_name) {
+		this.user_name = user_name;
 	}
-	public String getUserTel() {
-		return userTel;
+	public String getUser_tel() {
+		return user_tel;
 	}
-	public void setUserTel(String userTel) {
-		this.userTel = userTel;
+	public void setUser_tel(String user_tel) {
+		this.user_tel = user_tel;
 	}
-	public String getUserEmail() {
-		return userEmail;
+	public String getUser_email() {
+		return user_email;
 	}
-	public void setUserEmail(String userEmail) {
-		this.userEmail = userEmail;
+	public void setUser_email(String user_email) {
+		this.user_email = user_email;
 	}
-	public String getUserSex() {
-		return userSex;
+	public String getUser_sex() {
+		return user_sex;
 	}
-	public void setUserSex(String userSex) {
-		this.userSex = userSex;
+	public void setUser_sex(String user_sex) {
+		this.user_sex = user_sex;
 	}
-	public String getUserZipcode() {
-		return userZipcode;
+	public String getUser_zipcode() {
+		return user_zipcode;
 	}
-	public void setUserZipcode(String userZipcode) {
-		this.userZipcode = userZipcode;
+	public void setUser_zipcode(String user_zipcode) {
+		this.user_zipcode = user_zipcode;
 	}
 	public String getUserAddress() {
 		return userAddress;
@@ -70,36 +70,35 @@ public class Users {
 	public void setUserAddress(String userAddress) {
 		this.userAddress = userAddress;
 	}
-	public String getUserDetailAddress1() {
-		return userDetailAddress1;
+	public String getUser_detailaddress1() {
+		return user_detailaddress1;
 	}
-	public void setUserDetailAddress1(String userDetailAddress1) {
-		this.userDetailAddress1 = userDetailAddress1;
+	public void setUser_detailaddress1(String user_detailaddress1) {
+		this.user_detailaddress1 = user_detailaddress1;
 	}
-	public String getUserDetailAddress2() {
-		return userDetailAddress2;
+	public String getUser_detailaddress2() {
+		return user_detailaddress2;
 	}
-	public void setUserDetailAddress2(String userDetailAddress2) {
-		this.userDetailAddress2 = userDetailAddress2;
+	public void setUser_detailaddress2(String user_detailaddress2) {
+		this.user_detailaddress2 = user_detailaddress2;
 	}
-	public String getUserRegdate() {
-		return userRegdate;
+	public String getUser_regdate() {
+		return user_regdate;
 	}
-	public void setUserRegdate(String userRegdate) {
-		this.userRegdate = userRegdate;
+	public void setUser_regdate(String user_regdate) {
+		this.user_regdate = user_regdate;
 	}
-	public String getUserEnable() {
-		return userEnable;
+	public String getUser_enabled() {
+		return user_enabled;
 	}
-	public void setUserEnable(String userEnable) {
-		this.userEnable = userEnable;
+	public void setUser_enabled(String user_enabled) {
+		this.user_enabled = user_enabled;
 	}
-	public String getUserAuthority() {
-		return userAuthority;
+	public String getUser_authority() {
+		return user_authority;
 	}
-	public void setUserAuthority(String userAuthority) {
-		this.userAuthority = userAuthority;
+	public void setUser_authority(String user_authority) {
+		this.user_authority = user_authority;
 	}
-	
 	
 }

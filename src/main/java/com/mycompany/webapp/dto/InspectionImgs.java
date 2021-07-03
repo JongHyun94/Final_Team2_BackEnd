@@ -1,41 +1,40 @@
 package com.mycompany.webapp.dto;
 
 public class InspectionImgs {
-	private int inspectionImgId;
-	private int inspectionImgInspectionId;
-	private int inspectionImgOname;
-	private int inspectionImgSname;
-	private int inspectionImgType;
+	private int inspection_img_id;
+	private int inspection_img_inspection_id;
+	private int inspection_img_oname;
+	private int inspection_img_sname;
+	private int inspection_img_type;
 	
-	public int getInspectionImgId() {
-		return inspectionImgId;
+	public int getInspection_img_id() {
+		return inspection_img_id;
 	}
-	public void setInspectionImgId(int inspectionImgId) {
-		this.inspectionImgId = inspectionImgId;
+	public void setInspection_img_id(int inspection_img_id) {
+		this.inspection_img_id = inspection_img_id;
 	}
-	public int getInspectionImgInspectionId() {
-		return inspectionImgInspectionId;
+	public int getInspection_img_inspection_id() {
+		return inspection_img_inspection_id;
 	}
-	public void setInspectionImgInspectionId(int inspectionImgInspectionId) {
-		this.inspectionImgInspectionId = inspectionImgInspectionId;
+	public void setInspection_img_inspection_id(int inspection_img_inspection_id) {
+		this.inspection_img_inspection_id = inspection_img_inspection_id;
 	}
-	public int getInspectionImgOname() {
-		return inspectionImgOname;
+	public int getInspection_img_oname() {
+		return inspection_img_oname;
 	}
-	public void setInspectionImgOname(int inspectionImgOname) {
-		this.inspectionImgOname = inspectionImgOname;
+	public void setInspection_img_oname(int inspection_img_oname) {
+		this.inspection_img_oname = inspection_img_oname;
 	}
-	public int getInspectionImgSname() {
-		return inspectionImgSname;
+	public int getInspection_img_sname() {
+		return inspection_img_sname;
 	}
-	public void setInspectionImgSname(int inspectionImgSname) {
-		this.inspectionImgSname = inspectionImgSname;
+	public void setInspection_img_sname(int inspection_img_sname) {
+		this.inspection_img_sname = inspection_img_sname;
 	}
-	public int getInspectionImgType() {
-		return inspectionImgType;
+	public int getInspection_img_type() {
+		return inspection_img_type;
 	}
-	public void setInspectionImgType(int inspectionImgType) {
-		this.inspectionImgType = inspectionImgType;
-	}
-	
+	public void setInspection_img_type(int inspection_img_type) {
+		this.inspection_img_type = inspection_img_type;
+	}	
 }
