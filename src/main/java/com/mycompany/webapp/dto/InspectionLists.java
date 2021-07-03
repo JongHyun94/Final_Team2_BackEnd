@@ -1,58 +1,59 @@
 package com.mycompany.webapp.dto;
 
 public class InspectionLists {
-	private int inspectionListId;
-	private String inspectionListCategory;
-	private String inspectionListName;
-	private String inspectionListContainer;
-	private String inspectionListReference;
+	private int inspection_list_id;
+	private String inspection_list_category;
+	private String inspection_list_specimen;
+	private String inspection_list_name;
+	private String inspection_list_container;
+	private String inspection_list_reference;
 	
-	public int getInspectionListId() {
-		return inspectionListId;
+	public int getInspection_list_id() {
+		return inspection_list_id;
 	}
 	
-	public void setInspectionListId(int inspectionListId) {
-		this.inspectionListId = inspectionListId;
+	public void setInspection_list_id(int inspection_list_id) {
+		this.inspection_list_id = inspection_list_id;
 	}
 	
-	public String getInspectionListCategory() {
-		return inspectionListCategory;
+	public String getInspection_list_category() {
+		return inspection_list_category;
 	}
 	
-	public void setInspectionListCategory(String inspectionListCategory) {
-		this.inspectionListCategory = inspectionListCategory;
+	public void setInspection_list_category(String inspection_list_category) {
+		this.inspection_list_category = inspection_list_category;
 	}
 	
-	public String getInspectionListName() {
-		return inspectionListName;
+	public String getInspection_list_specimen() {
+		return inspection_list_specimen;
 	}
 	
-	public void setInspectionListName(String inspectionListName) {
-		this.inspectionListName = inspectionListName;
+	public void setInspection_list_specimen(String inspection_list_specimen) {
+		this.inspection_list_specimen = inspection_list_specimen;
 	}
 	
-	public String getInspectionListContainer() {
-		return inspectionListContainer;
+	public String getInspection_list_name() {
+		return inspection_list_name;
 	}
 	
-	public void setInspectionListContainer(String inspectionListContainer) {
-		this.inspectionListContainer = inspectionListContainer;
+	public void setInspection_list_name(String inspection_list_name) {
+		this.inspection_list_name = inspection_list_name;
 	}
 	
-	public String getInspectionListReference() {
-		return inspectionListReference;
+	public String getInspection_list_container() {
+		return inspection_list_container;
 	}
 	
-	public void setInspectionListReference(String inspectionListReference) {
-		this.inspectionListReference = inspectionListReference;
-	}
-
-	@Override
-	public String toString() {
-		return "InspectionLists [inspectionListId=" + inspectionListId + ", inspectionListCategory="
-				+ inspectionListCategory + ", inspectionListName=" + inspectionListName + ", inspectionListContainer="
-				+ inspectionListContainer + ", inspectionListReference=" + inspectionListReference + "]";
+	public void setInspection_list_container(String inspection_list_container) {
+		this.inspection_list_container = inspection_list_container;
 	}
 	
+	public String getInspection_list_reference() {
+		return inspection_list_reference;
+	}
+	
+	public void setInspection_list_reference(String inspection_list_reference) {
+		this.inspection_list_reference = inspection_list_reference;
+	}
 	
 }
