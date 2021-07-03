@@ -1,5 +1,6 @@
 package com.mycompany.webapp.controller;
 
+import java.util.List;
 import java.sql.Connection;
 
 import javax.sql.DataSource;
@@ -12,6 +13,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.mycompany.webapp.dto.Users;
+import com.mycompany.webapp.service.UsersService;
+
 @CrossOrigin(origins="*")
 @RestController
 public class MainController {
@@ -22,6 +26,10 @@ public class MainController {
 //	
 //	@Autowired
 //	private MqttTemplate mqttTemplate;
+	
+	@Autowired
+	private UsersService usersService;
+	
 	
 	@Autowired
 	private DataSource dataSource;
@@ -39,17 +47,16 @@ public class MainController {
 		
 		return "home";
 	}
-	/*
-	 * @GetMapping("/test") public String test(){ String user =
-	 * 
-	 * return user; }
-	 */
 	
-	/*
-	 * @GetMapping("/test") public String test(){ String user =
-	 * 
-	 * return user; }
-	 */
+	@GetMapping("/test") 
+	public List<Users> test(){ 
+		List<Users> userList = usersService.getAllUsers();
+		logger.info("userList:", userList);
+	  
+		return userList;
+	}
+	 
+	
 	
 	
 //	@RequestMapping("/sendRedisMessage")
