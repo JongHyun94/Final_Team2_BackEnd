@@ -1,40 +1,50 @@
 package com.mycompany.webapp.dto;
 
 public class Schedules {	
-	private int SCHEDULE_ID;
-	private String SCHEDULE_USER_ID;
-	private String SCHEDULE_CONTENT;
-	private String SCHEDULE_STATE;
-	private String SCHEDULE_REGDATE;
+	private int schedule_id;
+	private String schedule_user_id;
+	private String schedule_content;
+	private String schedule_state;
+	private String schedule_regdate;
 	
-	public int getSCHEDULE_ID() {
-		return SCHEDULE_ID;
+	public int getSchedule_id() {
+		return schedule_id;
 	}
-	public void setSCHEDULE_ID(int sCHEDULE_ID) {
-		SCHEDULE_ID = sCHEDULE_ID;
+	
+	public void setSchedule_id(int schedule_id) {
+		this.schedule_id = schedule_id;
 	}
-	public String getSCHEDULE_USER_ID() {
-		return SCHEDULE_USER_ID;
+	
+	public String getSchedule_user_id() {
+		return schedule_user_id;
 	}
-	public void setSCHEDULE_USER_ID(String sCHEDULE_USER_ID) {
-		SCHEDULE_USER_ID = sCHEDULE_USER_ID;
+	
+	public void setSchedule_user_id(String schedule_user_id) {
+		this.schedule_user_id = schedule_user_id;
 	}
-	public String getSCHEDULE_CONTENT() {
-		return SCHEDULE_CONTENT;
+	
+	public String getSchedule_content() {
+		return schedule_content;
 	}
-	public void setSCHEDULE_CONTENT(String sCHEDULE_CONTENT) {
-		SCHEDULE_CONTENT = sCHEDULE_CONTENT;
+	
+	public void setSchedule_content(String schedule_content) {
+		this.schedule_content = schedule_content;
 	}
-	public String getSCHEDULE_STATE() {
-		return SCHEDULE_STATE;
+	
+	public String getSchedule_state() {
+		return schedule_state;
 	}
-	public void setSCHEDULE_STATE(String sCHEDULE_STATE) {
-		SCHEDULE_STATE = sCHEDULE_STATE;
+	
+	public void setSchedule_state(String schedule_state) {
+		this.schedule_state = schedule_state;
 	}
-	public String getSCHEDULE_REGDATE() {
-		return SCHEDULE_REGDATE;
+	
+	public String getSchedule_regdate() {
+		return schedule_regdate;
 	}
-	public void setSCHEDULE_REGDATE(String sCHEDULE_REGDATE) {
-		SCHEDULE_REGDATE = sCHEDULE_REGDATE;
+	
+	public void setSchedule_regdate(String schedule_regdate) {
+		this.schedule_regdate = schedule_regdate;
 	}
+	
 }
