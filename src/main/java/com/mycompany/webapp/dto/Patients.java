@@ -1,5 +1,7 @@
 package com.mycompany.webapp.dto;
 
+import java.util.Date;
+
 public class Patients {
 	private int patient_id;
 	private String patient_name;
@@ -10,7 +12,7 @@ public class Patients {
 	private String patient_address;
 	private String patient_detailaddress1;
 	private String patient_detailaddress2;
-	private String patient_regdate;
+	private Date patient_regdate;
 	
 	
 	public int getPatient_id() {
@@ -67,10 +69,10 @@ public class Patients {
 	public void setPatient_detailaddress2(String patient_detailaddress2) {
 		this.patient_detailaddress2 = patient_detailaddress2;
 	}
-	public String getPatient_regdate() {
+	public Date getPatient_regdate() {
 		return patient_regdate;
 	}
-	public void setPatient_regdate(String patient_regdate) {
+	public void setPatient_regdate(Date patient_regdate) {
 		this.patient_regdate = patient_regdate;
 	}
 	

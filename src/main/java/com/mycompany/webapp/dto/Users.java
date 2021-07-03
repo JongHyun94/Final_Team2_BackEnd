@@ -1,4 +1,5 @@
 package com.mycompany.webapp.dto;
+import java.util.Date;
 
 public class Users {
 	private String user_id;
@@ -12,8 +13,8 @@ public class Users {
 	private String userAddress;
 	private String user_detailaddress1;
 	private String user_detailaddress2;
-	private String user_regdate;
-	private String user_enabled;
+	private Date user_regdate;
+	private int user_enabled;
 	private String user_authority;
 	
 	public String getUser_id() {
@@ -82,16 +83,16 @@ public class Users {
 	public void setUser_detailaddress2(String user_detailaddress2) {
 		this.user_detailaddress2 = user_detailaddress2;
 	}
-	public String getUser_regdate() {
+	public Date getUser_regdate() {
 		return user_regdate;
 	}
-	public void setUser_regdate(String user_regdate) {
+	public void setUser_regdate(Date user_regdate) {
 		this.user_regdate = user_regdate;
 	}
-	public String getUser_enabled() {
+	public int getUser_enabled() {
 		return user_enabled;
 	}
-	public void setUser_enabled(String user_enabled) {
+	public void setUser_enabled(int user_enabled) {
 		this.user_enabled = user_enabled;
 	}
 	public String getUser_authority() {

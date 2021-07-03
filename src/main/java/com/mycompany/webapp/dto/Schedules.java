@@ -1,11 +1,13 @@
 package com.mycompany.webapp.dto;
 
+import java.util.Date;
+
 public class Schedules {	
 	private int schedule_id;
 	private String schedule_user_id;
 	private String schedule_content;
 	private String schedule_state;
-	private String schedule_regdate;
+	private Date schedule_regdate;
 	
 	public int getSchedule_id() {
 		return schedule_id;
@@ -39,11 +41,11 @@ public class Schedules {
 		this.schedule_state = schedule_state;
 	}
 	
-	public String getSchedule_regdate() {
+	public Date getSchedule_regdate() {
 		return schedule_regdate;
 	}
 	
-	public void setSchedule_regdate(String schedule_regdate) {
+	public void setSchedule_regdate(Date schedule_regdate) {
 		this.schedule_regdate = schedule_regdate;
 	}
 	
