@@ -18,5 +18,12 @@ public class UsersService {
 		List<Users> usersList = usersDao.selectAllUser();
 		return usersList;
 	}
-	
+
+	public void updateUser(Users user) {
+		usersDao.updateUser(user);		
+	}
+
+	public void createUser(Users user) {
+		usersDao.insertUser(user);
+	}	
 }

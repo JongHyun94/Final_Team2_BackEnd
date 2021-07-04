@@ -10,5 +10,6 @@ import com.mycompany.webapp.dto.Users;
 public interface UsersDao {
 
 	public List<Users> selectAllUser();
-	
+	public void updateUser(Users user);
+	public void insertUser(Users user);	
 }

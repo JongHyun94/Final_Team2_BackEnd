@@ -4,4 +4,28 @@
 					 
 <mapper namespace="com.mycompany.webapp.dao.PatientsDao">
 
+	<select id="selectAllPatient" resultType="patient">
+		select patient_id, patient_name, patient_ssn, patient_sex, patient_tel, patient_zipcode,
+					 patient_address, patient_detailaddress1, patient_detailaddress2, patient_regdate
+		from patients
+	</select>
+	
+	<update id="updatePatient" parameterType="patient">
+		update patients
+		set patient_name = #{patient_name},
+				patient_ssn = #{patient_ssn},
+				patient_sex = #{patient_sex},
+				patient_tel = #{patient_tel},
+				patient_zipcode = #{patient_zipcode},
+				patient_address = #{patient_address},
+				patient_detailaddress1 = #{patient_detailaddress1},
+				patient_detailaddress2 = #{patient_detailaddress2},
+		where patient_id = #{patient_id}				
+	</update>
+	
+	<insert id="insertPatient" parameterType="patient">
+		insert into patients
+		values
+	</insert>
+
 </mapper>

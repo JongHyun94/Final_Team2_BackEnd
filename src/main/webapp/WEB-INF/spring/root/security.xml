@@ -12,14 +12,14 @@
    <security:http>
       <!-- 요청 경로 체크 -->
       <!-- <security:intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')"/> -->
-      <security:intercept-url pattern="/user/**" access="hasRole('ROLE_USER')"/>
+      <!-- <security:intercept-url pattern="/user/**" access="hasRole('ROLE_USER')"/> -->
       <security:intercept-url pattern="/**" access="permitAll"/>
       
       <!-- 로그인/로그아웃 설정 -->
       <security:form-login login-page="/auth/login"
-                      username-parameter="userId"
-                      password-parameter="userPassword"
-                      login-processing-url="/login"
+                      username-parameter="user_id"
+                      password-parameter="user_password"
+                      login-processing-url="/"
                       authentication-success-handler-ref="authSuccessHandler"
 					  authentication-failure-handler-ref="authFailureHandler"
                       />
@@ -48,7 +48,7 @@
    
    <security:jdbc-user-service id="jdbcUserService"
                         data-source-ref="dataSource"
-                        users-by-username-query="select user_id, user_password, user_enable from users where user_id=?"
+                        users-by-username-query="select user_id, user_password, user_enabled from users where user_id=?"
                         authorities-by-username-query="select user_id, user_authority from users where user_id=?"/>
    
    <bean id="roleHierarchyAuthoritiesMapper"
