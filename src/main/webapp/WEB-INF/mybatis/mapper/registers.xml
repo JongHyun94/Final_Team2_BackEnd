@@ -3,5 +3,25 @@
 					 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 					 
 <mapper namespace="com.mycompany.webapp.dao.RegistersDao">
+	<!-- Create -->
 
+	<!-- Read -->
+	<select id="selectAllRegisters" resultType="register">
+		select register_id, register_patient_id, register_user_id, 
+			register_regdate, register_date, register_starttime,
+			register_memo, register_communication, register_state
+		from registers
+	</select>
+	
+	<select id="selectRegistersByDate" resultType="register">
+		select register_id, register_patient_id, register_user_id, 
+			register_regdate, register_date, register_starttime,
+			register_memo, register_communication, register_state
+		from registers
+		where register_date={#register_date}
+	</select>
+	
+	<!-- Update -->
+	
+	<!-- Delete -->
 </mapper>
