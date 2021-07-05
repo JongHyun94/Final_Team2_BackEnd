@@ -65,11 +65,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 			//요청 경로 권한 설정
 			//ROLE_ 를 넣는상황 hasAuthority
 			//.antMatchers(HttpMethod.POST,"/boards").hasAuthority("ROLE_USER")
-			.antMatchers("/sabang_m").hasAuthority("ROLE_ADMIN")
-			.antMatchers("/palbang_m").hasAuthority("ROLE_ADMIN")
-			.antMatchers("/order_m").hasAuthority("ROLE_ADMIN")
-			.antMatchers("/inquiry_m").hasAuthority("ROLE_ADMIN")
-			.antMatchers("/profit_m").hasAuthority("ROLE_ADMIN")
+				/*
+				 * .antMatchers("/sabang_m").hasAuthority("ROLE_ADMIN")
+				 * .antMatchers("/palbang_m").hasAuthority("ROLE_ADMIN")
+				 * .antMatchers("/order_m").hasAuthority("ROLE_ADMIN")
+				 * .antMatchers("/inquiry_m").hasAuthority("ROLE_ADMIN")
+				 * .antMatchers("/profit_m").hasAuthority("ROLE_ADMIN")
+				 */
 			//hasAuthority는 한개 속성 넣고
 			//hasAnyRole 은 여러개 넣을 수 있다.
 			
@@ -83,9 +85,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 		auth.jdbcAuthentication()
         	.dataSource(dataSource)
         	//인증
-        	.usersByUsernameQuery("select member_email as username, member_pw as password, member_enable as enabled from member where member_email=?")
+        	.usersByUsernameQuery(
+        			"select user_id as username, user_password as password, user_enabled as enabled "
+        			+ "from users "
+        			+ "where user_id=?")
         	//권한 참조
-        	.authoritiesByUsernameQuery("select member_email as username, member_authority as authority from member where member_email=?")
+        	.authoritiesByUsernameQuery(""
+        			+ "select user_id as username, user_authority as authority "
+        			+ "from users "
+        			+ "where user_id=?")
         	.passwordEncoder(new BCryptPasswordEncoder());
 	}
 	
@@ -111,7 +119,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 	//ROLE_ 를 넣어야됨 
 	public RoleHierarchyImpl roleHierarchyImpl() {
 		RoleHierarchyImpl roleHierarchyImpl = new RoleHierarchyImpl();
-		roleHierarchyImpl.setHierarchy("ROLE_ADMIN > ROLE_MEMBER");
+		roleHierarchyImpl.setHierarchy("ROLE_MASTER > ROLE_DOCTOR");
+		roleHierarchyImpl.setHierarchy("ROLE_MASTER > ROLE_NURSE");
+		roleHierarchyImpl.setHierarchy("ROLE_MASTER > ROLE_INSPECTOR");
+		roleHierarchyImpl.setHierarchy("ROLE_DOCTOR > ROLE_NURSE");
 		
 		return roleHierarchyImpl;
 	}
