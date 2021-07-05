@@ -107,14 +107,16 @@ public class UserController {
 	//직원 정보 수정
 	@PutMapping("")
 	public Users update(@RequestBody Users user) {
-		usersService.updateUser(user);
+		logger.info("직원수정:" + user);
+//		usersService.updateUser(user);
 		return user;
 	}
 	
 	//직원 등록
 	@PostMapping("")
 	public Users create(@RequestBody Users user) {
-		usersService.createUser(user);
+		logger.info("직원등록:" + user);
+//		usersService.createUser(user);
 		return user;
 	}
 }
