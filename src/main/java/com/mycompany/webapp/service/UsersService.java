@@ -18,6 +18,11 @@ public class UsersService {
 		List<Users> usersList = usersDao.selectAllUser();
 		return usersList;
 	}
+	
+	public List<Users> getUsers(String keyword, String authority) {
+		List<Users> usersList = usersDao.selectUsers(keyword, authority);
+		return usersList;
+	}
 
 	public void updateUser(Users user) {
 		usersDao.updateUser(user);		

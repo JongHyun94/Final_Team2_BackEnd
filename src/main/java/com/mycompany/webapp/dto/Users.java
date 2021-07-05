@@ -16,6 +16,16 @@ public class Users {
 	private Date user_regdate;
 	private int user_enabled;
 	private String user_authority;
+	private String user_ssn;
+	
+	// 프론트 사용하기 위한 변수 정의
+	private String user_tel1;
+	private String user_tel2;
+	private String user_tel3;
+	private String user_email1;
+	private String user_email2;
+	private String user_ssn1;
+	private String user_ssn2;
 	
 	public String getUser_id() {
 		return user_id;
@@ -101,5 +111,53 @@ public class Users {
 	public void setUser_authority(String user_authority) {
 		this.user_authority = user_authority;
 	}
+	public String getUser_ssn() {
+		return user_ssn;
+	}
+	public void setUser_ssn(String user_ssn) {
+		this.user_ssn = user_ssn;
+	}
 	
+	public String getUser_tel1() {
+		return user_tel1;
+	}
+	public void setUser_tel1(String user_tel) {
+		this.user_tel1 = user_tel.split("-")[0];
+	}
+	public String getUser_tel2() {
+		return user_tel2;
+	}
+	public void setUser_tel2(String user_tel) {
+		this.user_tel2 = user_tel.split("-")[1];
+	}
+	public String getUser_tel3() {
+		return user_tel3;
+	}
+	public void setUser_tel3(String user_tel) {
+		this.user_tel3 = user_tel.split("-")[2];
+	}
+	public String getUser_email1() {
+		return user_email1;
+	}
+	public void setUser_email1(String user_email) {
+		this.user_email1 = user_email.split("@")[0];
+	}
+	public String getUser_email2() {
+		return user_email2;
+	}
+	public void setUser_email2(String user_email) {
+		this.user_email2 = user_email.split("@")[1];
+	}
+	public String getUser_ssn1() {
+		return user_ssn1;
+	}
+	public void setUser_ssn1(String user_ssn) {
+		this.user_ssn1 = user_ssn.split("-")[0];
+	}
+	public String getUser_ssn2() {
+		return user_ssn2;
+	}
+	public void setUser_ssn2(String user_ssn) {
+		this.user_ssn2 = user_ssn.split("-")[1];
+	}
 }
