@@ -3,6 +3,7 @@
 					 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.mycompany.webapp.dao.UsersDao">
+<!-- 종현 -->
 	<!-- 전체 직원 불러오기 -->
 	<select id="selectAllUser" resultType="user">
 		select user_id,

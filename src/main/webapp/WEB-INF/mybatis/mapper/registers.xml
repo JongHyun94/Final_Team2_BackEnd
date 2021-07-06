@@ -3,6 +3,7 @@
 					 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.mycompany.webapp.dao.RegistersDao">
+<!-- Á¾Çö -->
 	<!-- Create -->
 
 	<insert id="insertNewRegister" parameterType="register">
