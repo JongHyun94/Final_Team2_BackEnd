@@ -8,16 +8,23 @@ public class Inspections {
 	private String inspection_doctor_id;
 	private String inspection_inspector_id;
 	private int inspection_treatment_id;
-	private int inspection_list_id;
+	private int inspection_inspection_list_id;
 	private String inspection_lab;
-	private Date inspection_date;
+	private String inspection_date;
 	private String inspection_result;
 	private String inspection_state;
-	
+
 	private String inspection_list_name;
 	private String inspection_list_category;
 	private String inspection_list_reference;
 	private String user_name;
+	
+	private String inspection_doctor_name;
+	private String inspection_inspector_name;
+	private String inspection_list_specimen;
+	private String inspeciton_list_container;
+	private String patient_name;
+	
 	
 	public int getInspection_id() {
 		return inspection_id;
@@ -59,12 +66,12 @@ public class Inspections {
 		this.inspection_treatment_id = inspection_treatment_id;
 	}
 	
-	public int getInspection_list_id() {
-		return inspection_list_id;
+	public int getInspection_inspection_list_id() {
+		return inspection_inspection_list_id;
 	}
 	
-	public void setInspection_list_id(int inspection_list_id) {
-		this.inspection_list_id = inspection_list_id;
+	public void setInspection_inspection_list_id(int inspection_list_id) {
+		this.inspection_inspection_list_id = inspection_list_id;
 	}
 	
 	public String getInspection_lab() {
@@ -75,11 +82,11 @@ public class Inspections {
 		this.inspection_lab = inspection_lab;
 	}
 	
-	public Date getInspection_date() {
+	public String getInspection_date() {
 		return inspection_date;
 	}
 	
-	public void setInspection_date(Date inspection_date) {
+	public void setInspection_date(String inspection_date) {
 		this.inspection_date = inspection_date;
 	}
 	
@@ -130,7 +137,45 @@ public class Inspections {
 	public void setUser_name(String user_name) {
 		this.user_name = user_name;
 	}
-	
+	public String getInspection_doctor_name() {
+		return inspection_doctor_name;
+	}
+
+	public void setInspection_doctor_name(String inspection_doctor_name) {
+		this.inspection_doctor_name = inspection_doctor_name;
+	}
+
+	public String getInspection_inspector_name() {
+		return inspection_inspector_name;
+	}
+
+	public void setInspection_inspector_name(String inspection_inspector_name) {
+		this.inspection_inspector_name = inspection_inspector_name;
+	}
+
+	public String getInspection_list_specimen() {
+		return inspection_list_specimen;
+	}
+
+	public void setInspection_list_specimen(String inspection_list_specimen) {
+		this.inspection_list_specimen = inspection_list_specimen;
+	}
+
+	public String getInspeciton_list_container() {
+		return inspeciton_list_container;
+	}
+
+	public void setInspeciton_list_container(String inspeciton_list_container) {
+		this.inspeciton_list_container = inspeciton_list_container;
+	}
+	public String getPatient_name() {
+		return patient_name;
+	}
+
+	public void setPatient_name(String patient_name) {
+		this.patient_name = patient_name;
+	}
+
 	
 	
 }

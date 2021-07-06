@@ -3,7 +3,6 @@ package com.mycompany.webapp.controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -15,11 +14,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.mycompany.webapp.dto.Inspections;
 import com.mycompany.webapp.dto.Treatments;
 import com.mycompany.webapp.service.InspectionsService;
 
@@ -77,7 +76,6 @@ public class InspectionController {
 	public void readPatient(HttpServletRequest request, HttpServletResponse response, @RequestParam int treatmentId) {
 		logger.info("" + treatmentId);
 		
-		/*
 		List<Inspections> inspectionList = inspectionsService.getInspections(treatmentId);
 		
 		response.setContentType("application/json;charset=UTF-8");
@@ -93,7 +91,6 @@ public class InspectionController {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		*/
 
 	}
 	
