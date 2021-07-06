@@ -14,28 +14,55 @@
 		patient_regdate
 		from patients
 	</select>
-	<select id="selectAllPatient" resultType="patient">
-		select patient_id, patient_name, patient_ssn, patient_sex, patient_tel, patient_zipcode,
-					 patient_address, patient_detailaddress1, patient_detailaddress2, patient_regdate
+	
+<!-- 서영 -->
+	<!-- 전체 환자 목록 -->
+	<select id="selectPatient" resultType="patient">
+		select patient_id, 
+			   patient_name, 
+			   patient_ssn,
+			   patient_sex, 
+			   patient_tel, 
+			   patient_zipcode,
+			   patient_address, 
+			   patient_detailaddress1, 
+			   patient_detailaddress2, 
+			   patient_regdate
 		from patients
+		<if test='keyword != ""'>
+			where patient_name regexp #{keyword}
+		</if>
 	</select>
 	
 	<update id="updatePatient" parameterType="patient">
 		update patients
 		set patient_name = #{patient_name},
-				patient_ssn = #{patient_ssn},
-				patient_sex = #{patient_sex},
-				patient_tel = #{patient_tel},
-				patient_zipcode = #{patient_zipcode},
-				patient_address = #{patient_address},
-				patient_detailaddress1 = #{patient_detailaddress1},
-				patient_detailaddress2 = #{patient_detailaddress2},
+			patient_ssn = #{patient_ssn},
+			patient_sex = #{patient_sex},
+			patient_tel = #{patient_tel},
+			patient_zipcode = #{patient_zipcode},
+			patient_address = #{patient_address},
+			patient_detailaddress1 = #{patient_detailaddress1},
+			patient_detailaddress2 = #{patient_detailaddress2}
 		where patient_id = #{patient_id}				
 	</update>
 	
 	<insert id="insertPatient" parameterType="patient">
 		insert into patients
-		values
+		values (#{patient_id},
+				#{patient_name},
+				#{patient_ssn},
+				#{patient_sex},
+				#{patient_tel},
+				#{patient_zipcode},
+				#{patient_address},
+				#{patient_detailaddress1},
+				#{patient_detailaddress2},
+				now())
 	</insert>
 
+	<select id="getCount" resultType="int">
+		select count(*)
+		from patients
+	</select>
 </mapper>

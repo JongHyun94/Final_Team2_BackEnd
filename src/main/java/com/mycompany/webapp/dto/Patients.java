@@ -1,7 +1,5 @@
 package com.mycompany.webapp.dto;
 
-import java.util.Date;
-
 public class Patients {
 	private int patient_id;
 	private String patient_name;
@@ -12,7 +10,14 @@ public class Patients {
 	private String patient_address;
 	private String patient_detailaddress1;
 	private String patient_detailaddress2;
-	private Date patient_regdate;
+	private String patient_regdate;
+	
+	// 프론트 사용하기 위한 변수 정의
+	private String patient_tel1;
+	private String patient_tel2;
+	private String patient_tel3;
+	private String patient_ssn1;
+	private String patient_ssn2;
 	
 	public int getPatient_id() {
 		return patient_id;
@@ -68,13 +73,40 @@ public class Patients {
 	public void setPatient_detailaddress2(String patient_detailaddress2) {
 		this.patient_detailaddress2 = patient_detailaddress2;
 	}
-	public Date getPatient_regdate() {
+	public String getPatient_regdate() {
 		return patient_regdate;
 	}
-	public void setPatient_regdate(Date patient_regdate) {
+	public void setPatient_regdate(String patient_regdate) {
 		this.patient_regdate = patient_regdate;
 	}
-	
-	
-	
+	public String getPatient_tel1() {
+		return patient_tel1;
+	}
+	public void setPatient_tel1(String patient_tel1) {
+		this.patient_tel1 = patient_tel1;
+	}
+	public String getPatient_tel2() {
+		return patient_tel2;
+	}
+	public void setPatient_tel2(String patient_tel2) {
+		this.patient_tel2 = patient_tel2;
+	}
+	public String getPatient_tel3() {
+		return patient_tel3;
+	}
+	public void setPatient_tel3(String patient_tel3) {
+		this.patient_tel3 = patient_tel3;
+	}
+	public String getPatient_ssn1() {
+		return patient_ssn1;
+	}
+	public void setPatient_ssn1(String patient_ssn1) {
+		this.patient_ssn1 = patient_ssn1;
+	}
+	public String getPatient_ssn2() {
+		return patient_ssn2;
+	}
+	public void setPatient_ssn2(String patient_ssn2) {
+		this.patient_ssn2 = patient_ssn2;
+	}	
 }

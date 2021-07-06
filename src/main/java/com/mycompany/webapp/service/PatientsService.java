@@ -13,8 +13,8 @@ public class PatientsService {
 	@Autowired 
 	private PatientsDao patientsDao;
 
-	public List<Patients> getAllPatients() {
-		List<Patients> patientsList = patientsDao.selectAllPatient();
+	public List<Patients> getPatients(String keyword) {
+		List<Patients> patientsList = patientsDao.selectPatient(keyword);
 		return patientsList;
 	}
 
@@ -24,6 +24,11 @@ public class PatientsService {
 
 	public void createPatient(Patients patient) {
 		patientsDao.insertPatient(patient);
+	}
+
+	public int getCount() {
+		int count = patientsDao.getCount();
+		return count;
 	}
 
 }

@@ -36,8 +36,7 @@ public class UsersService {
 		usersDao.insertUser(user);
 	}	
 	
-
-	
+	// 직원 index를 hospital 테이블에서 가져오기
 	public int getCount(String hcode, String uauth) {
 		int count = hospitalsDao.getCount(hcode, uauth);
 		return count;
@@ -46,5 +45,11 @@ public class UsersService {
 	// 직원 등록 시 index+1
 	public void updateUser(String hcode, String uauth) {
 		hospitalsDao.updateUser(hcode, uauth);
+	}
+
+	// 회원 정보 수정 시 회원 정보 가져오기
+	public Users getUser(String user_id) {
+		Users user = usersDao.selectUser(user_id);
+		return user;
 	}
 }

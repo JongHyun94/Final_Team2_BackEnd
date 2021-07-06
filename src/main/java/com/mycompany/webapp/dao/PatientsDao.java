@@ -11,8 +11,9 @@ public interface PatientsDao {
 
 	List<Patients> selectAllPatients();
 
-
-	public List<Patients> selectAllPatient();
+	// 서영
+	public List<Patients> selectPatient(String keyword);
 	public void updatePatient(Patients patient);
 	public void insertPatient(Patients patient);
+	public int getCount();
 }
