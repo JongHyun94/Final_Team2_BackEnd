@@ -55,8 +55,8 @@ public class MainController {
 	@GetMapping("/test") 
 	public void test(HttpServletRequest request, HttpServletResponse response){ 
 		List<Users> userList = usersService.getAllUsers();
-		logger.info("userList:");
-		logger.info("" + userList.get(0).getUser_name());
+		//logger.info("userList:");
+		//logger.info("" + userList.get(0).getUser_name());
 		String str = userList.get(0).getUser_name();
 //		userList.get(0).getUser_name()
 		/*

@@ -1,7 +1,16 @@
 <?xml version="1.0" encoding="euc-kr" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 					 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-					 
-<mapper namespace="com.mycompany.webapp.dao.PatientsDao">
 
+<mapper namespace="com.mycompany.webapp.dao.PatientsDao">
+	<!-- 전체 환자 불러오기 -->
+	<select id="selectAllPatients" resultType="patient">
+		select patient_id,
+		patient_name,
+		patient_ssn, patient_sex, patient_tel
+		patient_zipcode,
+		patient_address, patient_detailaddress1, patient_detailaddress2,
+		patient_regdate
+		from patients
+	</select>
 </mapper>

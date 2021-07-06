@@ -10,5 +10,7 @@ import com.mycompany.webapp.dto.Users;
 public interface UsersDao {
 
 	public List<Users> selectAllUser();
+
+	public List<Users> selectAllDoctors();
 	
 }
