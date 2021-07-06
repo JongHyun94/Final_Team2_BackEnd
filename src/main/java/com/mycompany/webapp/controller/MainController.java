@@ -1,8 +1,8 @@
 package com.mycompany.webapp.controller;
 
-import java.util.List;
 import java.io.Writer;
 import java.sql.Connection;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -66,31 +66,6 @@ public class MainController {
 //	 
 //	
 	@GetMapping("/test") 
-<<<<<<< HEAD
-	   public void test(HttpServletRequest request, HttpServletResponse response){ 
-	      List<Users> userList = usersService.getAllUsers();
-	      logger.info("userList:");
-	      logger.info("" + userList.get(0).getUser_name());
-	      String str = userList.get(0).getUser_name();
-//	      userList.get(0).getUser_name()
-	      /*
-	       * for(int i=0; i<userList.size();i++) { System.out.println(userList[i].); }
-	       */
-	      response.setContentType("application/json;charset=UTF-8");
-	      JSONObject jObj = new JSONObject();
-	      jObj.put("userList", userList);
-	      try {
-	         Writer writer = response.getWriter();
-	         writer.write(jObj.toString());
-	         writer.flush();
-	         writer.close();
-	      } catch (Exception e) {
-	         e.printStackTrace();
-	      }
-	      
-
-	   }
-=======
 	public void test(HttpServletRequest request, HttpServletResponse response){ 
 		List<Users> userList = usersService.getAllUsers();
 		logger.info("userList:");
@@ -116,8 +91,6 @@ public class MainController {
 	}
 	 
 	
-	
->>>>>>> branch 'develop' of https://github.com/JongHyun94/Final_Team2_BackEnd.git
 	
 //	@RequestMapping("/sendRedisMessage")
 //	public void sendRedisMessage(String topic, String content, HttpServletResponse res) {
