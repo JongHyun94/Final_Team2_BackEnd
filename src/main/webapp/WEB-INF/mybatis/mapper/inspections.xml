@@ -11,4 +11,19 @@
 		where
 		order by
 	</select>
+
+	<select id="selectByTreatmentInspection" resultType="inspection">
+		select
+			i.inspection_date,i.inspection_result,
+	        il.inspection_list_name, il.inspection_list_category, il.inspection_list_reference,
+	        u.user_name
+	    from 
+			inspections i, inspection_lists il, users u
+	    where 
+			i.INSPECTION_LIST_ID = il.INSPECTION_LIST_ID 
+				and
+			i.INSPECTION_INSPECTOR_ID = u.USER_ID
+				and
+			i.INSPECTION_TREATMENT_ID = #{treatment_id}
+	</select>
 </mapper>

@@ -12,7 +12,10 @@ import com.mycompany.webapp.dto.Users;
 public interface UsersDao {
 
 	public List<Users> selectAllUser();
+	public List<Users> selectAllDoctors();
+	
 	public List<Users> selectUsers(@Param("keyword") String keyword, @Param("authority") String authority);
 	public void updateUser(Users user);
 	public void insertUser(Users user);	
+
 }

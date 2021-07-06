@@ -3,6 +3,73 @@
 					 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 					 
 <mapper namespace="com.mycompany.webapp.dao.TreatmentsDao">
+	
+	<!-- <select id="selectAllTreatment" resultType="treatment">
+		select treatment_id, treatment_register_id, treatment_patient_id,
+		treatment_user_id, treatment_date, treatment_smemo, treatment_omemo, treatment_amemo, treatment_pmemo,
+		treatment_communication, treatment_state, treatment_istate, treatment_type
+		from treatments
+	</select> -->
+	
+	<select id="selectAllTreatment" resultType="treatment">
+		select 
+			t.treatment_id,t.treatment_register_id, t.treatment_user_id, t.treatment_patient_id,
+			r.register_communication, p.patient_name, p.patient_sex,p.patient_ssn,
+			r.register_starttime
+		from treatments t, registers r, patients p
+		where treatment_register_id = register_id and treatment_patient_id = patient_id;
+	</select>
+	
+	<update id="update" parameterType="treatment">
+      update 
+      		treatments 
+      set 
+      		treatment_smemo = #{treatment_smemo},treatment_omemo = #{treatment_omemo},
+      		treatment_amemo = #{treatment_amemo},treatment_pmemo = #{treatment_pmemo},
+      		treatment_communication = #{treatment_communication}
+      where 
+      		treatment_id=#{treatment_id};
+   </update>
+   
+   
+   <select id="selectByPatientId" resultType="treatment">
+		select
+			t.treatment_id,
+            t.treatment_date,
+            u.user_name,
+			t.treatment_communication,
+			t.treatment_patient_id
+        from 
+        	treatments t, users u
+		where 
+			t.treatment_user_id = u.user_id and 
+			treatment_patient_id=#{treatment_patient_id}
+	</select>
+	
+	<!--  <select id="selectByTreatment" resultType="treatment">
+		select
+			t.treatment_id,
+            t.treatment_date,
+            u.user_name,
+			t.treatment_communication,
+			t.treatment_patient_id
+        from 
+        	treatments t, users u
+		where 
+			t.treatment_user_id = u.user_id and 
+			treatment_id=#{treatment_id}
+	</select> -->
+	
+	<select id="selectByTreatmentSoap" resultType="treatment">
+		select
+			treatment_smemo,treatment_omemo,treatment_amemo,treatment_pmemo,treatment_communication,
+			treatment_id,treatment_patient_id,treatment_date,treatment_user_id
+        from 
+        	treatments
+		where 
+			treatment_id=#{treatment_id}
+	</select>
+	
 	<select id="selectTreatments" resultType="treatment" parameterType="string">
 		select t.treatment_id, t.treatment_patient_id, t.treatment_date,
 		 t.treatment_communication, t.treatment_istate, t.treatment_type,
@@ -22,5 +89,10 @@
 			treatment_istate = "¿Ï·á"
 		where treatment_id = #{treatmentId}
 	</update>
+	
 
+	
+	
+
+	
 </mapper>

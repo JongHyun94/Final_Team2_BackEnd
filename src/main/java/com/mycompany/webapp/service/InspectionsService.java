@@ -52,4 +52,9 @@ public class InspectionsService {
 		return inspectionList;
 	}
 
+	public List<Inspections> getTreatmentInspection(int treatment_id) {
+		List<Inspections> list = inspectionsDao.selectByTreatmentInspection(treatment_id);
+		return list;
+	}
+
 }

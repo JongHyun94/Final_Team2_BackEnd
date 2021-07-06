@@ -18,10 +18,21 @@ public class Treatments {
 	private String treatment_istate;
 	private String treatment_type;
 	
+	private String register_communication;
 	private String patient_name;
-	private String patient_ssn;
 	private String patient_sex;
+	private String patient_ssn;
 	
+	private String user_name;
+
+	
+	
+	public String getUser_name() {
+		return user_name;
+	}
+	public void setUser_name(String user_name) {
+		this.user_name = user_name;
+	}
 	public int getTreatment_id() {
 		return treatment_id;
 	}
@@ -100,19 +111,17 @@ public class Treatments {
 	public void setTreatment_type(String treatment_type) {
 		this.treatment_type = treatment_type;
 	}
-	
-	
+	public String getRegister_communication() {
+		return register_communication;
+	}
+	public void setRegister_communication(String register_communication) {
+		this.register_communication = register_communication;
+	}
 	public String getPatient_name() {
 		return patient_name;
 	}
 	public void setPatient_name(String patient_name) {
 		this.patient_name = patient_name;
-	}
-	public String getPatient_ssn() {
-		return patient_ssn;
-	}
-	public void setPatient_ssn(String patient_ssn) {
-		this.patient_ssn = patient_ssn;
 	}
 	public String getPatient_sex() {
 		return patient_sex;
@@ -120,7 +129,12 @@ public class Treatments {
 	public void setPatient_sex(String patient_sex) {
 		this.patient_sex = patient_sex;
 	}
-	
+	public String getPatient_ssn() {
+		return patient_ssn;
+	}
+	public void setPatient_ssn(String patient_ssn) {
+		this.patient_ssn = patient_ssn;
+	}
 	
 	
 	

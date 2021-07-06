@@ -1,9 +1,29 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 					 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-					 
-<mapper namespace="com.mycompany.webapp.dao.UsersDao">
 
+<mapper namespace="com.mycompany.webapp.dao.UsersDao">
+<!-- 종현 -->
+	<!-- 전체 직원 불러오기 -->
+	<select id="selectAllUser" resultType="user">
+		select user_id,
+		user_hospital_id, user_password, user_name,
+		user_tel, user_email, user_sex,
+		user_zipcode, user_address, user_detailaddress1, user_detailaddress2,
+		user_regdate, user_enabled, user_authority
+		from users
+	</select>
+
+	<!-- 의사 전부 불러오기 -->
+	<select id="selectAllDoctors" resultType="user">
+		select user_id,
+		user_hospital_id, user_password, user_name,
+		user_tel, user_email, user_sex,
+		user_zipcode, user_address, user_detailaddress1, user_detailaddress2,
+		user_regdate, user_enabled, user_authority
+		from users
+		where user_authority="ROLE_DOCTOR"
+	</select>
 	<select id="selectAllUser" resultType="user">
 		select user_id, user_hospital_id, user_password, user_name,
 			user_tel, user_email, user_sex, user_ssn,
@@ -65,5 +85,4 @@
 				#{user_authority},
 				#{user_ssn})
 	</insert>
-
 </mapper>

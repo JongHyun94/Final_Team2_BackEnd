@@ -4,4 +4,13 @@
 					 
 <mapper namespace="com.mycompany.webapp.dao.InspectionListsDao">
 
+	<select id="selectByInspectionlist" resultType="inspectionList">
+		select 
+			inspection_list_name,inspection_list_category
+		from 
+			inspection_lists
+		where
+			inspection_list_category = #{categoryValue}
+	</select>
+<!-- inspection_list_category LIKE CONCAT('%',#{categoryValue},'%') -->
 </mapper>

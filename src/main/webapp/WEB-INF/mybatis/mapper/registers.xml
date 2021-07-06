@@ -1,27 +1,64 @@
 <?xml version="1.0" encoding="euc-kr" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 					 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-					 
+
 <mapper namespace="com.mycompany.webapp.dao.RegistersDao">
+<!-- 종현 -->
 	<!-- Create -->
 
+	<insert id="insertNewRegister" parameterType="register">
+		insert into
+		registers
+		(
+		register_patient_id, register_user_id,
+		register_regdate,
+		register_date,
+		register_memo,
+		register_communication, register_state)
+		values
+		(
+		#{register_patient_id},
+		#{register_user_id},
+		now(), #{register_date},
+		#{register_memo}, #{register_communication},
+		#{register_state})
+	</insert>
+
 	<!-- Read -->
+	<!-- 전부 불러오기 -->
 	<select id="selectAllRegisters" resultType="register">
-		select register_id, register_patient_id, register_user_id, 
-			register_regdate, register_date, register_starttime,
-			register_memo, register_communication, register_state
+		select register_id,
+		register_patient_id, register_user_id,
+		register_regdate, register_date,
+		register_starttime,
+		register_memo, register_communication,
+		register_state
 		from registers
 	</select>
-	
-	<select id="selectRegistersByDate" resultType="register">
-		select register_id, register_patient_id, register_user_id, 
-			register_regdate, register_date, register_starttime,
-			register_memo, register_communication, register_state
-		from registers
-		where register_date={#register_date}
+	<!-- 해달 날짜 가져오기 -->
+	<select id="selectRegistersByDate" resultType="register"
+		parameterType="string">
+		select r.register_id, r.register_patient_id,
+		r.register_user_id,
+		r.register_regdate, r.register_date,
+		r.register_starttime,
+		r.register_memo, r.register_communication,
+		r.register_state,
+		p.patient_name, p.patient_ssn, p.patient_sex,
+		p.patient_tel,
+		u.user_name
+		from registers r, patients p, users u
+		where
+		str_to_date(register_date,
+		'%Y-%m-%d')=str_to_date(#{register_date},
+		'%Y-%m-%d')
+		and
+		register_patient_id=patient_id
+		and
+		register_user_id=user_id
 	</select>
-	
+
 	<!-- Update -->
-	
+
 	<!-- Delete -->
 </mapper>
