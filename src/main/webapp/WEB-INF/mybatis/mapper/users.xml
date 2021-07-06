@@ -14,7 +14,7 @@
 		user_zipcode, user_address, user_detailaddress1, user_detailaddress2,
 		user_regdate, user_enabled, user_authority
 		from users
-		
+		where user_authority="ROLE_DOCTOR"
 	</select>
 	
 	
@@ -50,6 +50,7 @@
 		order by user_regdate
 	</select>
 	
+	<!-- 직원 수정 -->
 	<update id="updateUser" parameterType="user">
 		update users
 		set user_name = #{user_name}, 
@@ -64,6 +65,7 @@
 		where user_id = #{user_id}
 	</update>
 	
+	<!-- 직원 등록 -->
 	<insert id="insertUser">
 		insert into users
 		values (#{user_id}, 
@@ -83,4 +85,13 @@
 				#{user_ssn})
 	</insert>
 
+	<!-- 회원 정보 읽기 -->
+	<select id="selectUser" resultType="user">
+		select user_id, user_hospital_id, user_password, user_name,
+			user_tel, user_email, user_sex, user_ssn,
+			user_zipcode, user_address, user_detailaddress1, user_detailaddress2,
+			user_regdate, user_enabled, user_authority
+		from users
+		where user_id = #{user_id}
+	</select>
 </mapper>

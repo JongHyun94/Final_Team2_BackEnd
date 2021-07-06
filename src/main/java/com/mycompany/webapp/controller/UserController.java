@@ -10,6 +10,7 @@ import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -30,14 +31,7 @@ public class UserController {
 	
 	@Autowired
 	private UsersService usersService;
-	
-	//로그인
-//	@PostMapping("/auth/login")
-//	public Map<String, String> login(@RequestBody Map<String, String> user) {
-//		
-//	}
-	
-	
+		
 	//직원 목록
 	@GetMapping("")
 	public void list(HttpServletRequest request, HttpServletResponse response) {
@@ -51,11 +45,8 @@ public class UserController {
 			userList.get(i).setUser_email2(userList.get(i).getUser_email().split("@")[1]);
 			userList.get(i).setUser_ssn1(userList.get(i).getUser_ssn().split("-")[0]);
 			userList.get(i).setUser_ssn2(userList.get(i).getUser_ssn().split("-")[1]);
-			logger.info("날짜: "+userList.get(i).getUser_regdate());				
 		}
-		
-		logger.info("" + userList.size());
-		
+				
 		response.setContentType("application/json;charset=UTF-8");
 		JSONObject jObj = new JSONObject();
 		jObj.put("userList", userList);
@@ -74,8 +65,6 @@ public class UserController {
 	public void list(HttpServletRequest request, HttpServletResponse response, 
 					@RequestParam(defaultValue = "") String keyword,
 					@RequestParam(defaultValue = "") String authority) {
-		logger.info("keyword: " + keyword);
-		logger.info("a:" +  authority);
 		List<Users> userList = usersService.getUsers(keyword, authority);
 		
 		for (int i = 0; i < userList.size(); i++) {
@@ -104,19 +93,24 @@ public class UserController {
 	//직원 정보 수정
 	@PutMapping("")
 	public Users update(HttpServletRequest request, HttpServletResponse response, @RequestBody Users user) {
-		logger.info("직원수정:" + user.getUser_id());
-//		usersService.updateUser(user);
+		user.setUser_ssn(user.getUser_ssn1() + "-" + user.getUser_ssn2());
+		user.setUser_tel(user.getUser_tel1() + "-" + user.getUser_tel2() + "-" + user.getUser_tel3());
+		user.setUser_email(user.getUser_email1() + "@" + user.getUser_email2());
+				
+		usersService.updateUser(user);
 		return user;
 	}
 	
 	//직원 등록
 	@PostMapping("")
-	public void create(HttpServletRequest request, HttpServletResponse response, @RequestBody Users user) {		
-		logger.info("직원등록:" + user.getUser_name());
-		
+	public Users create(HttpServletRequest request, HttpServletResponse response, @RequestBody Users user) {		
 		String hcode = "138010";
 		String uauth = user.getUser_authority();
 		String user_id = "";
+		
+		// 비밀번호 암호화
+		BCryptPasswordEncoder bpe = new BCryptPasswordEncoder();
+		String password = bpe.encode(user_id);
 		
 		int count = usersService.getCount(hcode, uauth) + 1;
 		
@@ -129,10 +123,31 @@ public class UserController {
 		}
 		
 		user.setUser_id(user_id);
-		user.setUser_password(user_id);
+		user.setUser_password(password);
 		user.setUser_hospital_id(hcode);
 		
 		usersService.createUser(user);
 		usersService.updateUser(hcode, uauth);
+		
+		return user;
 	}
+	
+	// 회원 정보 읽기
+	@GetMapping("/read")
+	public Users read (HttpServletRequest request, HttpServletResponse response, @RequestParam String user_id) {
+		logger.info("회원id: "+user_id);
+		
+		Users user = usersService.getUser(user_id);
+		
+		user.setUser_tel1(user.getUser_tel().split("-")[0]);
+		user.setUser_tel2(user.getUser_tel().split("-")[1]);
+		user.setUser_tel3(user.getUser_tel().split("-")[2]);
+		user.setUser_email1(user.getUser_email().split("@")[0]);
+		user.setUser_email2(user.getUser_email().split("@")[1]);
+		user.setUser_ssn1(user.getUser_ssn().split("-")[0]);
+		user.setUser_ssn2(user.getUser_ssn().split("-")[1]);	
+		
+		return user;
+	}
+	
 }
