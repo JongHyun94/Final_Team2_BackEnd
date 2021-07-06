@@ -18,6 +18,9 @@ public class Treatments {
 	private String treatment_istate;
 	private String treatment_type;
 	
+	private String patient_name;
+	private String patient_ssn;
+	private String patient_sex;
 	
 	public int getTreatment_id() {
 		return treatment_id;
@@ -96,6 +99,26 @@ public class Treatments {
 	}
 	public void setTreatment_type(String treatment_type) {
 		this.treatment_type = treatment_type;
+	}
+	
+	
+	public String getPatient_name() {
+		return patient_name;
+	}
+	public void setPatient_name(String patient_name) {
+		this.patient_name = patient_name;
+	}
+	public String getPatient_ssn() {
+		return patient_ssn;
+	}
+	public void setPatient_ssn(String patient_ssn) {
+		this.patient_ssn = patient_ssn;
+	}
+	public String getPatient_sex() {
+		return patient_sex;
+	}
+	public void setPatient_sex(String patient_sex) {
+		this.patient_sex = patient_sex;
 	}
 	
 	
