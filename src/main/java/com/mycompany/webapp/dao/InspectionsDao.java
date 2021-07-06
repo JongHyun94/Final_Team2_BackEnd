@@ -1,8 +1,14 @@
 package com.mycompany.webapp.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Mapper;
 
-@Mapper
-public class InspectionsDao {
+import com.mycompany.webapp.dto.Inspections;
 
+@Mapper
+public interface InspectionsDao {
+
+	List<Inspections> selectByTreatmentInspection(int treatment_id);
+	List<Inspections> selectInspections(int treatmentId);
 }

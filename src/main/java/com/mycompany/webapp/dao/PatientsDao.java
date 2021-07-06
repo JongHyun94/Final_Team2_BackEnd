@@ -12,4 +12,7 @@ public interface PatientsDao {
 	List<Patients> selectAllPatients();
 
 
+	public List<Patients> selectAllPatient();
+	public void updatePatient(Patients patient);
+	public void insertPatient(Patients patient);
 }

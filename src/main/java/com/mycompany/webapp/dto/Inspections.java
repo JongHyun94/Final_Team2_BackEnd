@@ -14,6 +14,11 @@ public class Inspections {
 	private String inspection_result;
 	private String inspection_state;
 	
+	private String inspection_list_name;
+	private String inspection_list_category;
+	private String inspection_list_reference;
+	private String user_name;
+	
 	public int getInspection_id() {
 		return inspection_id;
 	}
@@ -93,5 +98,39 @@ public class Inspections {
 	public void setInspection_state(String inspection_state) {
 		this.inspection_state = inspection_state;
 	}
+
+	public String getInspection_list_name() {
+		return inspection_list_name;
+	}
+
+	public void setInspection_list_name(String inspection_list_name) {
+		this.inspection_list_name = inspection_list_name;
+	}
+
+	public String getInspection_list_category() {
+		return inspection_list_category;
+	}
+
+	public void setInspection_list_category(String inspection_list_category) {
+		this.inspection_list_category = inspection_list_category;
+	}
+
+	public String getInspection_list_reference() {
+		return inspection_list_reference;
+	}
+
+	public void setInspection_list_reference(String inspection_list_reference) {
+		this.inspection_list_reference = inspection_list_reference;
+	}
+
+	public String getUser_name() {
+		return user_name;
+	}
+
+	public void setUser_name(String user_name) {
+		this.user_name = user_name;
+	}
+	
+	
 	
 }
