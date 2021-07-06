@@ -4,16 +4,7 @@
 
 <mapper namespace="com.mycompany.webapp.dao.UsersDao">
 <!-- 종현 -->
-	<!-- 전체 직원 불러오기 -->
-	<select id="selectAllUser" resultType="user">
-		select user_id,
-		user_hospital_id, user_password, user_name,
-		user_tel, user_email, user_sex,
-		user_zipcode, user_address, user_detailaddress1, user_detailaddress2,
-		user_regdate, user_enabled, user_authority
-		from users
-	</select>
-
+	
 	<!-- 의사 전부 불러오기 -->
 	<select id="selectAllDoctors" resultType="user">
 		select user_id,
@@ -23,6 +14,14 @@
 		user_regdate, user_enabled, user_authority
 		from users
 		where user_authority="ROLE_DOCTOR"
+	</select>
+	<!-- 전체 직원 불러오기 -->
+	<select id="selectAllUser" resultType="user">
+		select user_id, user_hospital_id, user_password, user_name,
+			user_tel, user_email, user_sex, user_ssn,
+			user_zipcode, user_address, user_detailaddress1, user_detailaddress2,
+			user_regdate, user_enabled, user_authority
+		from users
 	</select>
 	
 	<!-- 검색 환자 목록 가져오기 -->
