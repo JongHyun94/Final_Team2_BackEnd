@@ -40,6 +40,7 @@ public class RegisterController {
 		logger.info(""+date);
 		// 해당 날짜의 접수 내역 불러오기
 		List<Registers> registerList = registersService.getTodayRegisters(date);
+		logger.info(""+registerList.get(0).getRegister_date());
 		response.setContentType("application/json;charset=UTF-8");
 		JSONObject jObj = new JSONObject();
 		jObj.put("registerList", registerList);

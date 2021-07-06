@@ -31,9 +31,6 @@ import com.mycompany.webapp.dto.DrugsInjectionsLists;
 import com.mycompany.webapp.dto.InspectionLists;
 import com.mycompany.webapp.dto.Inspections;
 import com.mycompany.webapp.dto.Treatments;
-import com.mycompany.webapp.service.DrugsInjectionsListsService;
-import com.mycompany.webapp.service.InspectionsListsService;
-import com.mycompany.webapp.service.InspectionsService;
 import com.mycompany.webapp.service.TreatmentsService;
 
 
@@ -48,14 +45,6 @@ public class TreatmentController {
 	@Autowired
 	private TreatmentsService treatmentsService;
 	
-	@Autowired
-	private DrugsInjectionsListsService drugsInjectionsListsService;
-	
-	@Autowired
-	private InspectionsListsService inspectionsListsService;
-	
-	@Autowired
-	private InspectionsService inspectionsService;
 	
 	/*
 	 * @GetMapping("/aa") public List<Treatments> test(){ List<Treatments>
@@ -92,7 +81,7 @@ public class TreatmentController {
 	@GetMapping("/keyword")
 	public void searchDrug(@RequestParam(defaultValue="") String keyword,HttpServletRequest request, HttpServletResponse response ){
 //		logger.info("qtqtqt"+keyword);
-		List<DrugsInjectionsLists> druglist = drugsInjectionsListsService.getDrug(keyword);
+		List<DrugsInjectionsLists> druglist = treatmentsService.getDrug(keyword);
 		response.setContentType("application/json;charset=UTF-8");
 	      JSONObject jObj = new JSONObject();
 	      jObj.put("druglist", druglist);
@@ -110,7 +99,7 @@ public class TreatmentController {
 	@GetMapping("/categoryValue")
 	public void categoryInspectionList(@RequestParam(defaultValue="") String categoryValue, 
 			HttpServletRequest request, HttpServletResponse response){
-		List<InspectionLists> inspectionList = inspectionsListsService.getInspection(categoryValue);
+		List<InspectionLists> inspectionList = treatmentsService.getInspection(categoryValue);
 		response.setContentType("application/json;charset=UTF-8");
 	      JSONObject jObj = new JSONObject();
 	      jObj.put("inspectionList", inspectionList);
@@ -146,7 +135,7 @@ public class TreatmentController {
 	 @GetMapping("/historyRead/{treatment_id}")
 	  public void historyread(@PathVariable int treatment_id, HttpServletRequest request, HttpServletResponse response) {
 		 List<Treatments> treatmentSoaplist = treatmentsService.getTreatmentSoap(treatment_id);
-		 List<Inspections> treatmentInspectionlist = inspectionsService.getTreatmentInspection(treatment_id);
+		 List<Inspections> treatmentInspectionlist = treatmentsService.getTreatmentInspection(treatment_id);
 		 response.setContentType("application/json;charset=UTF-8");
 	      JSONObject jObj = new JSONObject();
 	      jObj.put("treatmentSoaplist", treatmentSoaplist);

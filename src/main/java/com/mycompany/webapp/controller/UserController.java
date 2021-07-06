@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.mycompany.webapp.dto.Users;
-import com.mycompany.webapp.service.HospitalsService;
 import com.mycompany.webapp.service.UsersService;
 
 @CrossOrigin(origins="*")
@@ -31,8 +30,6 @@ public class UserController {
 	
 	@Autowired
 	private UsersService usersService;
-	@Autowired
-	private HospitalsService hospitalsService;
 	
 	//로그인
 //	@PostMapping("/auth/login")
@@ -53,7 +50,8 @@ public class UserController {
 			userList.get(i).setUser_email1(userList.get(i).getUser_email().split("@")[0]);
 			userList.get(i).setUser_email2(userList.get(i).getUser_email().split("@")[1]);
 			userList.get(i).setUser_ssn1(userList.get(i).getUser_ssn().split("-")[0]);
-			userList.get(i).setUser_ssn2(userList.get(i).getUser_ssn().split("-")[1]);				
+			userList.get(i).setUser_ssn2(userList.get(i).getUser_ssn().split("-")[1]);
+			logger.info("날짜: "+userList.get(i).getUser_regdate());				
 		}
 		
 		logger.info("" + userList.size());
@@ -87,7 +85,7 @@ public class UserController {
 			userList.get(i).setUser_email1(userList.get(i).getUser_email().split("@")[0]);
 			userList.get(i).setUser_email2(userList.get(i).getUser_email().split("@")[1]);
 			userList.get(i).setUser_ssn1(userList.get(i).getUser_ssn().split("-")[0]);
-			userList.get(i).setUser_ssn2(userList.get(i).getUser_ssn().split("-")[1]);			
+			userList.get(i).setUser_ssn2(userList.get(i).getUser_ssn().split("-")[1]);	
 		}
 				
 		response.setContentType("application/json;charset=UTF-8");
@@ -120,7 +118,7 @@ public class UserController {
 		String uauth = user.getUser_authority();
 		String user_id = "";
 		
-		int count = hospitalsService.getCount(hcode, uauth) + 1;
+		int count = usersService.getCount(hcode, uauth) + 1;
 		
 		if(uauth.equals("ROLE_DOCTOR")) {
 			user_id = "D" + hcode + "00" + count;
@@ -135,6 +133,6 @@ public class UserController {
 		user.setUser_hospital_id(hcode);
 		
 		usersService.createUser(user);
-		hospitalsService.updateUser(hcode, uauth);
+		usersService.updateUser(hcode, uauth);
 	}
 }

@@ -9,7 +9,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.mycompany.webapp.controller.TreatmentController;
+import com.mycompany.webapp.dao.DrugsInjectionsListsDao;
+import com.mycompany.webapp.dao.InspectionListsDao;
+import com.mycompany.webapp.dao.InspectionsDao;
 import com.mycompany.webapp.dao.TreatmentsDao;
+import com.mycompany.webapp.dto.DrugsInjectionsLists;
+import com.mycompany.webapp.dto.InspectionLists;
+import com.mycompany.webapp.dto.Inspections;
 import com.mycompany.webapp.dto.Treatments;
 
 
@@ -18,6 +24,12 @@ public class TreatmentsService {
 	private static final Logger logger = LoggerFactory.getLogger(TreatmentsService.class);
 	@Autowired
 	private TreatmentsDao treatmentsDao;
+	@Autowired
+	private DrugsInjectionsListsDao drugsInjectionsListsDao;
+	@Autowired
+	private InspectionListsDao inspectionListsDao;
+	@Autowired
+	private InspectionsDao inspectionsDao;
 	
 	public List<Treatments> getAllTreatment() {
 		List<Treatments> treatmentslist = treatmentsDao.selectAllTreatment();
@@ -55,5 +67,25 @@ public class TreatmentsService {
 	}
 
 
+	
+	public List<DrugsInjectionsLists> getDrug(String keyword) {
+		logger.info("asddsdddaaaaa"+keyword);
+		List<DrugsInjectionsLists> list = drugsInjectionsListsDao.selectByDruglist(keyword);
+//		logger.info("aaaaaaaaa"+list.get(1).getDrug_injection_list_category());
+		return list;
+	}
+
+	
+	public List<InspectionLists> getInspection(String categoryValue) {
+		logger.info("서비스 카테고리"+categoryValue);
+		List<InspectionLists> list = inspectionListsDao.selectByInspectionlist(categoryValue);
+		logger.info("서비스 리스트"+list);
+		return list;
+	}
+
+	public List<Inspections> getTreatmentInspection(int treatment_id) {
+		List<Inspections> list = inspectionsDao.selectByTreatmentInspection(treatment_id);
+		return list;
+	}
 
 }
