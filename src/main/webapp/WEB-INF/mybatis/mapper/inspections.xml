@@ -3,5 +3,12 @@
 					 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 					 
 <mapper namespace="com.mycompany.webapp.dao.InspectionsDao">
-
+	<select id="selectInspections" resultType="inspection" parameterType="int">
+		select i.inspection_id as inspection_id, i.inspection_doctor_id
+		
+		from inspections i, inspection_lists il, users u1, users u2
+		
+		where
+		order by
+	</select>
 </mapper>
