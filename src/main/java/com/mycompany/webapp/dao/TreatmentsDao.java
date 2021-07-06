@@ -15,7 +15,7 @@ public interface TreatmentsDao {
 	
 	/* public int insert(Treatments treatment); */
 	
-	public int update(Map<String, Object> treatment);
+	public int update(Treatments treatment);
 
 	public List<Treatments> selectByPatientId(int treatment_patient_id);
 

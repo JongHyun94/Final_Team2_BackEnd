@@ -69,15 +69,16 @@ public class Inspections {
 	public int getInspection_inspection_list_id() {
 		return inspection_inspection_list_id;
 	}
-	
-	public void setInspection_inspection_list_id(int inspection_list_id) {
-		this.inspection_inspection_list_id = inspection_list_id;
+
+	public void setInspection_inspection_list_id(int inspection_inspection_list_id) {
+		this.inspection_inspection_list_id = inspection_inspection_list_id;
 	}
-	
+
 	public String getInspection_lab() {
 		return inspection_lab;
 	}
 	
+
 	public void setInspection_lab(String inspection_lab) {
 		this.inspection_lab = inspection_lab;
 	}

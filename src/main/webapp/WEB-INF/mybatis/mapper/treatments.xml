@@ -26,10 +26,23 @@
       set 
       		treatment_smemo = #{treatment_smemo},treatment_omemo = #{treatment_omemo},
       		treatment_amemo = #{treatment_amemo},treatment_pmemo = #{treatment_pmemo},
-      		treatment_communication = #{treatment_communication}
+      		treatment_communication = #{treatment_communication},
+      		treatment_date=now(),
+      		treatment_state="¿Ï·á"
       where 
       		treatment_id=#{treatment_id};
    </update>
+   
+<!--    	<update id="update" parameterType="treatment">
+      update 
+      		treatments 
+      set 
+      		treatment_smemo = #{treatment_smemo},treatment_omemo = #{treatment_omemo},
+      		treatment_amemo = #{treatment_amemo},treatment_pmemo = #{treatment_pmemo},
+      		treatment_communication = #{treatment_communication}
+      where 
+      		treatment_id=#{treatment_id};
+   </update> -->
    
    
    <select id="selectByPatientId" resultType="treatment">
@@ -63,7 +76,7 @@
 	<select id="selectByTreatmentSoap" resultType="treatment">
 		select
 			treatment_smemo,treatment_omemo,treatment_amemo,treatment_pmemo,treatment_communication,
-			treatment_id,treatment_patient_id,treatment_date,treatment_user_id
+			treatment_id,treatment_patient_id,treatment_date,treatment_user_id, treatment_register_id
         from 
         	treatments
 		where 

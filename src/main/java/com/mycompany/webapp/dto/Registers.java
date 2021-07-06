@@ -9,12 +9,9 @@ public class Registers {
 	private int register_id;
 	private int register_patient_id;
 	private String register_user_id;
-	@DateTimeFormat(pattern = "yyyy-MM-dd H:mm")
-	private Date register_regdate;
-	@DateTimeFormat(pattern = "yyyy-MM-dd H:mm")
-	private Date register_date;
-	@DateTimeFormat(pattern = "yyyy-MM-dd H:mm")
-	private Date register_starttime;
+	private String register_regdate;
+	private String register_date;
+	private String register_starttime;
 	private String register_memo;
 	private String register_communication;
 	private String register_state;
@@ -46,22 +43,22 @@ public class Registers {
 	public void setRegister_user_id(String register_user_id) {
 		this.register_user_id = register_user_id;
 	}
-	public Date getRegister_regdate() {
+	public String getRegister_regdate() {
 		return register_regdate;
 	}
-	public void setRegister_regdate(Date register_regdate) {
+	public void setRegister_regdate(String register_regdate) {
 		this.register_regdate = register_regdate;
 	}
-	public Date getRegister_date() {
+	public String getRegister_date() {
 		return register_date;
 	}
-	public void setRegister_date(Date register_date) {
+	public void setRegister_date(String register_date) {
 		this.register_date = register_date;
 	}
-	public Date getRegister_starttime() {
+	public String getRegister_starttime() {
 		return register_starttime;
 	}
-	public void setRegister_starttime(Date register_starttime) {
+	public void setRegister_starttime(String register_starttime) {
 		this.register_starttime = register_starttime;
 	}
 	public String getRegister_memo() {

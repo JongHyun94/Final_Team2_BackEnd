@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.mycompany.webapp.dto.Patients;
 import com.mycompany.webapp.dto.Registers;
+import com.mycompany.webapp.dto.Schedules;
 import com.mycompany.webapp.dto.Users;
 import com.mycompany.webapp.service.RegistersService;
 
@@ -37,10 +38,8 @@ public class RegisterController {
 
 	@GetMapping("")
 	public void getAllRegisters(HttpServletRequest request, HttpServletResponse response, @RequestParam String date){ 
-		logger.info(""+date);
 		// 해당 날짜의 접수 내역 불러오기
 		List<Registers> registerList = registersService.getTodayRegisters(date);
-		logger.info(""+registerList.get(0).getRegister_date());
 		response.setContentType("application/json;charset=UTF-8");
 		JSONObject jObj = new JSONObject();
 		jObj.put("registerList", registerList);
@@ -56,7 +55,6 @@ public class RegisterController {
 	// 의사 목록
 	@GetMapping("/doctors")
 	public void getAllDoctors(HttpServletRequest request, HttpServletResponse response){ 
-		logger.info("doctor들어왐");
 		// 모든 의사 불러오기
 		List<Users> doctorList = registersService.getAllDoctors();
 		response.setContentType("application/json;charset=UTF-8");
@@ -74,7 +72,6 @@ public class RegisterController {
 	// 환자 목록
 	@GetMapping("/patients")
 	public void getAllPatients(HttpServletRequest request, HttpServletResponse response){ 
-		logger.info("patient들어왐");
 		// 모든 의사 불러오기
 		List<Patients> patientList = registersService.getAllPatients();
 		response.setContentType("application/json;charset=UTF-8");
@@ -90,12 +87,10 @@ public class RegisterController {
 		}
 	}
 
-	@PutMapping("")
+	@PostMapping("")
 	public void createNewRegister(HttpServletRequest request, HttpServletResponse response, @RequestBody Registers register) {
 		
 		// 새로운 register 만들기
-		logger.info("state: "+register.getRegister_state());
-		logger.info("date: "+register.getRegister_date());
 		registersService.createNewRegister(register);
 		response.setContentType("application/json;charset=UTF-8");
 		JSONObject jObj = new JSONObject();
@@ -109,5 +104,25 @@ public class RegisterController {
 			e.printStackTrace();
 		}
 	}
-
+	@GetMapping("/todolists")
+	public void getToDoLists(HttpServletRequest request, HttpServletResponse response, @RequestParam String date, @RequestParam String user_id){ 
+		// 해당 날짜의 접수 내역 불러오기
+		logger.info(date);
+		logger.info(user_id);
+		Schedules myschedule = new Schedules();
+		myschedule.setSchedule_user_id(user_id);
+		myschedule.setSchedule_regdate(date);
+		List<Schedules> todolist = registersService.getToDoList(myschedule);
+		response.setContentType("application/json;charset=UTF-8");
+		JSONObject jObj = new JSONObject();
+		jObj.put("todolist", todolist);
+		try {
+			Writer writer = response.getWriter();
+			writer.write(jObj.toString());
+			writer.flush();
+			writer.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 }

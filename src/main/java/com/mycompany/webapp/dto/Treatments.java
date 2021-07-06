@@ -8,7 +8,7 @@ public class Treatments {
 	private int treatment_register_id;
 	private int treatment_patient_id;
 	private String treatment_user_id;
-	private Date treatment_date;
+	private String treatment_date;
 	private String treatment_smemo;
 	private String treatment_omemo;
 	private String treatment_amemo;
@@ -57,10 +57,10 @@ public class Treatments {
 	public void setTreatment_user_id(String treatment_user_id) {
 		this.treatment_user_id = treatment_user_id;
 	}
-	public Date getTreatment_date() {
+	public String getTreatment_date() {
 		return treatment_date;
 	}
-	public void setTreatment_date(Date treatment_date) {
+	public void setTreatment_date(String treatment_date) {
 		this.treatment_date = treatment_date;
 	}
 	public String getTreatment_smemo() {
