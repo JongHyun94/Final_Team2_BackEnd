@@ -183,10 +183,6 @@
          <artifactId>jaxb-api</artifactId>
          <version>2.3.1</version>
       </dependency>
-<<<<<<< HEAD
-=======
 
->>>>>>> branch 'develop' of https://github.com/JongHyun94/Final_Team2_BackEnd
-      
 	</dependencies>
 </project>
