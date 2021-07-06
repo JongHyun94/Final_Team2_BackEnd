@@ -8,9 +8,11 @@ import org.springframework.stereotype.Service;
 
 import com.mycompany.webapp.dao.PatientsDao;
 import com.mycompany.webapp.dao.RegistersDao;
+import com.mycompany.webapp.dao.SchedulesDao;
 import com.mycompany.webapp.dao.UsersDao;
 import com.mycompany.webapp.dto.Patients;
 import com.mycompany.webapp.dto.Registers;
+import com.mycompany.webapp.dto.Schedules;
 import com.mycompany.webapp.dto.Users;
 
 @Service
@@ -21,6 +23,8 @@ public class RegistersService {
 	private UsersDao usersDao;
 	@Autowired
 	private PatientsDao patientsDao;
+	@Autowired
+	private SchedulesDao schedulesDao;
 
 	public List<Registers> getAllRegisters() {
 		List<Registers> registersList = registersDao.selectAllRegisters();
@@ -45,6 +49,11 @@ public class RegistersService {
 	public void createNewRegister(Registers register) {
 		registersDao.insertNewRegister(register);
 		
+	}
+
+	public List<Schedules> getToDoList(Schedules schedule) {
+		List<Schedules> todolist = schedulesDao.selectToDoList(schedule);
+		return todolist;
 	}
 	
 

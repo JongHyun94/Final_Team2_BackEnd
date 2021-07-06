@@ -7,7 +7,7 @@ public class Schedules {
 	private String schedule_user_id;
 	private String schedule_content;
 	private String schedule_state;
-	private Date schedule_regdate;
+	private String schedule_regdate;
 	
 	public int getSchedule_id() {
 		return schedule_id;
@@ -41,11 +41,11 @@ public class Schedules {
 		this.schedule_state = schedule_state;
 	}
 	
-	public Date getSchedule_regdate() {
+	public String getSchedule_regdate() {
 		return schedule_regdate;
 	}
 	
-	public void setSchedule_regdate(Date schedule_regdate) {
+	public void setSchedule_regdate(String schedule_regdate) {
 		this.schedule_regdate = schedule_regdate;
 	}
 	

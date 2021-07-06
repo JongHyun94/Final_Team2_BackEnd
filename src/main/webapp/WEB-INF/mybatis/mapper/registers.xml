@@ -56,6 +56,7 @@
 		register_patient_id=patient_id
 		and
 		register_user_id=user_id
+		order by register_date asc
 	</select>
 
 	<!-- Update -->
