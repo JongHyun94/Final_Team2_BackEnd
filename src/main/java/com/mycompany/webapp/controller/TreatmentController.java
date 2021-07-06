@@ -59,12 +59,15 @@ public class TreatmentController {
 	/* 진료대기환자 리스트 */
 	@GetMapping("/treatmentlist") 
 	public void list(HttpServletRequest request, HttpServletResponse response){ 
+
+		// 해당 날짜의 접수 내역 불러오기
 		List<Treatments> treatmentlist = treatmentsService.getAllTreatment();
-//		logger.info("treatmentlist:");
+
 //		logger.info("" + treatmentlist.get(0).getTreatment_omemo());
 //		logger.info("" + treatmentlist.get(1).getTreatment_amemo());
 		
 		  response.setContentType("application/json;charset=UTF-8");
+		
 	      JSONObject jObj = new JSONObject();
 	      jObj.put("treatmentlist", treatmentlist);
 	      try {
