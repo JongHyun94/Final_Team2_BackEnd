@@ -27,6 +27,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.mycompany.webapp.dto.DrugsInjections;
 import com.mycompany.webapp.dto.DrugsInjectionsLists;
 import com.mycompany.webapp.dto.InspectionLists;
 import com.mycompany.webapp.dto.Inspections;
@@ -136,10 +137,13 @@ public class TreatmentController {
 	  public void historyread(@PathVariable int treatment_id, HttpServletRequest request, HttpServletResponse response) {
 		 List<Treatments> treatmentSoaplist = treatmentsService.getTreatmentSoap(treatment_id);
 		 List<Inspections> treatmentInspectionlist = treatmentsService.getTreatmentInspection(treatment_id);
+		 List<DrugsInjections> treatmentDrugsInjectionlist = treatmentsService.getTreatmentDrugsInjection(treatment_id);
+		 
 		 response.setContentType("application/json;charset=UTF-8");
 	      JSONObject jObj = new JSONObject();
 	      jObj.put("treatmentSoaplist", treatmentSoaplist);
 	      jObj.put("treatmentInspectionlist", treatmentInspectionlist);
+	      jObj.put("treatmentDrugsInjectionlist", treatmentDrugsInjectionlist);
 	      try {
 	         Writer writer = response.getWriter();
 	         writer.write(jObj.toString());
@@ -151,7 +155,7 @@ public class TreatmentController {
 	  }
 
 	@PutMapping("")
-	public void update(@RequestBody Map<String, Object> treatment) {
+	public void update(@RequestBody Treatments treatment) {
 		treatmentsService.update(treatment);
 		
 	}

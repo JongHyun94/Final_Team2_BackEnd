@@ -9,10 +9,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.mycompany.webapp.controller.TreatmentController;
+import com.mycompany.webapp.dao.DrugsInjectionsDao;
 import com.mycompany.webapp.dao.DrugsInjectionsListsDao;
 import com.mycompany.webapp.dao.InspectionListsDao;
 import com.mycompany.webapp.dao.InspectionsDao;
 import com.mycompany.webapp.dao.TreatmentsDao;
+import com.mycompany.webapp.dto.DrugsInjections;
 import com.mycompany.webapp.dto.DrugsInjectionsLists;
 import com.mycompany.webapp.dto.InspectionLists;
 import com.mycompany.webapp.dto.Inspections;
@@ -30,6 +32,8 @@ public class TreatmentsService {
 	private InspectionListsDao inspectionListsDao;
 	@Autowired
 	private InspectionsDao inspectionsDao;
+	@Autowired
+	private DrugsInjectionsDao drugsInjectionsDao;
 	
 	public List<Treatments> getAllTreatment() {
 		List<Treatments> treatmentslist = treatmentsDao.selectAllTreatment();
@@ -42,7 +46,7 @@ public class TreatmentsService {
 	 * treatmentsDao.insert(treatment); return result; }
 	 */	
 	
-	public int update(Map<String, Object> treatment) {
+	public int update(Treatments treatment) {
 		logger.info("맵맵맵");
 		return treatmentsDao.update(treatment);
 	}
@@ -85,6 +89,12 @@ public class TreatmentsService {
 
 	public List<Inspections> getTreatmentInspection(int treatment_id) {
 		List<Inspections> list = inspectionsDao.selectByTreatmentInspection(treatment_id);
+		return list;
+	}
+
+
+	public List<DrugsInjections> getTreatmentDrugsInjection(int treatment_id) {
+		List<DrugsInjections> list = drugsInjectionsDao.selectByTreatmentDrugsInjection(treatment_id);
 		return list;
 	}
 

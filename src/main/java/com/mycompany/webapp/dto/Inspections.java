@@ -8,7 +8,7 @@ public class Inspections {
 	private String inspection_doctor_id;
 	private String inspection_inspector_id;
 	private int inspection_treatment_id;
-	private int inspection_list_id;
+	private int inspection_inspection_list_id;
 	private String inspection_lab;
 	private Date inspection_date;
 	private String inspection_result;
@@ -59,18 +59,19 @@ public class Inspections {
 		this.inspection_treatment_id = inspection_treatment_id;
 	}
 	
-	public int getInspection_list_id() {
-		return inspection_list_id;
+	public int getInspection_inspection_list_id() {
+		return inspection_inspection_list_id;
 	}
-	
-	public void setInspection_list_id(int inspection_list_id) {
-		this.inspection_list_id = inspection_list_id;
+
+	public void setInspection_inspection_list_id(int inspection_inspection_list_id) {
+		this.inspection_inspection_list_id = inspection_inspection_list_id;
 	}
-	
+
 	public String getInspection_lab() {
 		return inspection_lab;
 	}
 	
+
 	public void setInspection_lab(String inspection_lab) {
 		this.inspection_lab = inspection_lab;
 	}
