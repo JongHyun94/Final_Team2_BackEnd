@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.mycompany.webapp.dto.Users;
-import com.mycompany.webapp.service.HospitalsService;
 import com.mycompany.webapp.service.UsersService;
 
 @CrossOrigin(origins="*")
@@ -31,8 +30,6 @@ public class UserController {
 	
 	@Autowired
 	private UsersService usersService;
-	@Autowired
-	private HospitalsService hospitalsService;
 	
 	//로그인
 //	@PostMapping("/auth/login")
@@ -120,7 +117,7 @@ public class UserController {
 		String uauth = user.getUser_authority();
 		String user_id = "";
 		
-		int count = hospitalsService.getCount(hcode, uauth) + 1;
+		int count = usersService.getCount(hcode, uauth) + 1;
 		
 		if(uauth.equals("ROLE_DOCTOR")) {
 			user_id = "D" + hcode + "00" + count;
@@ -135,6 +132,6 @@ public class UserController {
 		user.setUser_hospital_id(hcode);
 		
 		usersService.createUser(user);
-		hospitalsService.updateUser(hcode, uauth);
+		usersService.updateUser(hcode, uauth);
 	}
 }

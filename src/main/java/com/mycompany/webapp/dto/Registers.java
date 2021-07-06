@@ -2,13 +2,18 @@ package com.mycompany.webapp.dto;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 public class Registers {
     // Original DB Data
 	private int register_id;
 	private int register_patient_id;
 	private String register_user_id;
+	@DateTimeFormat(pattern = "yyyy-MM-dd H:mm")
 	private Date register_regdate;
+	@DateTimeFormat(pattern = "yyyy-MM-dd H:mm")
 	private Date register_date;
+	@DateTimeFormat(pattern = "yyyy-MM-dd H:mm")
 	private Date register_starttime;
 	private String register_memo;
 	private String register_communication;
