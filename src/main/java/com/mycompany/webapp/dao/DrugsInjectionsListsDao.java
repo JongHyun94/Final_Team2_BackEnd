@@ -1,8 +1,16 @@
 package com.mycompany.webapp.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Mapper;
 
-@Mapper
-public class DrugsInjectionsListsDao {
+import com.mycompany.webapp.dto.DrugsInjectionsLists;
 
+@Mapper
+public interface DrugsInjectionsListsDao {
+
+	
+	public List<DrugsInjectionsLists> selectByDruglist(String keyword);
+	
+	
 }
