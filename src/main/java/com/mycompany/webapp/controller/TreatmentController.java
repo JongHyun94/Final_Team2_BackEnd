@@ -66,7 +66,7 @@ public class TreatmentController {
 	 * return treatmentlist; }
 	 */
 
-	
+	/* 진료대기환자 리스트 */
 	@GetMapping("/treatmentlist") 
 	public void list(HttpServletRequest request, HttpServletResponse response){ 
 		List<Treatments> treatmentlist = treatmentsService.getAllTreatment();
@@ -88,6 +88,7 @@ public class TreatmentController {
 		
 	}
 	
+	/* 약/주사 키워드 검색 */
 	@GetMapping("/keyword")
 	public void searchDrug(@RequestParam(defaultValue="") String keyword,HttpServletRequest request, HttpServletResponse response ){
 //		logger.info("qtqtqt"+keyword);
@@ -105,7 +106,7 @@ public class TreatmentController {
 	      }
 	}
 	
-
+	/* 진단 검사별 검사 리스트 */
 	@GetMapping("/categoryValue")
 	public void categoryInspectionList(@RequestParam(defaultValue="") String categoryValue, 
 			HttpServletRequest request, HttpServletResponse response){
@@ -123,6 +124,7 @@ public class TreatmentController {
 	      }
 	}
 
+	/* 환자 번호 별 진료 기록리스트 */
 	@GetMapping("/historyList/{treatment_patient_id}")
 	public void read(@PathVariable int treatment_patient_id, HttpServletRequest request, HttpServletResponse response) {
 		List<Treatments> historylist = treatmentsService.getHistoryList(treatment_patient_id);
@@ -140,6 +142,7 @@ public class TreatmentController {
 	
 	}
 
+	/* 진료 번호 별 진료 상세 보기 (soap, 검사기록, 약처방기록) */
 	 @GetMapping("/historyRead/{treatment_id}")
 	  public void historyread(@PathVariable int treatment_id, HttpServletRequest request, HttpServletResponse response) {
 		 List<Treatments> treatmentSoaplist = treatmentsService.getTreatmentSoap(treatment_id);

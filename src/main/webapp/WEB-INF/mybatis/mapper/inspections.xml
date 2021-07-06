@@ -16,7 +16,7 @@
 		select
 			i.inspection_date,i.inspection_result,
 	        il.inspection_list_name, il.inspection_list_category, il.inspection_list_reference,
-	        u.user_name
+	        u.user_name,i.INSPECTION_TREATMENT_ID,i.INSPECTION_LIST_ID, i.inspection_patient_id
 	    from 
 			inspections i, inspection_lists il, users u
 	    where 
