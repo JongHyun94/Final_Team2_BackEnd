@@ -50,7 +50,8 @@ public class UserController {
 			userList.get(i).setUser_email1(userList.get(i).getUser_email().split("@")[0]);
 			userList.get(i).setUser_email2(userList.get(i).getUser_email().split("@")[1]);
 			userList.get(i).setUser_ssn1(userList.get(i).getUser_ssn().split("-")[0]);
-			userList.get(i).setUser_ssn2(userList.get(i).getUser_ssn().split("-")[1]);				
+			userList.get(i).setUser_ssn2(userList.get(i).getUser_ssn().split("-")[1]);
+			logger.info("날짜: "+userList.get(i).getUser_regdate());				
 		}
 		
 		logger.info("" + userList.size());
@@ -84,7 +85,7 @@ public class UserController {
 			userList.get(i).setUser_email1(userList.get(i).getUser_email().split("@")[0]);
 			userList.get(i).setUser_email2(userList.get(i).getUser_email().split("@")[1]);
 			userList.get(i).setUser_ssn1(userList.get(i).getUser_ssn().split("-")[0]);
-			userList.get(i).setUser_ssn2(userList.get(i).getUser_ssn().split("-")[1]);			
+			userList.get(i).setUser_ssn2(userList.get(i).getUser_ssn().split("-")[1]);	
 		}
 				
 		response.setContentType("application/json;charset=UTF-8");
