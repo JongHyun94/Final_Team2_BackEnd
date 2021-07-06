@@ -70,6 +70,26 @@
 			treatment_id=#{treatment_id}
 	</select>
 	
+	<select id="selectTreatments" resultType="treatment" parameterType="string">
+		select t.treatment_id, t.treatment_patient_id, t.treatment_date,
+		 t.treatment_communication, t.treatment_istate, t.treatment_type,
+		 p.patient_name, p.patient_ssn, p.patient_sex
+		from treatments t, patients p
+		where treatment_patient_id = patient_id
+			and str_to_date(treatment_date, '%Y-%m-%d') = str_to_date(#{treatmentDate}, '%Y-%m-%d')
+		order by treatment_id
+	</select>
+	<update id="updateIstateI">
+		update treatments set
+			treatment_istate = "검사"
+		where treatment_id = #{treatmentId}
+	</update>
+	<update id="updateIstateC">
+		update treatments set
+			treatment_istate = "완료"
+		where treatment_id = #{treatmentId}
+	</update>
+	
 
 	
 	

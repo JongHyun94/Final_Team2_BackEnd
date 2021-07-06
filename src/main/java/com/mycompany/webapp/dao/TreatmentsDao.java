@@ -23,5 +23,10 @@ public interface TreatmentsDao {
 
 //	public Treatments selectByTreatment(int treatment_id);
 	
+	public List<Treatments> selectTreatments(String treatmentDate);
+
+	public int updateIstateI(int treatmentId);
+	
+	public int updateIstateC(int treatmentId);
 	
 }

@@ -4,4 +4,31 @@
 					 
 <mapper namespace="com.mycompany.webapp.dao.HospitalsDao">
 
+	<select id="getCount" resultType="int">
+		<if test='uauth == "ROLE_DOCTOR"'>
+			select hospital_doctors
+		</if>
+		<if test='uauth == "ROLE_NURSE"'>
+			select hospital_nurses
+		</if>
+		<if test='uauth == "ROLE_INSPECTOR"'>
+			select hospital_inspectors
+		</if>
+		from hospitals
+		where hospital_id = #{hcode}
+	</select>
+
+	<update id="updateUser">
+		update hospitals
+		<if test='uauth == "ROLE_DOCTOR"'>
+			set hospital_doctors = hospital_doctors + 1
+		</if>
+		<if test='uauth == "ROLE_NURSE"'>
+			set hospital_nurses= hospital_nurses + 1
+		</if>
+		<if test='uauth == "ROLE_INSPECTOR"'>
+			set hospital_inspectors = hospital_inspectors + 1
+		</if>
+		where hospital_id = #{hcode}
+	</update>
 </mapper>

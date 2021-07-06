@@ -14,7 +14,6 @@ public class Patients {
 	private String patient_detailaddress2;
 	private Date patient_regdate;
 	
-	
 	public int getPatient_id() {
 		return patient_id;
 	}

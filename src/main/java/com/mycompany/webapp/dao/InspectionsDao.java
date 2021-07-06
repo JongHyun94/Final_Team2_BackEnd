@@ -10,5 +10,5 @@ import com.mycompany.webapp.dto.Inspections;
 public interface InspectionsDao {
 
 	List<Inspections> selectByTreatmentInspection(int treatment_id);
-
+	List<Inspections> selectInspections(int treatmentId);
 }

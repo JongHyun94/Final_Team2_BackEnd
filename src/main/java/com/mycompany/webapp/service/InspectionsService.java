@@ -12,11 +12,46 @@ import com.mycompany.webapp.dto.Inspections;
 
 @Service
 public class InspectionsService {
-
-	private static final Logger logger = LoggerFactory.getLogger(InspectionsService.class);
+	
+	@Autowired
+	private TreatmentsDao treatmentsDao;
 	@Autowired
 	private InspectionsDao inspectionsDao;
+
+	public List<Treatments> getPatients(String treatmentDate) {
+		List<Treatments> treatmentsList = treatmentsDao.selectTreatments(treatmentDate);
+		return treatmentsList;
+	}
+
+	public boolean istateI(int treatmentId) {
+		try {
+			int row = treatmentsDao.updateIstateI(treatmentId);
+			if(row != 1) {
+				return false;
+			}
+		} catch(NullPointerException e) {
+			return false;
+		}
+		return true;
+	}
 	
+	public boolean istateC(int treatmentId) {
+		try {
+			int row = treatmentsDao.updateIstateC(treatmentId);
+			if(row != 1) {
+				return false;
+			}
+		} catch(NullPointerException e) {
+			return false;
+		}
+		return true;
+	}
+
+	public List<Inspections> getInspections(int treatmentId) {
+		List<Inspections> inspectionList = inspectionsDao.selectInspections(treatmentId);
+		return inspectionList;
+	}
+
 	public List<Inspections> getTreatmentInspection(int treatment_id) {
 		List<Inspections> list = inspectionsDao.selectByTreatmentInspection(treatment_id);
 		return list;
