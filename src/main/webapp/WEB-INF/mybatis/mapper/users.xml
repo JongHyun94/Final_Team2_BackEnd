@@ -10,6 +10,7 @@
 			user_zipcode, user_address, user_detailaddress1, user_detailaddress2,
 			user_regdate, user_enabled, user_authority
 		from users
+		order by user_id ASC
 	</select>
 	
 	<!-- 검색 환자 목록 가져오기 -->
