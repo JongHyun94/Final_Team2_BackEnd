@@ -43,8 +43,8 @@ public class UsersService {
 	}
 	
 	// 직원 등록 시 index+1
-	public void updateUser(String hcode, String uauth) {
-		hospitalsDao.updateUser(hcode, uauth);
+	public void updateUsercount(String hcode, String uauth) {
+		hospitalsDao.updateUsercount(hcode, uauth);
 	}
 
 	// 회원 정보 수정 시 회원 정보 가져오기
