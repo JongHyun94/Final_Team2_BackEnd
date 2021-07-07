@@ -17,7 +17,7 @@
 	
 <!-- 서영 -->
 	<!-- 전체 환자 목록 -->
-	<select id="selectPatient" resultType="patient">
+	<select id="selectPatients" resultType="patient">
 		select patient_id, 
 			   patient_name, 
 			   patient_ssn,
@@ -31,7 +31,9 @@
 		from patients
 		<if test='keyword != ""'>
 			where patient_name regexp #{keyword}
+				or patient_ssn like concat(#{keyword}, '%')
 		</if>
+		order by patient_id asc
 	</select>
 	
 	<update id="updatePatient" parameterType="patient">
