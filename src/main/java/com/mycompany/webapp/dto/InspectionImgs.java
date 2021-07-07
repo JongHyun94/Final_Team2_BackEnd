@@ -1,11 +1,16 @@
 package com.mycompany.webapp.dto;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class InspectionImgs {
 	private int inspection_img_id;
 	private int inspection_img_inspection_id;
 	private String inspection_img_oname;
 	private String inspection_img_sname;
 	private String inspection_img_type;
+	
+	private MultipartFile inspection_img_attach;
+	private String inspection_img_path;
 	
 	public int getInspection_img_id() {
 		return inspection_img_id;
@@ -36,6 +41,19 @@ public class InspectionImgs {
 	}
 	public void setInspection_img_type(String inspection_img_type) {
 		this.inspection_img_type = inspection_img_type;
+	}
+	
+	public MultipartFile getInspection_img_attach() {
+		return inspection_img_attach;
+	}
+	public void setInspection_img_attach(MultipartFile inspection_img_attach) {
+		this.inspection_img_attach = inspection_img_attach;
+	}
+	public String getInspection_img_path() {
+		return inspection_img_path;
+	}
+	public void setInspection_img_path(String inspection_img_path) {
+		this.inspection_img_path = inspection_img_path;
 	}
 	
 }

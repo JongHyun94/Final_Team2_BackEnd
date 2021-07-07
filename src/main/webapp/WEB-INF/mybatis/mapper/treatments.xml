@@ -83,6 +83,7 @@
 			treatment_id=#{treatment_id}
 	</select>
 	
+	<!-- ºû³ª ½ÃÀÛ -->
 	<select id="selectTreatments" resultType="treatment" parameterType="string">
 		select t.treatment_id, t.treatment_patient_id, t.treatment_date,
 		 t.treatment_communication, t.treatment_istate, t.treatment_type,
@@ -102,6 +103,7 @@
 			treatment_istate = "¿Ï·á"
 		where treatment_id = #{treatmentId}
 	</update>
+	<!-- ºû³ª ³¡ -->
 	
 
 	
