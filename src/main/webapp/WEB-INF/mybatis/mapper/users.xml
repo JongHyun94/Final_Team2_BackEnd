@@ -15,6 +15,7 @@
 		user_regdate, user_enabled, user_authority
 		from users
 		where user_authority="ROLE_DOCTOR"
+		or user_authority="ROLE_MASTER"
 	</select>
 	
 	
