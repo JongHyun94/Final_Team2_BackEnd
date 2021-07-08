@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.mycompany.webapp.dao.PatientsDao;
 import com.mycompany.webapp.dao.RegistersDao;
 import com.mycompany.webapp.dao.SchedulesDao;
+import com.mycompany.webapp.dao.TreatmentsDao;
 import com.mycompany.webapp.dao.UsersDao;
 import com.mycompany.webapp.dto.Patients;
 import com.mycompany.webapp.dto.Registers;
@@ -25,6 +26,8 @@ public class RegistersService {
 	private PatientsDao patientsDao;
 	@Autowired
 	private SchedulesDao schedulesDao;
+	@Autowired
+	private TreatmentsDao treatmentsDao;
 
 	public List<Registers> getAllRegisters() {
 		List<Registers> registersList = registersDao.selectAllRegisters();
@@ -36,25 +39,58 @@ public class RegistersService {
 		return registersList;
 	}
 
+	public int createNewRegister(Registers register) {
+		int result = registersDao.insertNewRegister(register);
+		return result;
+	}
+	
+	public int changeRegister(Registers register) {
+		int result = registersDao.updateRegister(register);
+		return result;
+	}
+
+	public int changeStateRegister(Registers register) {
+		int result = registersDao.updateStateRegister(register);
+		return result;
+	}
+	
+	// 진료 생성
+	public int createNewTreatment(Registers register) {
+		int result = treatmentsDao.insertNewTreatment(register);
+		return result;
+	}
+
+// User ----------------------------------------------------------
+	
 	public List<Users> getAllDoctors() {
 		List<Users> doctorList = usersDao.selectAllDoctors();
 		return doctorList;
 	}
-
+	
 	public List<Patients> getAllPatients() {
 		List<Patients> patientList = patientsDao.selectAllPatients();
 		return patientList;
 	}
+	
 
-	public void createNewRegister(Registers register) {
-		registersDao.insertNewRegister(register);
-		
-	}
-
+// To Do List ----------------------------------------------------------
 	public List<Schedules> getToDoList(Schedules schedule) {
 		List<Schedules> todolist = schedulesDao.selectToDoList(schedule);
 		return todolist;
 	}
 	
-
+	public int createNewToDoList(Schedules schedule) {
+		int result = schedulesDao.insertNewToDoList(schedule);
+		return result;
+	}
+	
+	public int updateToDoList(Schedules schedule) {
+		int result = schedulesDao.updateToDoList(schedule);
+		return result;
+	}
+	
+	public int deleteToDoList(int schedule_id) {
+		int result = schedulesDao.deleteToDoList(schedule_id);
+		return result;
+	}
 }

@@ -1,6 +1,5 @@
 package com.mycompany.webapp.dto;
 
-import java.util.Date;
 
 public class Schedules {	
 	private int schedule_id;
