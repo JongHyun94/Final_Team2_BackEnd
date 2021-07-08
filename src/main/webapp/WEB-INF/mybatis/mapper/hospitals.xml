@@ -18,7 +18,7 @@
 		where hospital_id = #{hcode}
 	</select>
 
-	<update id="updateUser">
+	<update id="updateUsercount">
 		update hospitals
 		<if test='uauth == "ROLE_DOCTOR"'>
 			set hospital_doctors = hospital_doctors + 1

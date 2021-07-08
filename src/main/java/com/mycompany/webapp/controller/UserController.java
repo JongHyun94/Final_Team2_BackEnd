@@ -96,7 +96,7 @@ public class UserController {
 		user.setUser_ssn(user.getUser_ssn1() + "-" + user.getUser_ssn2());
 		user.setUser_tel(user.getUser_tel1() + "-" + user.getUser_tel2() + "-" + user.getUser_tel3());
 		user.setUser_email(user.getUser_email1() + "@" + user.getUser_email2());
-				
+		
 		usersService.updateUser(user);
 		return user;
 	}
@@ -104,30 +104,39 @@ public class UserController {
 	//직원 등록
 	@PostMapping("")
 	public Users create(HttpServletRequest request, HttpServletResponse response, @RequestBody Users user) {		
-		String hcode = "138010";
+		String hcode = user.getUser_hospital_id();
 		String uauth = user.getUser_authority();
-		String user_id = "";
+		String user_id = "";		
+		
+		int count = usersService.getCount(hcode, uauth) + 1;
+		
+		String index = "";
+		
+		if (count < 10 ) {
+			index = "00" + count;
+		} else if (count < 100) {
+			index = "0" + count;
+		} else {
+			index = Integer.toString(count);
+		}
+		
+		if(uauth.equals("ROLE_DOCTOR")) {
+			user_id = "D" + hcode + index;
+		} else if(uauth.equals("ROLE_NURSE")) {
+			user_id = "N" + hcode + index;
+		} else if(uauth.equals("ROLE_INSPECTOR")) {
+			user_id = "I" + hcode + index;
+		}
 		
 		// 비밀번호 암호화
 		BCryptPasswordEncoder bpe = new BCryptPasswordEncoder();
 		String password = bpe.encode(user_id);
 		
-		int count = usersService.getCount(hcode, uauth) + 1;
-		
-		if(uauth.equals("ROLE_DOCTOR")) {
-			user_id = "D" + hcode + "00" + count;
-		} else if(uauth.equals("ROLE_NURSE")) {
-			user_id = "N" + hcode + "00" + count;
-		} else {
-			user_id = "I" + hcode + "00" + count;
-		}
-		
 		user.setUser_id(user_id);
 		user.setUser_password(password);
-		user.setUser_hospital_id(hcode);
 		
 		usersService.createUser(user);
-		usersService.updateUser(hcode, uauth);
+		usersService.updateUsercount(hcode, uauth);
 		
 		return user;
 	}
@@ -135,8 +144,6 @@ public class UserController {
 	// 회원 정보 읽기
 	@GetMapping("/read")
 	public Users read (HttpServletRequest request, HttpServletResponse response, @RequestParam String user_id) {
-		logger.info("회원id: "+user_id);
-		
 		Users user = usersService.getUser(user_id);
 		
 		user.setUser_tel1(user.getUser_tel().split("-")[0]);
@@ -150,4 +157,17 @@ public class UserController {
 		return user;
 	}
 	
+	// 회원 정보 수정
+	@PutMapping("/update")
+	public String updateUser (HttpServletRequest request, HttpServletResponse response, @RequestBody Users user) {	
+		BCryptPasswordEncoder bpe = new BCryptPasswordEncoder();
+		boolean result = bpe.matches(user.getOld_password(), user.getUser_password());
+		if (result) {
+			user.setUser_password(bpe.encode(user.getNew_password()));
+			usersService.updateUser(user);
+			return "success";
+		} else {
+			return "notCorrectPW";
+		}
+	}	
 }
