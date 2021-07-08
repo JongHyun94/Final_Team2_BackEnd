@@ -44,14 +44,6 @@ public class TreatmentController {
 	@Autowired
 	private TreatmentsService treatmentsService;
 
-	/*
-	 * @GetMapping("/aa") public List<Treatments> test(){ List<Treatments>
-	 * treatmentlist = treatmentsService.getAllTreatment();
-	 * logger.info("treatmentlist:"); logger.info("" +
-	 * treatmentlist.get(0).getTreatment_omemo()); logger.info("" +
-	 * treatmentlist.get(1).getTreatment_amemo()); return treatmentlist; }
-	 */
-
 	/* 진료대기환자 리스트 */
 	@GetMapping("/treatmentlist") 
 	public void list(HttpServletRequest request, HttpServletResponse response, @RequestParam String date){ 
@@ -61,6 +53,10 @@ public class TreatmentController {
 
 //		logger.info("" + treatmentlist.get(0).getTreatment_omemo());
 //		logger.info("" + treatmentlist.get(1).getTreatment_amemo());
+		
+		for(int i = 0; i< treatmentlist.size(); i++) {
+			treatmentlist.get(i).setPatient_ssn(treatmentlist.get(i).getPatient_ssn().split("-")[0]);
+		}
 		
 		  response.setContentType("application/json;charset=UTF-8");
 		
@@ -76,27 +72,7 @@ public class TreatmentController {
 	      }
 		
 	}
-
 	
-//	  @GetMapping("") public void list(HttpServletRequest request,
-//	  HttpServletResponse response){
-//	  
-//	  // 해당 날짜의 접수 내역 불러오기 
-//		  List<Treatments> treatmentlist = treatmentsService.getAllTreatment();
-//	  
-//	  // logger.info("" + treatmentlist.get(0).getTreatment_omemo()); //
-////	  logger.info("" + treatmentlist.get(1).getTreatment_amemo());
-//	  
-//	  response.setContentType("application/json;charset=UTF-8");
-//	  
-//	  JSONObject jObj = new JSONObject(); jObj.put("treatmentlist", treatmentlist);
-//	  try { Writer writer = response.getWriter(); writer.write(jObj.toString());
-//	  writer.flush(); writer.close(); } catch (Exception e) { e.printStackTrace();
-//	  }
-//	 
-//	  }
-	
-
 	/* 약/주사 키워드 검색 */
 	@GetMapping("/keyword")
 	public void searchDrug(@RequestParam(defaultValue = "") String keyword, HttpServletRequest request,

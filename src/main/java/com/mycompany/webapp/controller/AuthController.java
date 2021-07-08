@@ -47,7 +47,7 @@ public class AuthController {
 
 		Map<String, String> map = new HashMap<String, String>();
 		
-		Users dbUser = usersService.getUser(uid);		
+		Users dbUser = usersService.getUser(uid);	
 		if (dbUser == null) {
 			map.put("result","notFindID");
 			return map;
@@ -61,7 +61,12 @@ public class AuthController {
 				return map;
 			}
 		}
-				
+			
+		String hid = dbUser.getUser_hospital_id();
+		String hname = usersService.getHname(hid);
+		map.put("hid", hid);
+		map.put("hname", hname);
+		
 		//사용자 인증
 	    UsernamePasswordAuthenticationToken upat = new UsernamePasswordAuthenticationToken(uid, upassword);			
 		Authentication 	authentication = authenticationManager.authenticate(upat);

@@ -37,10 +37,10 @@ public class RegisterController {
 	@Autowired
 	private RegistersService registersService;
 
+	// 해당 날짜의 접수 내역 불러오기
 	@GetMapping("")
-	public void getRegisterList(HttpServletRequest request, HttpServletResponse response, @RequestParam String date){ 
-		// 해당 날짜의 접수 내역 불러오기
-		List<Registers> registerList = registersService.getTodayRegisters(date);
+	public void getRegisterList(HttpServletRequest request, HttpServletResponse response, @RequestParam String date, @RequestParam(defaultValue = "") String state){ 
+		List<Registers> registerList = registersService.getTodayRegisters(date, state);
 		response.setContentType("application/json;charset=UTF-8");
 		JSONObject jObj = new JSONObject();
 		jObj.put("registerList", registerList);
@@ -57,7 +57,6 @@ public class RegisterController {
 	// 새로운 register 만들기
 	@PostMapping("")
 	public void createRegister(HttpServletRequest request, HttpServletResponse response, @RequestBody Registers register) {
-
 		int result = registersService.createNewRegister(register);
 		response.setContentType("application/json;charset=UTF-8");
 		JSONObject jObj = new JSONObject();
@@ -75,7 +74,6 @@ public class RegisterController {
 	// register 수정
 	@PutMapping("")
 	public void updateRegister(HttpServletRequest request, HttpServletResponse response, @RequestBody Registers register) {
-
 		int result = registersService.changeRegister(register);
 		response.setContentType("application/json;charset=UTF-8");
 		JSONObject jObj = new JSONObject();
@@ -93,7 +91,6 @@ public class RegisterController {
 	// register 상태 수정 (대기 > 완료) (대기 > 취소)
 	@PutMapping("/state")
 	public void changeRegisterState(HttpServletRequest request, HttpServletResponse response, @RequestBody Registers register) {
-			
 		int result = registersService.changeStateRegister(register);
 		
 		if(register.getRegister_state().equals("완료")) {

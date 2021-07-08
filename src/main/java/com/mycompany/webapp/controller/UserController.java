@@ -12,6 +12,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -99,6 +100,12 @@ public class UserController {
 		
 		usersService.updateUser(user);
 		return user;
+	}
+	
+	@DeleteMapping("")
+	public void delete(HttpServletRequest request, HttpServletResponse response, @RequestParam String user_id) {
+		logger.info("직원삭제:" + user_id);
+//		usersService.deleteUser(user_id);
 	}
 	
 	//직원 등록

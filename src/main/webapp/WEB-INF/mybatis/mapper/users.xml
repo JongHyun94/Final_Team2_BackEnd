@@ -15,6 +15,7 @@
 		user_regdate, user_enabled, user_authority
 		from users
 		where user_authority="ROLE_DOCTOR"
+		or user_authority="ROLE_MASTER"
 	</select>
 	
 	
@@ -69,6 +70,9 @@
 		</if>
 		where user_id = #{user_id}
 	</update>
+	
+	<delete id="deleteUser" parameterType="String">
+	</delete>
 	
 	<!-- 직원 등록 -->
 	<insert id="insertUser">

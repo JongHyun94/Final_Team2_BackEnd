@@ -18,5 +18,6 @@ public interface UsersDao {
 	public List<Users> selectUsers(@Param("keyword") String keyword, @Param("authority") String authority);
 	public void updateUser(Users user);
 	public void insertUser(Users user);
-	public Users selectUser(String user_id);	
+	public Users selectUser(String user_id);
+	public void deleteUser(String user_id);	
 }
