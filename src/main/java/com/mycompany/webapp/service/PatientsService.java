@@ -14,7 +14,7 @@ public class PatientsService {
 	private PatientsDao patientsDao;
 
 	public List<Patients> getPatients(String keyword) {
-		List<Patients> patientsList = patientsDao.selectPatient(keyword);
+		List<Patients> patientsList = patientsDao.selectPatients(keyword);
 		return patientsList;
 	}
 

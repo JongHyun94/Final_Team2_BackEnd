@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import com.mycompany.webapp.dto.Registers;
 import com.mycompany.webapp.dto.Treatments;
 
 
@@ -30,5 +31,8 @@ public interface TreatmentsDao {
 	public int updateIstateI(int treatmentId);
 	
 	public int updateIstateC(int treatmentId);
+
+	//진료 시작시 생성되는 함수
+	public int insertNewTreatment(Registers register);
 	
 }

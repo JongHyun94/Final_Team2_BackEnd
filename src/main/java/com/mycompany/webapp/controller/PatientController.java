@@ -60,21 +60,25 @@ public class PatientController {
 	
 	//환자 정보 수정
 	@PutMapping("")
-	public void update(HttpServletRequest request, HttpServletResponse response, @RequestBody Patients patient) {
+	public Patients update(HttpServletRequest request, HttpServletResponse response, @RequestBody Patients patient) {
 		patient.setPatient_ssn(patient.getPatient_ssn1() + "-" + patient.getPatient_ssn2());
 		patient.setPatient_tel(patient.getPatient_tel1() + "-" + patient.getPatient_tel2() + "-" + patient.getPatient_tel3());
 		
 		patientsService.updatePatient(patient);
+		
+		return patient;
 	}
 	
 	//환자 등록
 	@PostMapping("") 
-	public void create(HttpServletRequest request, HttpServletResponse response, @RequestBody Patients patient) {
+	public Patients create(HttpServletRequest request, HttpServletResponse response, @RequestBody Patients patient) {
 		int count = patientsService.getCount() + 1;
 		patient.setPatient_id(count);
 		patient.setPatient_ssn(patient.getPatient_ssn1() + "-" + patient.getPatient_ssn2());
 		patient.setPatient_tel(patient.getPatient_tel1() + "-" + patient.getPatient_tel2() + "-" + patient.getPatient_tel3());
 		
 		patientsService.createPatient(patient);
+		
+		return patient;
 	}
 }

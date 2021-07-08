@@ -5,8 +5,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.mycompany.webapp.dao.InspectionImgsDao;
 import com.mycompany.webapp.dao.InspectionsDao;
 import com.mycompany.webapp.dao.TreatmentsDao;
+import com.mycompany.webapp.dto.InspectionImgs;
 import com.mycompany.webapp.dto.Inspections;
 import com.mycompany.webapp.dto.Treatments;
 
@@ -17,6 +19,9 @@ public class InspectionsService {
 	private TreatmentsDao treatmentsDao;
 	@Autowired
 	private InspectionsDao inspectionsDao;
+	@Autowired
+	private InspectionImgsDao inspectionImgsDao;
+	
 
 	public List<Treatments> getPatients(String treatmentDate) {
 		List<Treatments> treatmentsList = treatmentsDao.selectTreatments(treatmentDate);
@@ -50,6 +55,40 @@ public class InspectionsService {
 	public List<Inspections> getInspections(int treatmentId) {
 		List<Inspections> inspectionList = inspectionsDao.selectInspections(treatmentId);
 		return inspectionList;
+	}
+
+	public boolean state(int inspectionId, String state) {
+		try {
+			int row = inspectionsDao.updateState(inspectionId, state);
+			if(row != 1) {
+				return false;
+			}
+		} catch(NullPointerException e) {
+			return false;
+		}
+		return true;
+	}
+
+	public boolean result(int inspectionId, String inspectionResult) {
+		try {
+			int row = inspectionsDao.updateResult(inspectionId, inspectionResult);
+			if(row != 1) {
+				return false;
+			}
+		} catch(NullPointerException e) {
+			return false;
+		}
+		return true;
+	}
+
+	public List<InspectionImgs> getInspectionImg(int inspectionId) {
+		List<InspectionImgs> inspectionImgList = inspectionImgsDao.selectInspectionImgs(inspectionId);
+		
+		for(InspectionImgs inspectionImg : inspectionImgList) {
+			inspectionImg.setInspection_img_path("/resources/img/" + inspectionImg.getInspection_img_oname() + inspectionImg.getInspection_img_type());
+		}
+		
+		return inspectionImgList;
 	}
 
 

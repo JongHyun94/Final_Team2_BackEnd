@@ -16,4 +16,8 @@ public interface RegistersDao {
 
 	int insertNewRegister(Registers register);
 
+	int updateRegister(Registers register);
+
+	int updateStateRegister(Registers register);
+
 }

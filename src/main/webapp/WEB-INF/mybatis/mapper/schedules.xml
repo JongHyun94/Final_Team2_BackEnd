@@ -14,4 +14,26 @@
 		and
 		schedule_user_id=#{schedule_user_id}
 	</select>
+
+	<insert id="insertNewToDoList" parameterType="schedule">
+		insert into
+		schedules (schedule_user_id,
+		schedule_content,
+		schedule_state,
+		schedule_regdate) values
+		(#{schedule_user_id}, #{schedule_content},
+		#{schedule_state}, #{schedule_regdate})
+	</insert>
+
+	<update id="updateToDoList" parameterType="schedule">
+		update schedules
+		set
+		schedule_state=#{schedule_state}
+		where schedule_id=#{schedule_id}
+	</update>
+
+	<delete id="deleteToDoList" parameterType="int">
+		delete from schedules
+		where schedule_id=#{schedule_id}
+	</delete>
 </mapper>

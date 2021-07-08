@@ -1,25 +1,36 @@
 <?xml version="1.0" encoding="euc-kr" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 					 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-					 
+
 <mapper namespace="com.mycompany.webapp.dao.TreatmentsDao">
+
 
 <!-- 지현 시작 -->
 	
+	<!-- <select id="selectAllTreatment" resultType="treatment"> select treatment_id, 
+		treatment_register_id, treatment_patient_id, treatment_user_id, treatment_date, 
+		treatment_smemo, treatment_omemo, treatment_amemo, treatment_pmemo, treatment_communication, 
+		treatment_state, treatment_istate, treatment_type from treatments </select> -->
+
+
 	<select id="selectAllTreatment" resultType="treatment">
-		select 
-			t.treatment_id,t.treatment_register_id, t.treatment_user_id, t.treatment_patient_id,
-			r.register_communication, p.patient_name, p.patient_sex,p.patient_ssn,
-			r.register_starttime, t.treatment_state
+
+		select
+		t.treatment_id,t.treatment_register_id, t.treatment_user_id,
+		t.treatment_patient_id,
+		r.register_communication, p.patient_name, p.patient_sex,p.patient_ssn,
+		r.register_starttime, t.treatment_state
 		from treatments t, registers r, patients p
 		where 
 		str_to_date(register_starttime,
 		'%Y-%m-%d')=str_to_date(#{register_starttime},
 		'%Y-%m-%d') and 
 		treatment_register_id = register_id and treatment_patient_id = patient_id;
+
 	</select>
 
 	<update id="update" parameterType="treatment">
+
       update 
       		treatments 
       set 
@@ -32,71 +43,86 @@
       		treatment_id=#{treatment_id};
    </update>
    
-
-   
-   <select id="selectByPatientId" resultType="treatment">
+	<select id="selectByPatientId" resultType="treatment">
 		select
-			t.treatment_id,
-            t.treatment_date,
-            u.user_name,
-			t.treatment_communication,
-			t.treatment_patient_id
-        from 
-        	treatments t, users u
-		where 
-			t.treatment_user_id = u.user_id and 
-			treatment_patient_id=#{treatment_patient_id}
+		t.treatment_id,
+		t.treatment_date,
+		u.user_name,
+		t.treatment_communication,
+		t.treatment_patient_id
+		from
+		treatments t, users u
+		where
+		t.treatment_user_id = u.user_id and
+		treatment_patient_id=#{treatment_patient_id}
 	</select>
-	
-	<!--  <select id="selectByTreatment" resultType="treatment">
-		select
-			t.treatment_id,
-            t.treatment_date,
-            u.user_name,
-			t.treatment_communication,
-			t.treatment_patient_id
-        from 
-        	treatments t, users u
-		where 
-			t.treatment_user_id = u.user_id and 
-			treatment_id=#{treatment_id}
-	</select> -->
-	
+
+	<!-- <select id="selectByTreatment" resultType="treatment"> select t.treatment_id, 
+		t.treatment_date, u.user_name, t.treatment_communication, t.treatment_patient_id 
+		from treatments t, users u where t.treatment_user_id = u.user_id and treatment_id=#{treatment_id} 
+		</select> -->
+
 	<select id="selectByTreatmentSoap" resultType="treatment">
 		select
-			treatment_smemo,treatment_omemo,treatment_amemo,treatment_pmemo,treatment_communication,
-			treatment_id,treatment_patient_id,treatment_date,treatment_user_id, treatment_register_id
-        from 
-        	treatments
-		where 
-			treatment_id=#{treatment_id}
+		treatment_smemo,treatment_omemo,treatment_amemo,treatment_pmemo,treatment_communication,
+		treatment_id,treatment_patient_id,treatment_date,treatment_user_id,
+		treatment_register_id
+		from
+		treatments
+		where
+		treatment_id=#{treatment_id}
 	</select>
 	
 <!-- 지현 끝 -->	
 	
+<!-- 빛나 시작 -->
 	<select id="selectTreatments" resultType="treatment" parameterType="string">
-		select t.treatment_id, t.treatment_patient_id, t.treatment_date,
-		 t.treatment_communication, t.treatment_istate, t.treatment_type,
-		 p.patient_name, p.patient_ssn, p.patient_sex
+		select t.treatment_id, t.treatment_patient_id,
+		t.treatment_date,
+		t.treatment_communication, t.treatment_istate, t.treatment_type,
+		p.patient_name, p.patient_ssn, p.patient_sex
+
 		from treatments t, patients p
-		where treatment_patient_id = patient_id
-			and str_to_date(treatment_date, '%Y-%m-%d') = str_to_date(#{treatmentDate}, '%Y-%m-%d')
+		where
+		treatment_patient_id = patient_id
+		and str_to_date(treatment_date, '%Y-%m-%d') =
+		str_to_date(#{treatmentDate}, '%Y-%m-%d')
 		order by treatment_id
 	</select>
+	
 	<update id="updateIstateI">
 		update treatments set
-			treatment_istate = "검사"
+		treatment_istate = "검사"
 		where treatment_id = #{treatmentId}
 	</update>
 	<update id="updateIstateC">
 		update treatments set
-			treatment_istate = "완료"
+		treatment_istate = "완료"
 		where treatment_id = #{treatmentId}
 	</update>
-	
 
-	
-	
 
-	
+<!-- 빛나 끝 -->
+
+
+	<!-- 진료 생성 -종현- -->
+	<insert id="insertNewTreatment" parameterType="register">
+		insert into
+		treatments
+		(
+		treatment_register_id,
+		treatment_patient_id,
+		treatment_user_id,
+		treatment_state,
+		treatment_istate
+		)
+		values
+		(
+		#{register_id},
+		#{register_patient_id},
+		#{register_user_id},
+		"대기",
+		"대기"
+		)
+	</insert>
 </mapper>

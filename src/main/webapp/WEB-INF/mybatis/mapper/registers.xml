@@ -60,6 +60,25 @@
 	</select>
 
 	<!-- Update -->
-
+	
+	<update id="updateRegister" parameterType="register">
+		update registers
+		set
+		register_user_id=#{register_user_id},
+		register_date=#{register_date},
+		register_memo=#{register_memo},
+		register_communication=#{register_communication},
+		register_state=#{register_state}
+		where register_id=#{register_id}
+	</update>
+	
+	
+	<update id="updateStateRegister" parameterType="register">
+		update registers
+		set
+		register_starttime=now(),
+		register_state=#{register_state}
+		where register_id=#{register_id}
+	</update>
 	<!-- Delete -->
 </mapper>

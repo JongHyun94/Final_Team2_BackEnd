@@ -10,4 +10,10 @@ import com.mycompany.webapp.dto.Schedules;
 public interface SchedulesDao {
 
 	List<Schedules> selectToDoList(Schedules schedule);
+
+	int insertNewToDoList(Schedules schedule);
+
+	int updateToDoList(Schedules schedule);
+
+	int deleteToDoList(int schedule_id);
 }
