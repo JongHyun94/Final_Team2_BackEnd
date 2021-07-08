@@ -1,6 +1,9 @@
 package com.mycompany.webapp.controller;
 
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.util.List;
 
@@ -11,9 +14,9 @@ import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -119,20 +122,42 @@ public class InspectionController {
 	public void readImage(HttpServletRequest request, HttpServletResponse response, @RequestParam int inspectionId) {
 		logger.info("" + inspectionId);
 		List<InspectionImgs> inspectionImgList = inspectionsService.getInspectionImg(inspectionId);
+		logger.info("kk" + inspectionImgList);
 		
 		response.setContentType("application/json;charset=UTF-8");
 		JSONObject jsonObj = new JSONObject();
 		jsonObj.put("inspectionImgList", inspectionImgList);
-		
+	
 		try {
-			PrintWriter pw = response.getWriter();
-			pw.write(jsonObj.toString());
-			pw.flush();
-			pw.close();
+			response.setHeader("Content-Disposition", "attachment; filename=\"" + "xray" + "\";");
+			response.setContentType("image/jpeg");
 			
-		} catch (IOException e) {
+//			for(InspectionImgs inspectionImg : inspectionImgList) {
+//				InputStream is = new FileInputStream(inspectionImg.getInspection_img_path().toString());
+				InputStream is = new FileInputStream("D:/img/xray.jpg");
+
+//				logger.info("" + inspectionImg.getInspection_img_path().toString());
+				OutputStream os = response.getOutputStream();
+				FileCopyUtils.copy(is, os);
+				is.close();
+				os.flush();
+				os.close();
+//			}
+		} catch(Exception e) {
 			e.printStackTrace();
 		}
+		
+//		try {
+//			PrintWriter pw = response.getWriter();
+//			pw.write(jsonObj.toString());
+//			pw.flush();
+//			pw.close();
+//			
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+		
+		
 	}
 	
 }
