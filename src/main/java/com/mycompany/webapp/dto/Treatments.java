@@ -25,8 +25,7 @@ public class Treatments {
 	
 	private String user_name;
 	private String register_starttime;
-	
-	
+
 	public String getRegister_starttime() {
 		return register_starttime;
 	}
