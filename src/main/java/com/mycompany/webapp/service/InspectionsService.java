@@ -85,7 +85,7 @@ public class InspectionsService {
 		List<InspectionImgs> inspectionImgList = inspectionImgsDao.selectInspectionImgs(inspectionId);
 		
 		for(InspectionImgs inspectionImg : inspectionImgList) {
-			inspectionImg.setInspection_img_path("/resources/img/" + inspectionImg.getInspection_img_oname() + inspectionImg.getInspection_img_type());
+			inspectionImg.setInspection_img_path("/resources/img/" + inspectionImg.getInspection_img_sname() + inspectionImg.getInspection_img_type());
 		}
 		
 		return inspectionImgList;
