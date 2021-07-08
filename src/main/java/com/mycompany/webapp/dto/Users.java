@@ -26,6 +26,10 @@ public class Users {
 	private String user_ssn1;
 	private String user_ssn2;
 	
+	private String old_password;
+	private String new_password;
+	private String re_password;	
+	
 	public String getUser_id() {
 		return user_id;
 	}
@@ -157,5 +161,23 @@ public class Users {
 	}
 	public void setUser_ssn2(String user_ssn2) {
 		this.user_ssn2 = user_ssn2;
+	}
+	public String getOld_password() {
+		return old_password;
+	}
+	public void setOld_password(String old_password) {
+		this.old_password = old_password;
+	}
+	public String getNew_password() {
+		return new_password;
+	}
+	public void setNew_password(String new_password) {
+		this.new_password = new_password;
+	}
+	public String getRe_password() {
+		return re_password;
+	}
+	public void setRe_password(String re_password) {
+		this.re_password = re_password;
 	}
 }

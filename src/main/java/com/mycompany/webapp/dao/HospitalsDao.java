@@ -7,5 +7,5 @@ import org.apache.ibatis.annotations.Param;
 public interface HospitalsDao {
 
 	public int getCount(@Param("hcode") String hcode, @Param("uauth") String uauth);
-	public void updateUser(@Param("hcode") String hcode, @Param("uauth") String uauth);	
+	public void updateUsercount(@Param("hcode") String hcode, @Param("uauth") String uauth);	
 }

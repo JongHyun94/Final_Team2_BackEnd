@@ -43,18 +43,22 @@ public class AuthController {
 		String uid = user.get("userId");
 		String upassword = user.get("userPassword");
 		logger.info(uid);
-		logger.info(upassword);
+		logger.info(upassword);		
+
+		Map<String, String> map = new HashMap<String, String>();
 		
 		Users dbUser = usersService.getUser(uid);		
 		if (dbUser == null) {
-			logger.info("notFindID");
+			map.put("result","notFindID");
+			return map;
 		} else {
 			BCryptPasswordEncoder bpe = new BCryptPasswordEncoder();
 			boolean result = bpe.matches(upassword, dbUser.getUser_password());
 			if (result) {
-				logger.info("success");
+				map.put("result","success");
 			} else {
-				logger.info("notCorrectPW");
+				map.put("result", "notCorrectPW");
+				return map;
 			}
 		}
 				
@@ -68,22 +72,9 @@ public class AuthController {
 		String jwt = com.mycompany.webapp.security.JwtUtil.createToken(uid);
 		
 		//JSON 응답 보내기
-		Map<String, String> map = new HashMap<String, String>();
 		map.put("uid", uid);
 		map.put("authToken", jwt);
 				
 		return map;
-		
-//		response.setContentType("application/json;charset=UTF-8");
-//		JSONObject jObj = new JSONObject();
-//		jObj.put("user", uid);
-//		try {
-//			Writer writer = response.getWriter();
-//			writer.write(jObj.toString());
-//			writer.flush();
-//			writer.close();
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
 	}	
 }
