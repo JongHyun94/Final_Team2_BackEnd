@@ -35,11 +35,15 @@ public class TreatmentsService {
 	@Autowired
 	private DrugsInjectionsDao drugsInjectionsDao;
 	
-	public List<Treatments> getAllTreatment() {
-		List<Treatments> treatmentslist = treatmentsDao.selectAllTreatment();
+	public List<Treatments> getAllTreatment(String date_time) {
+		List<Treatments> treatmentslist = treatmentsDao.selectAllTreatment(date_time);
 		return treatmentslist;
 	}
 	
+	
+//	 public List<Treatments> getAllTreatment() { List<Treatments> treatmentslist =
+//	 treatmentsDao.selectAllTreatment(); return treatmentslist; }
+	 
 	
 	/*
 	 * public int insert(Treatments treatment) { int result =

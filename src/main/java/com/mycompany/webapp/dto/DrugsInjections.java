@@ -9,12 +9,12 @@ public class DrugsInjections {
 	private int drug_injection_treatment_id;
 	private String drug_injection_id_doctor_id;
 	private int drug_injection_patient_id;
-	private Date drug_injection_regdate;
+	private String drug_injection_regdate;
 	
 	private String drug_injection_list_name;
 	private String drug_injection_list_category;
 	private String user_name;
-	private Date treatment_date;
+	private String treatment_date;
 	
 	public int getDrug_injection_id() {
 		return drug_injection_id;
@@ -46,10 +46,10 @@ public class DrugsInjections {
 	public void setDrug_injection_patient_id(int drug_injection_patient_id) {
 		this.drug_injection_patient_id = drug_injection_patient_id;
 	}
-	public Date getDrug_injection_regdate() {
+	public String getDrug_injection_regdate() {
 		return drug_injection_regdate;
 	}
-	public void setDrug_injection_regdate(Date drug_injection_regdate) {
+	public void setDrug_injection_regdate(String drug_injection_regdate) {
 		this.drug_injection_regdate = drug_injection_regdate;
 	}
 	public String getDrug_injection_list_name() {
@@ -70,10 +70,10 @@ public class DrugsInjections {
 	public void setUser_name(String user_name) {
 		this.user_name = user_name;
 	}
-	public Date getTreatment_date() {
+	public String getTreatment_date() {
 		return treatment_date;
 	}
-	public void setTreatment_date(Date treatment_date) {
+	public void setTreatment_date(String treatment_date) {
 		this.treatment_date = treatment_date;
 	}
 	

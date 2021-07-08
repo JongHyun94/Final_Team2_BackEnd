@@ -3,23 +3,22 @@
 					 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 					 
 <mapper namespace="com.mycompany.webapp.dao.TreatmentsDao">
-	
-	<!-- <select id="selectAllTreatment" resultType="treatment">
-		select treatment_id, treatment_register_id, treatment_patient_id,
-		treatment_user_id, treatment_date, treatment_smemo, treatment_omemo, treatment_amemo, treatment_pmemo,
-		treatment_communication, treatment_state, treatment_istate, treatment_type
-		from treatments
-	</select> -->
+
+<!-- 지현 시작 -->
 	
 	<select id="selectAllTreatment" resultType="treatment">
 		select 
 			t.treatment_id,t.treatment_register_id, t.treatment_user_id, t.treatment_patient_id,
 			r.register_communication, p.patient_name, p.patient_sex,p.patient_ssn,
-			r.register_starttime
+			r.register_starttime, t.treatment_state
 		from treatments t, registers r, patients p
-		where treatment_register_id = register_id and treatment_patient_id = patient_id;
+		where 
+		str_to_date(register_starttime,
+		'%Y-%m-%d')=str_to_date(#{register_starttime},
+		'%Y-%m-%d') and 
+		treatment_register_id = register_id and treatment_patient_id = patient_id;
 	</select>
-	
+
 	<update id="update" parameterType="treatment">
       update 
       		treatments 
@@ -28,22 +27,12 @@
       		treatment_amemo = #{treatment_amemo},treatment_pmemo = #{treatment_pmemo},
       		treatment_communication = #{treatment_communication},
       		treatment_date=now(),
-      		treatment_state="완료"
+      		treatment_state="완료"		
       where 
       		treatment_id=#{treatment_id};
    </update>
    
-<!--    	<update id="update" parameterType="treatment">
-      update 
-      		treatments 
-      set 
-      		treatment_smemo = #{treatment_smemo},treatment_omemo = #{treatment_omemo},
-      		treatment_amemo = #{treatment_amemo},treatment_pmemo = #{treatment_pmemo},
-      		treatment_communication = #{treatment_communication}
-      where 
-      		treatment_id=#{treatment_id};
-   </update> -->
-   
+
    
    <select id="selectByPatientId" resultType="treatment">
 		select
@@ -82,6 +71,8 @@
 		where 
 			treatment_id=#{treatment_id}
 	</select>
+	
+<!-- 지현 끝 -->	
 	
 	<select id="selectTreatments" resultType="treatment" parameterType="string">
 		select t.treatment_id, t.treatment_patient_id, t.treatment_date,

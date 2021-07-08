@@ -3,6 +3,8 @@
 					 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 					 
 <mapper namespace="com.mycompany.webapp.dao.DrugsInjectionsListsDao">
+
+<!-- 지현 시작 -->
 	<select id="selectByDruglist" resultType="drugsInjectionsList">
 		select
 			drug_injection_list_name, drug_injection_list_id, drug_injection_list_category
@@ -13,6 +15,8 @@
 			drug_injection_list_category LIKE CONCAT('%',#{keyword},'%')
 		
 	</select>
+	
+	<!-- 지현 끝 -->	
 	
 <!-- drug_injection_list_name LIKE '%'||#{keyword}||'%' or drug_injection_list_id LIKE '%'||#{keyword}||'%' or
 drug_injection_list_category LIKE '%'||#{keyword}||'%' -->

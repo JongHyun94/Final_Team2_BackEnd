@@ -3,26 +3,28 @@
 					 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 					 
 <mapper namespace="com.mycompany.webapp.dao.DrugsInjectionsDao">
-	
+
+<!-- 지현 시작 -->	
 	<select id="selectByTreatmentDrugsInjection" resultType="drugsInjection">
 		select
-			d.DRUG_INJECTION_DRUG_INJECTION_LIST_ID, 
-	        dl.DRUG_INJECTION_LIST_NAME,
-	        dl.DRUG_INJECTION_LIST_CATEGORY,
-	        u.USER_NAME,
-	        t.TREATMENT_DATE,
-	        d.DRUG_INJECTION_TREATMENT_ID,
-	        d.DRUG_INJECTION_ID,
-	        d.DRUG_INJECTION_PATIENT_ID
+			d.drug_injection_drug_injection_list_id, 
+	        dl.drug_injection_list_name,
+	        dl.drug_injection_list_category,
+	        u.user_name,
+	        t.treatment_date,
+	        d.drug_injection_treatment_id,
+	        d.drug_injection_id,
+	        d.drug_injection_patient_id
 	   from
 			drugs_injections d,
 	        drugs_injections_lists dl,
 	        users u,
 	        treatments t
 		where
-			d.DRUG_INJECTION_DRUG_INJECTION_LIST_ID = dl.DRUG_INJECTION_LIST_ID and
-	        d.DRUG_INJECTION_ID_DOCTOR_ID = u.user_id and
-	        d.DRUG_INJECTION_TREATMENT_ID = t.TREATMENT_ID and
-	        d.DRUG_INJECTION_TREATMENT_ID = #{treatment_id};
+			d.drug_injection_drug_injection_list_id = dl.drug_injection_list_id and
+	        d.drug_injection_id_doctor_id = u.user_id and
+	        d.drug_injection_treatment_id = t.treatment_id and
+	        d.drug_injection_treatment_id = #{treatment_id};
 	</select>
+<!-- 지현 끝 -->		
 </mapper>

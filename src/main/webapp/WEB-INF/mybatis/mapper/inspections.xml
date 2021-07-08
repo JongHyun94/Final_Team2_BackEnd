@@ -16,7 +16,8 @@
 			and inspection_patient_id = patient_id
 		order by inspection_id desc
 	</select>
-
+	
+<!-- 지현 시작 -->
 	<select id="selectByTreatmentInspection" resultType="inspection">
 		select
 			i.inspection_date,i.inspection_result,
@@ -32,4 +33,5 @@
 				and
 			i.INSPECTION_TREATMENT_ID = #{treatment_id}
 	</select>
+<!-- 지현 끝 -->	
 </mapper>

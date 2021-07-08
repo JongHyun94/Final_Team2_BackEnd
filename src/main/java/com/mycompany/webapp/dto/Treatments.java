@@ -24,9 +24,15 @@ public class Treatments {
 	private String patient_ssn;
 	
 	private String user_name;
-
+	private String register_starttime;
 	
 	
+	public String getRegister_starttime() {
+		return register_starttime;
+	}
+	public void setRegister_starttime(String register_starttime) {
+		this.register_starttime = register_starttime;
+	}
 	public String getUser_name() {
 		return user_name;
 	}

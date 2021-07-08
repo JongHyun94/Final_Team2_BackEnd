@@ -1,6 +1,7 @@
 package com.mycompany.webapp.controller;
 
 import java.io.File;
+
 import java.io.Writer;
 import java.util.Date;
 import java.util.HashMap;
@@ -34,34 +35,29 @@ import com.mycompany.webapp.dto.Inspections;
 import com.mycompany.webapp.dto.Treatments;
 import com.mycompany.webapp.service.TreatmentsService;
 
-
+@CrossOrigin(origins="*")
 @RestController
 @RequestMapping("/treatment")
 public class TreatmentController {
 	private static final Logger logger = LoggerFactory.getLogger(TreatmentController.class);
-	
-	@Autowired
-	private DataSource dataSource;
-	
+
 	@Autowired
 	private TreatmentsService treatmentsService;
-	
-	
+
 	/*
 	 * @GetMapping("/aa") public List<Treatments> test(){ List<Treatments>
 	 * treatmentlist = treatmentsService.getAllTreatment();
 	 * logger.info("treatmentlist:"); logger.info("" +
 	 * treatmentlist.get(0).getTreatment_omemo()); logger.info("" +
-	 * treatmentlist.get(1).getTreatment_amemo());
-	 * return treatmentlist; }
+	 * treatmentlist.get(1).getTreatment_amemo()); return treatmentlist; }
 	 */
 
 	/* 진료대기환자 리스트 */
 	@GetMapping("/treatmentlist") 
-	public void list(HttpServletRequest request, HttpServletResponse response){ 
+	public void list(HttpServletRequest request, HttpServletResponse response, @RequestParam String date){ 
 
 		// 해당 날짜의 접수 내역 불러오기
-		List<Treatments> treatmentlist = treatmentsService.getAllTreatment();
+		List<Treatments> treatmentlist = treatmentsService.getAllTreatment(date);
 
 //		logger.info("" + treatmentlist.get(0).getTreatment_omemo());
 //		logger.info("" + treatmentlist.get(1).getTreatment_amemo());
@@ -80,87 +76,108 @@ public class TreatmentController {
 	      }
 		
 	}
+
 	
+//	  @GetMapping("") public void list(HttpServletRequest request,
+//	  HttpServletResponse response){
+//	  
+//	  // 해당 날짜의 접수 내역 불러오기 
+//		  List<Treatments> treatmentlist = treatmentsService.getAllTreatment();
+//	  
+//	  // logger.info("" + treatmentlist.get(0).getTreatment_omemo()); //
+////	  logger.info("" + treatmentlist.get(1).getTreatment_amemo());
+//	  
+//	  response.setContentType("application/json;charset=UTF-8");
+//	  
+//	  JSONObject jObj = new JSONObject(); jObj.put("treatmentlist", treatmentlist);
+//	  try { Writer writer = response.getWriter(); writer.write(jObj.toString());
+//	  writer.flush(); writer.close(); } catch (Exception e) { e.printStackTrace();
+//	  }
+//	 
+//	  }
+	
+
 	/* 약/주사 키워드 검색 */
 	@GetMapping("/keyword")
-	public void searchDrug(@RequestParam(defaultValue="") String keyword,HttpServletRequest request, HttpServletResponse response ){
+	public void searchDrug(@RequestParam(defaultValue = "") String keyword, HttpServletRequest request,
+			HttpServletResponse response) {
 //		logger.info("qtqtqt"+keyword);
 		List<DrugsInjectionsLists> druglist = treatmentsService.getDrug(keyword);
 		response.setContentType("application/json;charset=UTF-8");
-	      JSONObject jObj = new JSONObject();
-	      jObj.put("druglist", druglist);
-	      try {
-	         Writer writer = response.getWriter();
-	         writer.write(jObj.toString());
-	         writer.flush();
-	         writer.close();
-	      } catch (Exception e) {
-	         e.printStackTrace();
-	      }
+		JSONObject jObj = new JSONObject();
+		jObj.put("druglist", druglist);
+		try {
+			Writer writer = response.getWriter();
+			writer.write(jObj.toString());
+			writer.flush();
+			writer.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
-	
+
 	/* 진단 검사별 검사 리스트 */
 	@GetMapping("/categoryValue")
-	public void categoryInspectionList(@RequestParam(defaultValue="") String categoryValue, 
-			HttpServletRequest request, HttpServletResponse response){
+	public void categoryInspectionList(@RequestParam String categoryValue,
+			HttpServletRequest request, HttpServletResponse response) {
 		List<InspectionLists> inspectionList = treatmentsService.getInspection(categoryValue);
 		response.setContentType("application/json;charset=UTF-8");
-	      JSONObject jObj = new JSONObject();
-	      jObj.put("inspectionList", inspectionList);
-	      try {
-	         Writer writer = response.getWriter();
-	         writer.write(jObj.toString());
-	         writer.flush();
-	         writer.close();
-	      } catch (Exception e) {
-	         e.printStackTrace();
-	      }
+		JSONObject jObj = new JSONObject();
+		jObj.put("inspectionList", inspectionList);
+		try {
+			Writer writer = response.getWriter();
+			writer.write(jObj.toString());
+			writer.flush();
+			writer.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	/* 환자 번호 별 진료 기록리스트 */
-	@GetMapping("/historyList/{treatment_patient_id}")
-	public void read(@PathVariable int treatment_patient_id, HttpServletRequest request, HttpServletResponse response) {
+	@GetMapping("/historyList")
+	public void read(@RequestParam int treatment_patient_id, HttpServletRequest request, HttpServletResponse response) {
 		List<Treatments> historylist = treatmentsService.getHistoryList(treatment_patient_id);
-		 response.setContentType("application/json;charset=UTF-8");
-	      JSONObject jObj = new JSONObject();
-	      jObj.put("historylist", historylist);
-	      try {
-	         Writer writer = response.getWriter();
-	         writer.write(jObj.toString());
-	         writer.flush();
-	         writer.close();
-	      } catch (Exception e) {
-	         e.printStackTrace();
-	      }
-	
+		response.setContentType("application/json;charset=UTF-8");
+		JSONObject jObj = new JSONObject();
+		jObj.put("historylist", historylist);
+		try {
+			Writer writer = response.getWriter();
+			writer.write(jObj.toString());
+			writer.flush();
+			writer.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
 	}
 
 	/* 진료 번호 별 진료 상세 보기 (soap, 검사기록, 약처방기록) */
-	 @GetMapping("/historyRead/{treatment_id}")
-	  public void historyread(@PathVariable int treatment_id, HttpServletRequest request, HttpServletResponse response) {
-		 List<Treatments> treatmentSoaplist = treatmentsService.getTreatmentSoap(treatment_id);
-		 List<Inspections> treatmentInspectionlist = treatmentsService.getTreatmentInspection(treatment_id);
-		 List<DrugsInjections> treatmentDrugsInjectionlist = treatmentsService.getTreatmentDrugsInjection(treatment_id);
-		 
-		 response.setContentType("application/json;charset=UTF-8");
-	      JSONObject jObj = new JSONObject();
-	      jObj.put("treatmentSoaplist", treatmentSoaplist);
-	      jObj.put("treatmentInspectionlist", treatmentInspectionlist);
-	      jObj.put("treatmentDrugsInjectionlist", treatmentDrugsInjectionlist);
-	      try {
-	         Writer writer = response.getWriter();
-	         writer.write(jObj.toString());
-	         writer.flush();
-	         writer.close();
-	      } catch (Exception e) {
-	         e.printStackTrace();
-	      }
-	  }
+	@GetMapping("/historyRead")
+	public void historyread(@RequestParam int treatment_id, HttpServletRequest request, HttpServletResponse response) {
+		List<Treatments> treatmentSoaplist = treatmentsService.getTreatmentSoap(treatment_id);
+		List<Inspections> treatmentInspectionlist = treatmentsService.getTreatmentInspection(treatment_id);
+		List<DrugsInjections> treatmentDrugsInjectionlist = treatmentsService.getTreatmentDrugsInjection(treatment_id);
+
+		response.setContentType("application/json;charset=UTF-8");
+		JSONObject jObj = new JSONObject();
+		jObj.put("treatmentSoaplist", treatmentSoaplist);
+		jObj.put("treatmentInspectionlist", treatmentInspectionlist);
+		jObj.put("treatmentDrugsInjectionlist", treatmentDrugsInjectionlist);
+		try {
+			Writer writer = response.getWriter();
+			writer.write(jObj.toString());
+			writer.flush();
+			writer.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 
 	@PutMapping("")
 	public void update(@RequestBody Treatments treatment) {
 		treatmentsService.update(treatment);
-		
+
 	}
 
 	/*
@@ -169,6 +186,5 @@ public class TreatmentController {
 	 * 
 	 * return treatment; }
 	 */
-	
-	
+
 }

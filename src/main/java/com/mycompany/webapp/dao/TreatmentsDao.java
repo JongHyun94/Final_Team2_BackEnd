@@ -11,7 +11,9 @@ import com.mycompany.webapp.dto.Treatments;
 @Mapper
 public interface TreatmentsDao {
 	
-	public List<Treatments> selectAllTreatment();
+	public List<Treatments> selectAllTreatment(String date_time);
+	
+//	 public List<Treatments> selectAllTreatment(); 
 	
 	/* public int insert(Treatments treatment); */
 	
