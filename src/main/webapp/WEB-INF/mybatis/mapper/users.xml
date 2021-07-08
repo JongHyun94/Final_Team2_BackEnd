@@ -70,6 +70,9 @@
 		where user_id = #{user_id}
 	</update>
 	
+	<delete id="deleteUser" parameterType="String">
+	</delete>
+	
 	<!-- 직원 등록 -->
 	<insert id="insertUser">
 		insert into users
