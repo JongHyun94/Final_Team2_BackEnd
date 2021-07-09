@@ -10,8 +10,9 @@ import com.mycompany.webapp.dto.Inspections;
 @Mapper
 public interface InspectionsDao {
 
-	List<Inspections> selectByTreatmentInspection(int treatment_id);
-	List<Inspections> selectInspections(int treatmentId);
-	int updateState(@Param("inspectionId") int inspectionId, @Param("state") String state);
-	int updateResult(@Param("inspectionId") int inspectionId, @Param("inspectionResult") String inspectionResult);
+	public List<Inspections> selectByTreatmentInspection(int treatment_id);
+	public List<Inspections> selectInspections(int treatmentId);
+	public int updateState(@Param("inspectionId") int inspectionId, @Param("state") String state);
+	public int updateResult(@Param("inspectionId") int inspectionId, @Param("inspectionResult") String inspectionResult);
+	public void insertInspections(Inspections inspections);
 }

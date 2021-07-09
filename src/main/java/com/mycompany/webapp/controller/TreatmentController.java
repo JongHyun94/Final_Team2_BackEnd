@@ -32,8 +32,11 @@ import com.mycompany.webapp.dto.DrugsInjections;
 import com.mycompany.webapp.dto.DrugsInjectionsLists;
 import com.mycompany.webapp.dto.InspectionLists;
 import com.mycompany.webapp.dto.Inspections;
+import com.mycompany.webapp.dto.Patients;
 import com.mycompany.webapp.dto.Treatments;
 import com.mycompany.webapp.service.TreatmentsService;
+
+import jdk.internal.org.jline.utils.Log;
 
 @CrossOrigin(origins="*")
 @RestController
@@ -151,16 +154,55 @@ public class TreatmentController {
 	}
 
 	@PutMapping("")
-	public void update(@RequestBody Treatments treatment) {
+	public void update(@RequestBody Treatments treatment, HttpServletResponse response) {
 		treatmentsService.update(treatment);
+		
+		response.setContentType("application/json;charset=UTF-8");
+		JSONObject jObj = new JSONObject();
+		jObj.put("result", "success");
+		try {
+			Writer writer = response.getWriter();
+			writer.write(jObj.toString());
+			writer.flush();
+			writer.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@PostMapping("/drugsInjections") 
+	public void createDrugsInjections(HttpServletRequest request, HttpServletResponse response,
+			@RequestBody List<DrugsInjections> drugsInjections) {
+		logger.info("cccccccccccc");
+		logger.info("aaaaaaaaaaaaaaaaa"+drugsInjections.get(0).getDrug_injection_list_name());
+		//treatmentsService.createDrugsInjections(drugsInjections);
+		//logger.info("bbbbbbbbbbbbbbb"+drugsInjections);
+		response.setContentType("application/json;charset=UTF-8");
+		JSONObject jObj = new JSONObject();
+		jObj.put("result", "success");
+		try {
+			Writer writer = response.getWriter();
+			writer.write(jObj.toString());
+			writer.flush();
+			writer.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 
 	}
+	
+//	@PostMapping("/inspections")
+//	public Inspections createInspections(HttpServletRequest request, HttpServletResponse respons,
+//			@RequestBody Inspections inspections) {
+//		
+//		inspections.setInspection_inspector_id("I138010001");
+//		inspections.setInspection_lab("혈액검사실1");
+//		inspections.setInspection_state("대기");		
+//		treatmentsService.createInspections(inspections);
+//		
+//		return inspections;
+//	}
+	
 
-	/*
-	 * @PostMapping("") public Treatments create(Treatments treatment){
-	 * treatmentsService.insert(treatment);
-	 * 
-	 * return treatment; }
-	 */
 
 }
