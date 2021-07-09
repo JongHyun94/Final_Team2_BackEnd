@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.mycompany.webapp.mqtt.MqttTemplate;
-import com.mycompany.webapp.service.UsersService;
 
 @CrossOrigin(origins="*")
 @RestController
@@ -27,10 +26,6 @@ public class MainController {
 //	
 	@Autowired
 	private MqttTemplate mqttTemplate;
-	
-	@Autowired
-	private UsersService usersService;
-	
 	
 	@Autowired
 	private DataSource dataSource;

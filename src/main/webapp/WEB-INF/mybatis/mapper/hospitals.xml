@@ -31,4 +31,10 @@
 		</if>
 		where hospital_id = #{hcode}
 	</update>
+	
+	<select id="getHname" resultType="String">
+		select hospital_name
+		from hospitals
+		where hospital_id = #{hid}
+	</select>
 </mapper>

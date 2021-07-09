@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import com.mycompany.webapp.dto.Registers;
 
@@ -12,7 +13,7 @@ public interface RegistersDao {
 
 	List<Registers> selectAllRegisters();
 
-	List<Registers> selectRegistersByDate(String date_time);
+	List<Registers> selectRegistersByDate(@Param("register_date")String register_date,@Param("state") String state);
 
 	int insertNewRegister(Registers register);
 

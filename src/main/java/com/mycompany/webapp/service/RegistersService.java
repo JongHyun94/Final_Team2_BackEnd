@@ -34,8 +34,8 @@ public class RegistersService {
 		return registersList;
 	}
 
-	public List<Registers> getTodayRegisters(String date_time) {
-		List<Registers> registersList = registersDao.selectRegistersByDate(date_time);
+	public List<Registers> getTodayRegisters(String date_time, String state) {
+		List<Registers> registersList = registersDao.selectRegistersByDate(date_time, state);
 		return registersList;
 	}
 
