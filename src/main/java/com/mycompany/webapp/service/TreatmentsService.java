@@ -18,6 +18,7 @@ import com.mycompany.webapp.dto.DrugsInjections;
 import com.mycompany.webapp.dto.DrugsInjectionsLists;
 import com.mycompany.webapp.dto.InspectionLists;
 import com.mycompany.webapp.dto.Inspections;
+import com.mycompany.webapp.dto.Patients;
 import com.mycompany.webapp.dto.Treatments;
 
 
@@ -100,6 +101,18 @@ public class TreatmentsService {
 	public List<DrugsInjections> getTreatmentDrugsInjection(int treatment_id) {
 		List<DrugsInjections> list = drugsInjectionsDao.selectByTreatmentDrugsInjection(treatment_id);
 		return list;
+	}
+
+
+	public void createDrugsInjections(DrugsInjections drugsInjections) {
+		drugsInjectionsDao.insertDrugsInjections(drugsInjections);
+		
+	}
+
+
+	public void createInspections(Inspections inspections) {
+		inspectionsDao.insertInspections(inspections);
+		
 	}
 
 }
