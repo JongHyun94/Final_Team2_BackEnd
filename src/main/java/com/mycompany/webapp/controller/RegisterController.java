@@ -57,10 +57,13 @@ public class RegisterController {
 	// 새로운 register 만들기
 	@PostMapping("")
 	public void createRegister(HttpServletRequest request, HttpServletResponse response, @RequestBody Registers register) {
-		int result = registersService.createNewRegister(register);
+		logger.info("create");
+		logger.info(register.getRegister_date());
+		logger.info(register.getRegister_user_id());
+		String result = registersService.createNewRegister(register);
 		response.setContentType("application/json;charset=UTF-8");
 		JSONObject jObj = new JSONObject();
-		jObj.put("result", "success");
+		jObj.put("result", result);
 		try {
 			Writer writer = response.getWriter();
 			writer.write(jObj.toString());
@@ -74,7 +77,10 @@ public class RegisterController {
 	// register 수정
 	@PutMapping("")
 	public void updateRegister(HttpServletRequest request, HttpServletResponse response, @RequestBody Registers register) {
-		int result = registersService.changeRegister(register);
+		logger.info("update");
+		logger.info(register.getRegister_date());
+		logger.info(register.getRegister_user_id());
+		String result = registersService.changeRegister(register);
 		response.setContentType("application/json;charset=UTF-8");
 		JSONObject jObj = new JSONObject();
 		jObj.put("result", result);
@@ -201,13 +207,13 @@ public class RegisterController {
 	// 할일 변경
 	@PutMapping("/todolists")
 	public void updateToDoLists(HttpServletRequest request, HttpServletResponse response, @RequestBody Schedules schedule){ 
-		logger.info(""+schedule.getSchedule_id());
-		logger.info(""+schedule.getSchedule_user_id());
-		logger.info(""+schedule.getSchedule_content());
-		logger.info(""+schedule.getSchedule_regdate());
-		logger.info(""+schedule.getSchedule_state());
+//		logger.info(""+schedule.getSchedule_id());
+//		logger.info(""+schedule.getSchedule_user_id());
+//		logger.info(""+schedule.getSchedule_content());
+//		logger.info(""+schedule.getSchedule_regdate());
+//		logger.info(""+schedule.getSchedule_state());
 		int result = registersService.updateToDoList(schedule);
-		logger.info(""+result);
+//		logger.info(""+result);
 		response.setContentType("application/json;charset=UTF-8");
 		JSONObject jObj = new JSONObject();
 		jObj.put("result", result);
@@ -225,7 +231,7 @@ public class RegisterController {
 	@DeleteMapping("/todolists")
 	public void deleteToDoLists(HttpServletRequest request, HttpServletResponse response, @RequestParam String id){
 
-		logger.info(id);
+		//logger.info(id);
 		int deleteId = Integer.parseInt(id);
 		int result = registersService.deleteToDoList(deleteId);
 		response.setContentType("application/json;charset=UTF-8");
