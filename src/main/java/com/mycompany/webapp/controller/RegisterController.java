@@ -57,9 +57,9 @@ public class RegisterController {
 	// 새로운 register 만들기
 	@PostMapping("")
 	public void createRegister(HttpServletRequest request, HttpServletResponse response, @RequestBody Registers register) {
-		logger.info("create");
-		logger.info(register.getRegister_date());
-		logger.info(register.getRegister_user_id());
+		//logger.info("create");
+		//logger.info(register.getRegister_date());
+		//logger.info(register.getRegister_user_id());
 		String result = registersService.createNewRegister(register);
 		response.setContentType("application/json;charset=UTF-8");
 		JSONObject jObj = new JSONObject();
@@ -77,9 +77,9 @@ public class RegisterController {
 	// register 수정
 	@PutMapping("")
 	public void updateRegister(HttpServletRequest request, HttpServletResponse response, @RequestBody Registers register) {
-		logger.info("update");
-		logger.info(register.getRegister_date());
-		logger.info(register.getRegister_user_id());
+		//logger.info("update");
+		//logger.info(register.getRegister_date());
+		//logger.info(register.getRegister_user_id());
 		String result = registersService.changeRegister(register);
 		response.setContentType("application/json;charset=UTF-8");
 		JSONObject jObj = new JSONObject();
