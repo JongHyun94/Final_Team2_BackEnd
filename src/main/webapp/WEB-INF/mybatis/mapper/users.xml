@@ -28,29 +28,47 @@
 			user_zipcode, user_address, user_detailaddress1, user_detailaddress2,
 			user_regdate, user_enabled, user_authority
 		from users
+		where not user_authority = "ROLE_MASTER"
 		order by user_regdate asc
 	</select>
 	
-	<!-- 검색 환자 목록 가져오기 -->
+	<!-- 검색 직원 목록 가져오기 -->
 	<select id="selectUsers" resultType="user">
 		select user_id, user_hospital_id, user_password, user_name,
 			user_tel, user_email, user_sex, user_ssn,
 			user_zipcode, user_address, user_detailaddress1, user_detailaddress2,
 			user_regdate, user_enabled, user_authority
 		from users
-		<if test='keyword != "" and authority != ""'>
-			where user_name regexp #{keyword}
-				and user_authority = #{authority}
-				or user_ssn like concat(#{keyword},'%')
+		where not user_authority = "ROLE_MASTER"
+		<if test='keyword != "" and condition == ""'>
+			and user_name regexp #{keyword}
+				<!-- or user_ssn like concat(#{keyword},'%') -->
 		</if>
-		<if test='keyword != "" and authority == ""'>
-			where user_name regexp #{keyword}
-				or user_ssn like concat(#{keyword},'%')
+		<if test='keyword != "" and condition == "1"'>
+			and user_name regexp #{keyword}
+				<!-- or user_ssn like concat(#{keyword},'%') -->
+				and user_enabled = 1
 		</if>
-		<if test='keyword == "" and authority != ""'>
-			where user_authority = #{authority}
+		<if test='keyword != "" and condition == "0"'>
+			and user_name regexp #{keyword}
+				<!-- or user_ssn like concat(#{keyword},'%') -->
+				and user_enabled = 0
 		</if>
-		order by user_regdate
+		<if test='keyword != "" and condition != "1" and condition != "0"'>
+			and user_name regexp #{keyword}
+				<!-- or user_ssn like concat(#{keyword},'%') -->
+				and user_authority = #{condition}
+		</if>
+		<if test='keyword == "" and condition == "1"'>
+			and user_enabled = 1
+		</if>
+		<if test='keyword == "" and condition == "0"'>
+			and user_enabled = 0
+		</if>
+		<if test='keyword == "" and condition != "1" and condition != "0"'>
+			and user_authority = #{condition}
+		</if>
+		order by user_regdate asc
 	</select>
 	
 	<!-- 직원 수정 -->
@@ -71,8 +89,23 @@
 		where user_id = #{user_id}
 	</update>
 	
-	<delete id="deleteUser" parameterType="String">
-	</delete>
+	<!-- 직원 활성화 및 비활성화 -->
+	<update id="updateEnabled">
+		update users
+		<if test='user_enabled == 1'>
+			set user_enabled = 0
+		</if>
+		<if test='user_enabled == 0'>
+			set user_enabled = 1
+		</if>
+		where user_id = #{user_id}
+	</update>
+	
+	<!-- 직원 삭제 -->
+	<!-- <delete id="deleteUser" parameterType="String">
+		delete from users
+		where user_id = #{user_id}
+	</delete> -->
 	
 	<!-- 직원 등록 -->
 	<insert id="insertUser">

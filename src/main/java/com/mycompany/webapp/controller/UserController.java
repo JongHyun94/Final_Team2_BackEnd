@@ -65,8 +65,10 @@ public class UserController {
 	@GetMapping("/select")
 	public void list(HttpServletRequest request, HttpServletResponse response, 
 					@RequestParam(defaultValue = "") String keyword,
-					@RequestParam(defaultValue = "") String authority) {
-		List<Users> userList = usersService.getUsers(keyword, authority);
+					@RequestParam(defaultValue = "") String condition) {
+		List<Users> userList = usersService.getUsers(keyword, condition);
+//		logger.info(condition);
+		logger.info("조건: "+condition);
 		
 		for (int i = 0; i < userList.size(); i++) {
 			userList.get(i).setUser_tel1(userList.get(i).getUser_tel().split("-")[0]);
@@ -77,7 +79,7 @@ public class UserController {
 			userList.get(i).setUser_ssn1(userList.get(i).getUser_ssn().split("-")[0]);
 			userList.get(i).setUser_ssn2(userList.get(i).getUser_ssn().split("-")[1]);	
 		}
-				
+		
 		response.setContentType("application/json;charset=UTF-8");
 		JSONObject jObj = new JSONObject();
 		jObj.put("userList", userList);
@@ -102,11 +104,20 @@ public class UserController {
 		return user;
 	}
 	
-	@DeleteMapping("")
-	public void delete(HttpServletRequest request, HttpServletResponse response, @RequestParam String user_id) {
-		logger.info("직원삭제:" + user_id);
-//		usersService.deleteUser(user_id);
+	//직원 활성화 및 비활성화
+	@PutMapping("/enabled")
+	public void updateEnabled(HttpServletRequest request, HttpServletResponse response, @RequestBody Users user) {
+		logger.info("활성화"+user.getUser_id());
+		logger.info("활성화"+user.getUser_enabled());
+		usersService.updateEnabled(user);
 	}
+	
+	//직원 삭제
+//	@DeleteMapping("")
+//	public void delete(HttpServletRequest request, HttpServletResponse response, @RequestParam String user_id) {
+//		logger.info("직원삭제:" + user_id);
+//		usersService.deleteUser(user_id);
+//	}
 	
 	//직원 등록
 	@PostMapping("")
@@ -141,6 +152,8 @@ public class UserController {
 		
 		user.setUser_id(user_id);
 		user.setUser_password(password);
+		
+		logger.info("count: " + count);
 		
 		usersService.createUser(user);
 		usersService.updateUsercount(hcode, uauth);
