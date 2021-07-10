@@ -36,8 +36,6 @@ import com.mycompany.webapp.dto.Patients;
 import com.mycompany.webapp.dto.Treatments;
 import com.mycompany.webapp.service.TreatmentsService;
 
-import jdk.internal.org.jline.utils.Log;
-
 @CrossOrigin(origins="*")
 @RestController
 @RequestMapping("/treatment")
@@ -191,17 +189,18 @@ public class TreatmentController {
 
 	}
 	
-//	@PostMapping("/inspections")
-//	public Inspections createInspections(HttpServletRequest request, HttpServletResponse respons,
-//			@RequestBody Inspections inspections) {
-//		
-//		inspections.setInspection_inspector_id("I138010001");
-//		inspections.setInspection_lab("혈액검사실1");
-//		inspections.setInspection_state("대기");		
-//		treatmentsService.createInspections(inspections);
-//		
-//		return inspections;
-//	}
+	@PostMapping("/inspections")
+	public Inspections createInspections(HttpServletRequest request, HttpServletResponse respons,
+			@RequestBody Inspections inspections) {
+		
+		inspections.setInspection_inspector_id("I138010001");
+		inspections.setInspection_lab("혈액검사실1");
+		inspections.setInspection_state("대기");	
+		inspections.setInspection_result("");
+		treatmentsService.createInspections(inspections);
+		
+		return inspections;
+	}
 	
 
 

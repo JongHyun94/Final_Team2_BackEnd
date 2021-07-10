@@ -86,9 +86,9 @@ public class TreatmentsService {
 
 	
 	public List<InspectionLists> getInspection(String categoryValue) {
-		logger.info("서비스 카테고리"+categoryValue);
+//		logger.info("서비스 카테고리"+categoryValue);
 		List<InspectionLists> list = inspectionListsDao.selectByInspectionlist(categoryValue);
-		logger.info("서비스 리스트"+list);
+//		logger.info("서비스 리스트"+list);
 		return list;
 	}
 
