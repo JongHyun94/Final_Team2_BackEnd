@@ -25,6 +25,23 @@ public class Treatments {
 	
 	private String user_name;
 	private String register_starttime;
+	
+	private String[] selectedInspection;
+	private String[] selectedDrug;
+
+
+	public String[] getSelectedInspection() {
+		return selectedInspection;
+	}
+	public void setSelectedInspection(String[] selectedInspection) {
+		this.selectedInspection = selectedInspection;
+	}
+	public String[] getSelectedDrug() {
+		return selectedDrug;
+	}
+	public void setSelectedDrug(String[] selectedDrug) {
+		this.selectedDrug = selectedDrug;
+	}
 
 	public String getRegister_starttime() {
 		return register_starttime;

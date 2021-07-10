@@ -166,6 +166,8 @@ public class TreatmentController {
 		logger.info(""+treatment.getTreatment_state());
 		logger.info(""+treatment.getTreatment_istate());
 		logger.info(""+treatment.getTreatment_type());
+		logger.info(""+treatment.getSelectedInspection()[0]);
+		logger.info(""+treatment.getSelectedDrug()[0]);
 		
 		int result = treatmentsService.update(treatment);
 		
