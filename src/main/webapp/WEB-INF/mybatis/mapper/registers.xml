@@ -21,7 +21,13 @@
 		#{register_user_id},
 		now(), #{register_date},
 		#{register_memo}, #{register_communication},
-		#{register_state})
+		<if test="register_state==''">
+		"´ë±â"
+		</if>
+		<if test="register_state!=''">
+		#{register_state}		
+		</if>
+		)
 	</insert>
 
 	<!-- Read -->

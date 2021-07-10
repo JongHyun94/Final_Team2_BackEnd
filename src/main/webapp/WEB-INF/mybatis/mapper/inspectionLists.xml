@@ -7,7 +7,7 @@
 <!-- 지현 시작 -->
 	<select id="selectByInspectionlist" resultType="inspectionList">
 		select 
-			inspection_list_name,inspection_list_category
+			inspection_list_name,inspection_list_category, inspection_list_id
 		from 
 			inspection_lists
 		where

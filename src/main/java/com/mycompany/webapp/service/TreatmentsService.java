@@ -52,7 +52,7 @@ public class TreatmentsService {
 	 */	
 	
 	public int update(Treatments treatment) {
-		logger.info("맵맵맵");
+//		logger.info("맵맵맵");
 		return treatmentsDao.update(treatment);
 	}
 
@@ -78,7 +78,7 @@ public class TreatmentsService {
 
 	
 	public List<DrugsInjectionsLists> getDrug(String keyword) {
-		logger.info("asddsdddaaaaa"+keyword);
+//		logger.info("asddsdddaaaaa"+keyword);
 		List<DrugsInjectionsLists> list = drugsInjectionsListsDao.selectByDruglist(keyword);
 //		logger.info("aaaaaaaaa"+list.get(1).getDrug_injection_list_category());
 		return list;
@@ -86,9 +86,9 @@ public class TreatmentsService {
 
 	
 	public List<InspectionLists> getInspection(String categoryValue) {
-		logger.info("서비스 카테고리"+categoryValue);
+//		logger.info("서비스 카테고리"+categoryValue);
 		List<InspectionLists> list = inspectionListsDao.selectByInspectionlist(categoryValue);
-		logger.info("서비스 리스트"+list);
+//		logger.info("서비스 리스트"+list);
 		return list;
 	}
 
