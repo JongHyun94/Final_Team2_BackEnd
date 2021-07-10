@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import com.mycompany.webapp.dto.Registers;
 import com.mycompany.webapp.dto.Treatments;
@@ -26,7 +27,7 @@ public interface TreatmentsDao {
 
 //	public Treatments selectByTreatment(int treatment_id);
 	
-	public List<Treatments> selectTreatments(String treatmentDate);
+	public List<Treatments> selectTreatments(@Param("treatmentDate") String treatmentDate, @Param("state") String state);
 
 	public int updateIstateI(int treatmentId);
 	
