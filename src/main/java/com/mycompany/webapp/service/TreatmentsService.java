@@ -52,7 +52,7 @@ public class TreatmentsService {
 	 */	
 	
 	public int update(Treatments treatment) {
-		logger.info("맵맵맵");
+//		logger.info("맵맵맵");
 		return treatmentsDao.update(treatment);
 	}
 
@@ -78,7 +78,7 @@ public class TreatmentsService {
 
 	
 	public List<DrugsInjectionsLists> getDrug(String keyword) {
-		logger.info("asddsdddaaaaa"+keyword);
+//		logger.info("asddsdddaaaaa"+keyword);
 		List<DrugsInjectionsLists> list = drugsInjectionsListsDao.selectByDruglist(keyword);
 //		logger.info("aaaaaaaaa"+list.get(1).getDrug_injection_list_category());
 		return list;

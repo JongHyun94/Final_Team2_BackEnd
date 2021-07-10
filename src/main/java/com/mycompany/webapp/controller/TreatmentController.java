@@ -153,11 +153,25 @@ public class TreatmentController {
 
 	@PutMapping("")
 	public void update(@RequestBody Treatments treatment, HttpServletResponse response) {
-		treatmentsService.update(treatment);
+		logger.info(""+treatment.getTreatment_id());
+		logger.info(""+treatment.getTreatment_register_id());
+		logger.info(""+treatment.getTreatment_patient_id());
+		logger.info(""+treatment.getTreatment_user_id());
+		logger.info(""+treatment.getTreatment_date());
+		logger.info(""+treatment.getTreatment_smemo());
+		logger.info(""+treatment.getTreatment_omemo());
+		logger.info(""+treatment.getTreatment_amemo());
+		logger.info(""+treatment.getTreatment_pmemo());
+		logger.info(""+treatment.getTreatment_communication());
+		logger.info(""+treatment.getTreatment_state());
+		logger.info(""+treatment.getTreatment_istate());
+		logger.info(""+treatment.getTreatment_type());
+		
+		int result = treatmentsService.update(treatment);
 		
 		response.setContentType("application/json;charset=UTF-8");
 		JSONObject jObj = new JSONObject();
-		jObj.put("result", "success");
+		jObj.put("result", result);
 		try {
 			Writer writer = response.getWriter();
 			writer.write(jObj.toString());
@@ -169,10 +183,10 @@ public class TreatmentController {
 	}
 	
 	@PostMapping("/drugsInjections") 
-	public void createDrugsInjections(HttpServletRequest request, HttpServletResponse response,
-			@RequestBody List<DrugsInjections> drugsInjections) {
+	public void createDrugsInjections(HttpServletRequest request, HttpServletResponse response, @RequestBody String[] selectedDrug) {
 		logger.info("cccccccccccc");
-		logger.info("aaaaaaaaaaaaaaaaa"+drugsInjections.get(0).getDrug_injection_list_name());
+		//String[] selectedDrug = request.getParameterValues("selectedDrug[]");
+		logger.info(""+ selectedDrug[0]);
 		//treatmentsService.createDrugsInjections(drugsInjections);
 		//logger.info("bbbbbbbbbbbbbbb"+drugsInjections);
 		response.setContentType("application/json;charset=UTF-8");
@@ -190,8 +204,7 @@ public class TreatmentController {
 	}
 	
 	@PostMapping("/inspections")
-	public Inspections createInspections(HttpServletRequest request, HttpServletResponse respons,
-			@RequestBody Inspections inspections) {
+	public Inspections createInspections(HttpServletRequest request, HttpServletResponse respons, @RequestBody Inspections inspections) {
 		
 		inspections.setInspection_inspector_id("I138010001");
 		inspections.setInspection_lab("혈액검사실1");
