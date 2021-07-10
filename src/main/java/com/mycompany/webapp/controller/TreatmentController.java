@@ -32,8 +32,11 @@ import com.mycompany.webapp.dto.DrugsInjections;
 import com.mycompany.webapp.dto.DrugsInjectionsLists;
 import com.mycompany.webapp.dto.InspectionLists;
 import com.mycompany.webapp.dto.Inspections;
+import com.mycompany.webapp.dto.Patients;
 import com.mycompany.webapp.dto.Treatments;
 import com.mycompany.webapp.service.TreatmentsService;
+
+//import jdk.internal.org.jline.utils.Log;
 
 @CrossOrigin(origins="*")
 @RestController
@@ -151,16 +154,70 @@ public class TreatmentController {
 	}
 
 	@PutMapping("")
-	public void update(@RequestBody Treatments treatment) {
-		treatmentsService.update(treatment);
+	public void update(@RequestBody Treatments treatment, HttpServletResponse response) {
+		logger.info(""+treatment.getTreatment_id());
+		logger.info(""+treatment.getTreatment_register_id());
+		logger.info(""+treatment.getTreatment_patient_id());
+		logger.info(""+treatment.getTreatment_user_id());
+		logger.info(""+treatment.getTreatment_date());
+		logger.info(""+treatment.getTreatment_smemo());
+		logger.info(""+treatment.getTreatment_omemo());
+		logger.info(""+treatment.getTreatment_amemo());
+		logger.info(""+treatment.getTreatment_pmemo());
+		logger.info(""+treatment.getTreatment_communication());
+		logger.info(""+treatment.getTreatment_state());
+		logger.info(""+treatment.getTreatment_istate());
+		logger.info(""+treatment.getTreatment_type());
+		logger.info(""+treatment.getSelectedInspection()[0]);
+		logger.info(""+treatment.getSelectedDrug()[0]);
+		
+		int result = treatmentsService.update(treatment);
+		
+		response.setContentType("application/json;charset=UTF-8");
+		JSONObject jObj = new JSONObject();
+		jObj.put("result", result);
+		try {
+			Writer writer = response.getWriter();
+			writer.write(jObj.toString());
+			writer.flush();
+			writer.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@PostMapping("/drugsInjections") 
+	public void createDrugsInjections(HttpServletRequest request, HttpServletResponse response, @RequestBody String[] selectedDrug) {
+		logger.info("cccccccccccc");
+		//String[] selectedDrug = request.getParameterValues("selectedDrug[]");
+		logger.info(""+ selectedDrug[0]);
+		//treatmentsService.createDrugsInjections(drugsInjections);
+		//logger.info("bbbbbbbbbbbbbbb"+drugsInjections);
+		response.setContentType("application/json;charset=UTF-8");
+		JSONObject jObj = new JSONObject();
+		jObj.put("result", "success");
+		try {
+			Writer writer = response.getWriter();
+			writer.write(jObj.toString());
+			writer.flush();
+			writer.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 
 	}
+	
+	@PostMapping("/inspections")
+	public Inspections createInspections(HttpServletRequest request, HttpServletResponse respons, @RequestBody Inspections inspections) {
+		
+		inspections.setInspection_inspector_id("I138010001");
+		inspections.setInspection_lab("혈액검사실1");
+		inspections.setInspection_state("대기");		
+		treatmentsService.createInspections(inspections);
+		
+		return inspections;
+	}
+	
 
-	/*
-	 * @PostMapping("") public Treatments create(Treatments treatment){
-	 * treatmentsService.insert(treatment);
-	 * 
-	 * return treatment; }
-	 */
 
 }

@@ -48,5 +48,23 @@
 				and
 			i.INSPECTION_TREATMENT_ID = #{treatment_id}
 	</select>
+	
+	<insert id="insertInspections" parameterType="inspection">
+		insert into inspections 
+				(inspection_patient_id,
+				inspection_doctor_id,
+				inspection_inspector_id,
+				inspection_treatment_id,
+				inspection_inspection_list_id,
+				inspection_lab,
+				inspection_state)
+		values (#{inspection_patient_id},
+				#{inspection_doctor_id},
+				#{inspection_inspector_id},
+				#{inspection_treatment_id},
+				#{inspection_inspection_list_id},
+				#{inspection_lab},
+				#{inspection_state})
+	</insert>
 <!-- ÁöÇö ³¡ -->	
 </mapper>

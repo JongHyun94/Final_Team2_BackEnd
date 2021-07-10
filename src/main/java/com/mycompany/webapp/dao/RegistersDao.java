@@ -21,4 +21,6 @@ public interface RegistersDao {
 
 	int updateStateRegister(Registers register);
 
+	int checkRegister(Registers register);
+
 }
