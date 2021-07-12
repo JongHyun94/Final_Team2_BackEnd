@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.mycompany.webapp.dao.HospitalsDao;
 import com.mycompany.webapp.dao.UsersDao;
+import com.mycompany.webapp.dto.Hospitals;
 import com.mycompany.webapp.dto.Users;
 
 @Service
@@ -64,5 +65,10 @@ public class UsersService {
 
 	public void updateEnabled(Users user) {
 		usersDao.updateEnabled(user);
+	}
+
+	public Hospitals getHospital(String hid) {
+		// TODO Auto-generated method stub
+		return hospitalsDao.getHospital(hid);
 	}
 }

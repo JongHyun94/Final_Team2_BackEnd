@@ -180,7 +180,7 @@ public class InspectionController {
 			 inspectionImgs.setInspection_img_sname(new Date().getTime() + "-" + mf.getOriginalFilename());
 			 inspectionImgs.setInspection_img_type(mf.getOriginalFilename().substring(mf.getOriginalFilename().lastIndexOf(".")));
 			 try {
-			    File file = new File("D:/uploadfiles/" + inspectionImgs.getInspection_img_sname());
+			    File file = new File("C:/Users/ant94/Documents/JavaProject/uploadfiles/" + inspectionImgs.getInspection_img_sname());
 			        mf.transferTo(file);
 			     } catch (Exception e) {
 			        e.printStackTrace();

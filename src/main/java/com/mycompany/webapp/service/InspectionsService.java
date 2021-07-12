@@ -107,7 +107,7 @@ public class InspectionsService {
 			
 			response.setHeader("Content-Disposition", "attachment; filename=\"" + inspection_img_oname + inspection_img_type + "\";");
 			
-			InputStream is = new FileInputStream("D:/uploadfiles/" + inspectionImg.getInspection_img_sname());
+			InputStream is = new FileInputStream("C:/Users/ant94/Documents/JavaProject/uploadfiles/" + inspectionImg.getInspection_img_sname());
 			OutputStream os = response.getOutputStream();
 			FileCopyUtils.copy(is, os);
 			os.flush();
@@ -123,7 +123,7 @@ public class InspectionsService {
 		List<InspectionImgs> inspectionImgList = inspectionImgsDao.selectInspectionImgs(inspectionId);
 		
 		for(InspectionImgs inspectionImg : inspectionImgList) {
-			inspectionImg.setInspection_img_path("http://localhost:8080/inspection/images/" + inspectionImg.getInspection_img_id());
+			inspectionImg.setInspection_img_path("http://localhost:8000/inspection/images/" + inspectionImg.getInspection_img_id());
 		}
 		
 		return inspectionImgList;
