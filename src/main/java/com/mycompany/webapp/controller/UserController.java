@@ -164,36 +164,6 @@ public class UserController {
 		usersService.updateUsercount(hcode, uauth);
 		
 		return user;
-	}
-	
-	// 회원 정보 읽기
-	@GetMapping("/read")
-	public Users read (HttpServletRequest request, HttpServletResponse response, @RequestParam String user_id) {
-		Users user = usersService.getUser(user_id);
-		
-		user.setUser_tel1(user.getUser_tel().split("-")[0]);
-		user.setUser_tel2(user.getUser_tel().split("-")[1]);
-		user.setUser_tel3(user.getUser_tel().split("-")[2]);
-		user.setUser_email1(user.getUser_email().split("@")[0]);
-		user.setUser_email2(user.getUser_email().split("@")[1]);
-		user.setUser_ssn1(user.getUser_ssn().split("-")[0]);
-		user.setUser_ssn2(user.getUser_ssn().split("-")[1]);	
-		
-		return user;
-	}
-	
-	// 회원 정보 수정
-	@PutMapping("/update")
-	public String updateUser (HttpServletRequest request, HttpServletResponse response, @RequestBody Users user) {	
-		BCryptPasswordEncoder bpe = new BCryptPasswordEncoder();
-		boolean result = bpe.matches(user.getOld_password(), user.getUser_password());
-		if (result) {
-			user.setUser_password(bpe.encode(user.getNew_password()));
-			usersService.updateUser(user);
-			return "success";
-		} else {
-			return "notCorrectPW";
-		}
 	}	
 	
 //	public static final String ACCOUNT_SID = System.getenv("TWILIO_ACCOUNT_SID");

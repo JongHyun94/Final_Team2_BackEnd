@@ -84,27 +84,4 @@ public class MainController {
 			e.printStackTrace();
 		}
 	}	
-	
-	// 사용자 가이드 파일 다운로드
-	@GetMapping("/download")
-	public void download(HttpServletResponse response) {
-		try {
-			String oname = new String("더존ICT그룹_프로젝트과제_H_ERP_0527.pptx".getBytes("UTF-8"), "ISO=889-1");
-			String sname = "더존ICT그룹_프로젝트과제_H_ERP_0527.pptx";
-			String type = ".pptx";
-			String path = "C:/Users/Yoon/Documents/카카오톡 받은 파일/" + sname;
-			
-			response.setHeader("Content-Disposition", "attachment; filename=\""+oname+"\";");
-			response.setContentType(type);
-			
-			InputStream is = new FileInputStream(path);
-			OutputStream os = response.getOutputStream();
-			FileCopyUtils.copy(is, os);
-			is.close();
-			os.flush();
-			os.close();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
 }
