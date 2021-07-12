@@ -37,4 +37,10 @@
 		from hospitals
 		where hospital_id = #{hid}
 	</select>
+	
+	<select id="getHospital" resultType="hospital">
+		select hospital_name, hospital_address, hospital_url
+		from hospitals
+		where hospital_id = #{hid}
+	</select>
 </mapper>
