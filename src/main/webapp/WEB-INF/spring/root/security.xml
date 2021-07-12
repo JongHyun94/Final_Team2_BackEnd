@@ -30,11 +30,11 @@
 	
 		<!-- 요청 경로 권한 설정 -->
 		<security:intercept-url pattern="/data/**" access="hasRole('ROLE_MASTER')"/>
-		<security:intercept-url pattern="/inspection/**" access="hasRole('ROLE_INSPECTOR')" />
-		<security:intercept-url pattern="/patient/**" access="hasRole('ROLE_NURSE')" />
-		<security:intercept-url pattern="/register/**" access="hasRole('ROLE_NURSE')" />
-		<security:intercept-url pattern="/treatment/**" access="hasRole('ROLE_DOCTOR')" />
-		<security:intercept-url pattern="/user/**" access="hasRole('ROLE_MASTER')" />
+		<security:intercept-url pattern="/inspection/**" access="hasAnyRole('ROLE_DOCTOR','ROLE_INSPECTOR','ROLE_MASTER')" />
+		<security:intercept-url pattern="/patient/**" access="hasAnyRole('ROLE_NURSE','ROLE_DOCTOR','ROLE_INSPECTOR','ROLE_MASTER')" />
+		<security:intercept-url pattern="/register/**" access="hasAnyRole('ROLE_NURSE','ROLE_DOCTOR','ROLE_INSPECTOR','ROLE_MASTER')" />
+		<security:intercept-url pattern="/treatment/**" access="hasAnyRole('ROLE_DOCTOR','ROLE_MASTER')" />
+		<security:intercept-url pattern="/user/**" access="hasAnyRole('ROLE_NURSE','ROLE_DOCTOR','ROLE_INSPECTOR','ROLE_MASTER')" />
 		
 		<security:intercept-url pattern="/**" access="permitAll"/>
 	</security:http>
@@ -94,8 +94,8 @@
 	
 	<security:jdbc-user-service id="jdbcUserService"
 			data-source-ref="dataSource"
-			users-by-username-query="select user_id as username, user_password as password, user_enabled as enabled from users where user_id=?"
-			authorities-by-username-query="select user_id as username, user_authority as authority from users where user_id=?"/>
+			users-by-username-query="select user_id, user_password, user_enabled from users where user_id=?"
+			authorities-by-username-query="select user_id, user_authority from users where user_id=?"/>
 															
 	<bean id="roleHierarchyAuthoritiesMapper" 
 		class="org.springframework.security.access.hierarchicalroles.RoleHierarchyAuthoritiesMapper">
@@ -107,7 +107,6 @@
 						ROLE_DOCTOR > ROLE_NURSE
 						ROLE_MASTER > ROLE_NURSE
 						ROLE_MASTER > ROLE_INSPECTOR
-						ROLE_INSPECTOR > ROLE_NURSE
 					</value>
 				</property>
 			</bean>
