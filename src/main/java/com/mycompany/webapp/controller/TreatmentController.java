@@ -35,6 +35,7 @@ import com.mycompany.webapp.dto.InspectionLists;
 import com.mycompany.webapp.dto.Inspections;
 import com.mycompany.webapp.dto.Patients;
 import com.mycompany.webapp.dto.Treatments;
+import com.mycompany.webapp.dto.Users;
 import com.mycompany.webapp.service.TreatmentsService;
 
 @CrossOrigin(origins="*")
@@ -154,28 +155,23 @@ public class TreatmentController {
 	}
 
 	@PutMapping("")
-	public void update(@RequestBody Treatments treatment, HttpServletResponse response) {
+	public void update(@RequestBody Treatments treatment,HttpServletResponse response) {
 
-//		logger.info(""+treatment.getSelectedInspection()[0]);
-//		logger.info(""+treatment.getSelectedDrug()[0]);
-
-		//		List <Treatments> list = treatmentsService.update(treatment);
-		//		
-		//		for(int i = 0; i< list.size(); i++) {
-		//			 treatmentsService.createDrugsInjections(treatment.getSelectedDrug()[i]);
-		//		}
-		//		
+	
 		logger.info("의사임: " +treatment.getTreatment_user_id());
-//		Inspections newInspection = new Inspections();
-		//DrugsInjections newDrugInjections = new DrugsInjections();
+
 		List<Inspections> InspectionList = new ArrayList<Inspections>();
 		List<DrugsInjections> DrugInjectionsList = new ArrayList<DrugsInjections>();
 
 		int result1 = treatmentsService.update(treatment);
-//		logger.info("카테고리 뭐냐: "+treatment.getSelectedInspection()[0]);
 		logger.info("카테고리 뭐냐: "+treatment.getInspectionOption());
 		/* 검사 */
 		int Inspection_id = 0;
+
+		List<Users> userid = treatmentsService.getInspectorId();
+		
+		logger.info("userlist:::"+userid);
+		
 		for(int i=0; i<treatment.getSelectedInspection().length;i++) {
 			Inspections newInspection = new Inspections();
 			newInspection.setInspection_patient_id(treatment.getTreatment_patient_id());
@@ -183,6 +179,10 @@ public class TreatmentController {
 			newInspection.setInspection_treatment_id(treatment.getTreatment_id());
 			newInspection.setInspection_state("대기");
 			newInspection.setInspection_result("");
+//			newInspection.setInspection_inspector_id();
+//			user_id = treatmentsService.getInspectorId(hcode, uauth);
+//			logger.info("user_id 뭐시당가?"+user_id);
+			
 			newInspection.setInspection_inspector_id("I138010001");
 			newInspection.setInspection_list_category(treatment.getInspectionOption());
 //			newInspection.setInspection_lab("혈액검사실88");
@@ -212,9 +212,6 @@ public class TreatmentController {
 
 		}
 		int result3 = treatmentsService.createDrugsInjections(DrugInjectionsList);
-	
-		//int result2 = treatmentsService.createDrugsInjections(treatment.getSelectedDrug()[0]);
-		//int result3 = treatmentsService.createInspections(treatment.getSelectedInspection()[0]);
 
 		response.setContentType("application/json;charset=UTF-8");
 		JSONObject jObj = new JSONObject();
@@ -231,37 +228,6 @@ public class TreatmentController {
 		}
 	}
 
-	//	@PostMapping("/drugsInjections") 
-	//	public void createDrugsInjections(HttpServletRequest request, HttpServletResponse response, @RequestBody String[] selectedDrug) {
-	//		
-	////		treatmentsService.createDrugsInjections(selectedDrug);
-	//		logger.info(""+ selectedDrug[0]);
-	//		response.setContentType("application/json;charset=UTF-8");
-	//		JSONObject jObj = new JSONObject();
-	//		jObj.put("result", "success");
-	//		try {
-	//			Writer writer = response.getWriter();
-	//			writer.write(jObj.toString());
-	//			writer.flush();
-	//			writer.close();
-	//		} catch (Exception e) {
-	//			e.printStackTrace();
-	//		}
-	//
-	//	}
-	//	
-	//	@PostMapping("/inspections")
-	//	public Inspections createInspections(HttpServletRequest request, HttpServletResponse respons, @RequestBody Inspections inspections) {
-	//		
-	//		inspections.setInspection_inspector_id("I138010001");
-	//		inspections.setInspection_lab("혈액검사실1");
-	//		inspections.setInspection_state("대기");	
-	//		inspections.setInspection_result("");
-	//		treatmentsService.createInspections(inspections);
-	//		
-	//		return inspections;
-	//	}
-	//	
 
 
 }

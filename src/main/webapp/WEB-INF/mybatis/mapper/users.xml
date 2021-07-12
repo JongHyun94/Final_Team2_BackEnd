@@ -136,4 +136,16 @@
 		from users
 		where user_id = #{user_id}
 	</select>
+	
+	<!--  지현 -->
+	<select id="getInspectorId" resultType="int">
+		
+			select user_id
+	
+		from users
+		where 
+		user_hospital_id = "138010"
+		and
+		USER_AUTHORITY = "ROLE_INSPECTOR"
+	</select>
 </mapper>

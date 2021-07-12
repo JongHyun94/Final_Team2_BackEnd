@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.mycompany.webapp.dto.Hospitals;
 import com.mycompany.webapp.dto.Users;
 import com.mycompany.webapp.service.UsersService;
 
@@ -57,18 +58,28 @@ public class AuthController {
 		} else {
 			BCryptPasswordEncoder bpe = new BCryptPasswordEncoder();
 			boolean result = bpe.matches(upassword, dbUser.getUser_password());
-			if (result) {
-				map.put("result","success");
+			if (dbUser.getUser_enabled() == 0) {
+				map.put("result", "notEnabled");
 			} else {
-				map.put("result", "notCorrectPW");
-				return map;
+				if (result) {			
+					map.put("result","success");
+				} else {
+					map.put("result", "notCorrectPW");
+				}
 			}
 		}
 			
 		String hid = dbUser.getUser_hospital_id();
-		String hname = usersService.getHname(hid);
+		Hospitals hospital = usersService.getHospital(hid);
+		
+		String hname = hospital.getHospital_name();
+		String haddress = hospital.getHospital_address();
+		String hurl = hospital.getHospital_url();
+		
 		map.put("hid", hid);
 		map.put("hname", hname);
+		map.put("haddress", haddress);
+		map.put("hurl", hurl);
 		
 		//사용자 인증
 	    UsernamePasswordAuthenticationToken upat = new UsernamePasswordAuthenticationToken(uid, upassword);			

@@ -20,5 +20,8 @@ public interface UsersDao {
 	public void insertUser(Users user);
 	public Users selectUser(String user_id);
 	public void deleteUser(String user_id);
-	public void updateEnabled(Users user);	
+	public void updateEnabled(Users user);
+	
+	//지현
+	public List<Users> getInspectorId();	
 }
