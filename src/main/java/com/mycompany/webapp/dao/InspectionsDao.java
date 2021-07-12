@@ -11,7 +11,7 @@ import com.mycompany.webapp.dto.Inspections;
 public interface InspectionsDao {
 
 	public List<Inspections> selectByTreatmentInspection(int treatment_id);
-	public List<Inspections> selectInspections(int treatmentId);
+	public List<Inspections> selectInspections(@Param("treatmentId") int treatmentId, @Param("globalUid") String globalUid);
 	public int updateState(@Param("inspectionId") int inspectionId, @Param("state") String state);
 	public int updateResult(@Param("inspectionId") int inspectionId, @Param("inspectionResult") String inspectionResult);
 	public int insertInspections(Inspections inspection);

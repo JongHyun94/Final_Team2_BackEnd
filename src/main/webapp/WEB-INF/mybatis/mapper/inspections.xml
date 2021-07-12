@@ -4,7 +4,7 @@
 					 
 <mapper namespace="com.mycompany.webapp.dao.InspectionsDao">
 	<!-- 빛나 시작 -->
-	<select id="selectInspections" resultType="inspection" parameterType="int">
+	<select id="selectInspections" resultType="inspection">
 		select i.inspection_id as inspection_id, i.inspection_result as inspection_result, i.inspection_date as inspection_date, i.inspection_lab as inspection_lab, i.inspection_state as inspection_state, 
 				u1.user_name as inspection_doctor_name, u2.user_name as inspection_inspector_name, 
 				l.inspection_list_category as inspection_list_category, l.inspection_list_specimen as inspection_list_specimen, l.inspection_list_name as inspection_list_name, l.inspection_list_reference as inspection_list_reference, l.inspection_list_container as inspeciton_list_container,
@@ -13,6 +13,7 @@
 		where inspection_treatment_id = #{treatmentId}
 			and inspection_inspection_list_id = inspection_list_id
 			and inspection_doctor_id = u1.user_id
+			and inspection_inspector_id = #{globalUid}
 			and inspection_inspector_id = u2.user_id
 			and inspection_patient_id = patient_id
 		order by inspection_list_category
@@ -21,6 +22,9 @@
 	<update id="updateState">
 		update inspections set
 			inspection_state = #{state}
+			<if test='state == "완료"'>
+				, inspection_date = now()
+			</if>
 		where inspection_id = #{inspectionId}
 	</update>
 	<update id="updateResult">
