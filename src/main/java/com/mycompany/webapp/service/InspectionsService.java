@@ -123,7 +123,7 @@ public class InspectionsService {
 		List<InspectionImgs> inspectionImgList = inspectionImgsDao.selectInspectionImgs(inspectionId);
 		
 		for(InspectionImgs inspectionImg : inspectionImgList) {
-			inspectionImg.setInspection_img_path("http://localhost:8080/inspection/images/" + inspectionImg.getInspection_img_id());
+			inspectionImg.setInspection_img_path("http://localhost:8000/inspection/images/" + inspectionImg.getInspection_img_id());
 		}
 		
 		return inspectionImgList;
