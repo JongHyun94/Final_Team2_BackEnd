@@ -30,11 +30,11 @@
 	
 		<!-- 요청 경로 권한 설정 -->
 		<security:intercept-url pattern="/data/**" access="hasRole('ROLE_MASTER')"/>
-		<security:intercept-url pattern="/inspection/**" access="hasAnyRole('ROLE_DOCTOR','ROLE_INSPECTOR','ROLE_MASTER')" />
-		<security:intercept-url pattern="/patient/**" access="hasAnyRole('ROLE_NURSE','ROLE_DOCTOR','ROLE_INSPECTOR','ROLE_MASTER')" />
-		<security:intercept-url pattern="/register/**" access="hasAnyRole('ROLE_NURSE','ROLE_DOCTOR','ROLE_INSPECTOR','ROLE_MASTER')" />
+		<security:intercept-url pattern="/inspection/**" access="hasAnyRole('ROLE_INSPECTOR','ROLE_MASTER')" />
+		<security:intercept-url pattern="/patient/**" access="hasAnyRole('ROLE_NURSE','ROLE_DOCTOR','ROLE_MASTER')" />
+		<security:intercept-url pattern="/register/**" access="hasAnyRole('ROLE_NURSE','ROLE_DOCTOR','ROLE_MASTER')" />
 		<security:intercept-url pattern="/treatment/**" access="hasAnyRole('ROLE_DOCTOR','ROLE_MASTER')" />
-		<security:intercept-url pattern="/user/**" access="hasAnyRole('ROLE_NURSE','ROLE_DOCTOR','ROLE_INSPECTOR','ROLE_MASTER')" />
+		<security:intercept-url pattern="/user/**" access="hasAnyRole('ROLE_MASTER')" />
 		
 		<security:intercept-url pattern="/**" access="permitAll"/>
 	</security:http>
@@ -105,7 +105,6 @@
 					<value>
 						ROLE_MASTER > ROLE_DOCTOR
 						ROLE_DOCTOR > ROLE_NURSE
-						ROLE_MASTER > ROLE_NURSE
 						ROLE_MASTER > ROLE_INSPECTOR
 					</value>
 				</property>
