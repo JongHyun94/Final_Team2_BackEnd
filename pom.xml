@@ -184,6 +184,25 @@
          <artifactId>jaxb-api</artifactId>
          <version>2.3.1</version>
       </dependency>
+      
+      <!-- 무료 문자 발송 관련 라이브러리 -->
+      <dependency>
+			  <groupId>com.twilio.sdk</groupId>
+			  <artifactId>twilio</artifactId>
+			  <version>8.16.0</version>
+			</dependency>
+			<!-- httpclient -->
+			<dependency>
+				<groupId>org.apache.httpcomponents</groupId>
+			    <artifactId>httpclient</artifactId>
+			    <version>4.5.8</version>
+			</dependency>
+			<!-- httpcore -->
+			<dependency>
+				<groupId>org.apache.httpcomponents</groupId>
+			    <artifactId>httpcore</artifactId>
+			    <version>4.4.10</version>
+			</dependency>
 
 	</dependencies>
 </project>

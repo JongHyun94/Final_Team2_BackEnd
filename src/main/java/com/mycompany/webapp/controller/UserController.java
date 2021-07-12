@@ -12,7 +12,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -23,6 +22,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.mycompany.webapp.dto.Users;
 import com.mycompany.webapp.service.UsersService;
+
+import com.twilio.*;
+import com.twilio.rest.api.*;
+import com.twilio.type.*;
+import com.twilio.twiml.*;
+
 
 @CrossOrigin(origins="*")
 @RestController
@@ -190,4 +195,19 @@ public class UserController {
 			return "notCorrectPW";
 		}
 	}	
+	
+//	public static final String ACCOUNT_SID = System.getenv("TWILIO_ACCOUNT_SID");
+//    public static final String AUTH_TOKEN = System.getenv("TWILIO_AUTH_TOKEN");
+//
+//    @GetMapping("/test")
+//    public static void main(String[] args) {
+//        Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
+//        Message message = Message.creator(
+//                new com.twilio.type.PhoneNumber("+820154872834"),
+//                new com.twilio.type.PhoneNumber("+15017122661"),
+//                "Hi there")
+//            .create();
+//
+//        System.out.println(message.getSid());
+//    }
 }
