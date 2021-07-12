@@ -189,6 +189,7 @@ public class TreatmentController {
 			newInspection.setInspection_result("");
 			
 			user_id = treatmentsService.getInspectorId(hcode, uauth);
+			logger.info("user_id 뭐시당가?"+user_id);
 			
 			newInspection.setInspection_inspector_id("I138010001");
 			newInspection.setInspection_list_category(treatment.getInspectionOption());
