@@ -30,7 +30,10 @@
 	<insert id="insertDrugsInjections" parameterType="drugsInjection">
 		insert into drugs_injections
 		(drug_injection_drug_injection_list_id,
-		drug_injection_treatment_id,drug_injection_id_doctor_id,drug_injection_patient_id,drug_injection_regdate)
+		drug_injection_treatment_id,
+		drug_injection_id_doctor_id,
+		drug_injection_patient_id,
+		drug_injection_regdate)
 		values (#{drug_injection_drug_injection_list_id},
 				#{drug_injection_treatment_id},
 				#{drug_injection_id_doctor_id},

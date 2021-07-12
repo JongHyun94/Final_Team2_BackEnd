@@ -21,12 +21,23 @@
 		r.register_communication, p.patient_name, p.patient_sex,p.patient_ssn,
 		r.register_starttime, t.treatment_state
 		from treatments t, registers r, patients p
+		<if test='state=="" '>
 		where 
 		str_to_date(register_starttime,
 		'%Y-%m-%d')=str_to_date(#{register_starttime},
 		'%Y-%m-%d') and 
-		treatment_register_id = register_id and treatment_patient_id = patient_id;
-
+		treatment_register_id = register_id 
+		and treatment_patient_id = patient_id;
+		</if> 
+		<if test='state!="" '>
+		where 
+		str_to_date(register_starttime,
+		'%Y-%m-%d')=str_to_date(#{register_starttime},
+		'%Y-%m-%d') and 
+		treatment_register_id = register_id 
+		and treatment_patient_id = patient_id
+		and treatment_state=#{state}
+		</if>
 	</select>
 
 	<update id="update" parameterType="treatment">

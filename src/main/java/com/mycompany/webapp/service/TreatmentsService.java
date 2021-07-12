@@ -36,8 +36,8 @@ public class TreatmentsService {
 	@Autowired
 	private DrugsInjectionsDao drugsInjectionsDao;
 	
-	public List<Treatments> getAllTreatment(String date_time) {
-		List<Treatments> treatmentslist = treatmentsDao.selectAllTreatment(date_time);
+	public List<Treatments> getAllTreatment(String date_time, String state) {
+		List<Treatments> treatmentslist = treatmentsDao.selectAllTreatment(date_time, state);
 		return treatmentslist;
 	}
 	
@@ -103,16 +103,38 @@ public class TreatmentsService {
 		return list;
 	}
 
-
-	public void createDrugsInjections(DrugsInjections drugsInjections) {
-		drugsInjectionsDao.insertDrugsInjections(drugsInjections);
+//
+//	public int createDrugsInjections(String drugsInjections) {
+//		int result = drugsInjectionsDao.insertDrugsInjections(drugsInjections);
+//		return result;
+//	}
+//	
+	public int createDrugsInjections(List<DrugsInjections> drugsInjections) {
+		int result = 0;
+		for(int i = 0; i<drugsInjections.size();i++) {
+			result = drugsInjectionsDao.insertDrugsInjections(drugsInjections.get(i));
+		}
 		
+		return result;
 	}
 
 
-	public void createInspections(Inspections inspections) {
-		inspectionsDao.insertInspections(inspections);
-		
+	public int createInspections(List<Inspections> inspections) {
+		int result = 0;
+		int count = 0;
+		for(int i = 0; i< inspections.size(); i++) {
+			count = inspectionsDao.insertInspections(inspections.get(i));
+			result = result + count;
+		}
+		return count;
 	}
+
+
+//	public int createInspections(String string) {
+//		// TODO Auto-generated method stub
+//		return 0;
+//	}
+
+
 
 }

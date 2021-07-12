@@ -14,5 +14,5 @@ public interface InspectionsDao {
 	public List<Inspections> selectInspections(int treatmentId);
 	public int updateState(@Param("inspectionId") int inspectionId, @Param("state") String state);
 	public int updateResult(@Param("inspectionId") int inspectionId, @Param("inspectionResult") String inspectionResult);
-	public void insertInspections(Inspections inspections);
+	public int insertInspections(Inspections inspection);
 }

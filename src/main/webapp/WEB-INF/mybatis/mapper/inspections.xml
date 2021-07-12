@@ -56,15 +56,40 @@
 				inspection_inspector_id,
 				inspection_treatment_id,
 				inspection_inspection_list_id,
+				inspection_result,
 				inspection_lab,
 				inspection_state)
+		<if test='inspection_list_category == "혈액검사"'>
 		values (#{inspection_patient_id},
 				#{inspection_doctor_id},
 				#{inspection_inspector_id},
 				#{inspection_treatment_id},
 				#{inspection_inspection_list_id},
-				#{inspection_lab},
+				#{inspection_result},
+				"혈액검사실",
 				#{inspection_state})
+		</if>
+		<if test='inspection_list_category == "영상검사"'>
+		values (#{inspection_patient_id},
+				#{inspection_doctor_id},
+				#{inspection_inspector_id},
+				#{inspection_treatment_id},
+				#{inspection_inspection_list_id},
+				#{inspection_result},
+				"영상검사실",
+				#{inspection_state})
+		</if>
+		<!-- 		<if test='inspection_list_category == ""'>
+		values (#{inspection_patient_id},
+				#{inspection_doctor_id},
+				#{inspection_inspector_id},
+				#{inspection_treatment_id},
+				#{inspection_inspection_list_id},
+				#{inspection_result},
+				"검사실",
+				#{inspection_state})
+		</if> -->
+		
 	</insert>
 <!-- 지현 끝 -->	
 </mapper>

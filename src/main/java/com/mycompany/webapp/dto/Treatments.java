@@ -28,8 +28,17 @@ public class Treatments {
 	
 	private String[] selectedInspection;
 	private String[] selectedDrug;
+	private String inspectionOption;
 
 
+	
+	
+	public String getInspectionOption() {
+		return inspectionOption;
+	}
+	public void setInspectionOption(String inspectionOption) {
+		this.inspectionOption = inspectionOption;
+	}
 	public String[] getSelectedInspection() {
 		return selectedInspection;
 	}

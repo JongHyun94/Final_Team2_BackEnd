@@ -12,6 +12,6 @@ public interface DrugsInjectionsDao {
 
 	public List<DrugsInjections> selectByTreatmentDrugsInjection(int treatment_id);
 
-	public void insertDrugsInjections(DrugsInjections drugsInjections);
+	public int insertDrugsInjections(DrugsInjections drugsInjections);
 
 }
