@@ -4,6 +4,7 @@ import java.io.Writer;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -14,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -22,7 +24,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+
 import com.mycompany.webapp.dto.Users;
+import com.mycompany.webapp.security.JwtUtil;
 import com.mycompany.webapp.service.UsersService;
 
 @CrossOrigin(origins="*")
@@ -33,7 +37,7 @@ public class AuthController {
 
 	@Autowired
 	private UsersService usersService;
-	@Autowired
+	@Resource(name="daoAuthenticationManager")
 	private AuthenticationManager authenticationManager;
 	@PostMapping("/login")
 	//{"uid":"user1", "upassword":"12345"}
@@ -69,13 +73,15 @@ public class AuthController {
 		
 		//사용자 인증
 	    UsernamePasswordAuthenticationToken upat = new UsernamePasswordAuthenticationToken(uid, upassword);			
-		Authentication 	authentication = authenticationManager.authenticate(upat);
+		//Authentication 	authentication = authenticationManager.authenticate(upat);
 		
 		//Spring Security에 인증 객체 등록
-		SecurityContextHolder.getContext().setAuthentication(authentication);
+	    Authentication authentication = authenticationManager.authenticate(upat);
+		SecurityContext securityContext = SecurityContextHolder.getContext();
+	    securityContext.setAuthentication(authentication);
 		//JWT 생성
 		String jwt = com.mycompany.webapp.security.JwtUtil.createToken(uid);
-		
+	
 		//JSON 응답 보내기
 		map.put("uid", uid);
 		map.put("authToken", jwt);
