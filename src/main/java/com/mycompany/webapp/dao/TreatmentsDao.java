@@ -6,6 +6,7 @@ import java.util.Map;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import com.mycompany.webapp.dto.Data1;
 import com.mycompany.webapp.dto.Registers;
 import com.mycompany.webapp.dto.Treatments;
 
@@ -35,5 +36,8 @@ public interface TreatmentsDao {
 
 	//진료 시작시 생성되는 함수
 	public int insertNewTreatment(Registers register);
+
+	// 최근 3달 진료수
+	public List<Data1> selectThreeMonths();
 	
 }

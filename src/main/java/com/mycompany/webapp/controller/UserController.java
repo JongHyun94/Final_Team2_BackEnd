@@ -12,7 +12,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -23,6 +22,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.mycompany.webapp.dto.Users;
 import com.mycompany.webapp.service.UsersService;
+
+import com.twilio.*;
+import com.twilio.rest.api.*;
+import com.twilio.type.*;
+import com.twilio.twiml.*;
+
 
 @CrossOrigin(origins="*")
 @RestController
@@ -65,8 +70,10 @@ public class UserController {
 	@GetMapping("/select")
 	public void list(HttpServletRequest request, HttpServletResponse response, 
 					@RequestParam(defaultValue = "") String keyword,
-					@RequestParam(defaultValue = "") String authority) {
-		List<Users> userList = usersService.getUsers(keyword, authority);
+					@RequestParam(defaultValue = "") String condition) {
+		List<Users> userList = usersService.getUsers(keyword, condition);
+//		logger.info(condition);
+		logger.info("조건: "+condition);
 		
 		for (int i = 0; i < userList.size(); i++) {
 			userList.get(i).setUser_tel1(userList.get(i).getUser_tel().split("-")[0]);
@@ -77,7 +84,7 @@ public class UserController {
 			userList.get(i).setUser_ssn1(userList.get(i).getUser_ssn().split("-")[0]);
 			userList.get(i).setUser_ssn2(userList.get(i).getUser_ssn().split("-")[1]);	
 		}
-				
+		
 		response.setContentType("application/json;charset=UTF-8");
 		JSONObject jObj = new JSONObject();
 		jObj.put("userList", userList);
@@ -102,11 +109,20 @@ public class UserController {
 		return user;
 	}
 	
-	@DeleteMapping("")
-	public void delete(HttpServletRequest request, HttpServletResponse response, @RequestParam String user_id) {
-		logger.info("직원삭제:" + user_id);
-//		usersService.deleteUser(user_id);
+	//직원 활성화 및 비활성화
+	@PutMapping("/enabled")
+	public void updateEnabled(HttpServletRequest request, HttpServletResponse response, @RequestBody Users user) {
+		logger.info("활성화"+user.getUser_id());
+		logger.info("활성화"+user.getUser_enabled());
+		usersService.updateEnabled(user);
 	}
+	
+	//직원 삭제
+//	@DeleteMapping("")
+//	public void delete(HttpServletRequest request, HttpServletResponse response, @RequestParam String user_id) {
+//		logger.info("직원삭제:" + user_id);
+//		usersService.deleteUser(user_id);
+//	}
 	
 	//직원 등록
 	@PostMapping("")
@@ -141,6 +157,8 @@ public class UserController {
 		
 		user.setUser_id(user_id);
 		user.setUser_password(password);
+		
+		logger.info("count: " + count);
 		
 		usersService.createUser(user);
 		usersService.updateUsercount(hcode, uauth);
@@ -177,4 +195,19 @@ public class UserController {
 			return "notCorrectPW";
 		}
 	}	
+	
+//	public static final String ACCOUNT_SID = System.getenv("TWILIO_ACCOUNT_SID");
+//    public static final String AUTH_TOKEN = System.getenv("TWILIO_AUTH_TOKEN");
+//
+//    @GetMapping("/test")
+//    public static void main(String[] args) {
+//        Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
+//        Message message = Message.creator(
+//                new com.twilio.type.PhoneNumber("+820154872834"),
+//                new com.twilio.type.PhoneNumber("+15017122661"),
+//                "Hi there")
+//            .create();
+//
+//        System.out.println(message.getSid());
+//    }
 }

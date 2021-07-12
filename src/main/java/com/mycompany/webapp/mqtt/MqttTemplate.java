@@ -14,7 +14,7 @@ import com.mycompany.webapp.websocket.RedisWebSocket;
 @Component
 public class MqttTemplate {
 	private static final Logger logger = 
-			LoggerFactory.getLogger(RedisWebSocket.class);
+			LoggerFactory.getLogger(MqttTemplate.class);
 	private MqttClient mqttClient;
 	
 	public MqttTemplate() {

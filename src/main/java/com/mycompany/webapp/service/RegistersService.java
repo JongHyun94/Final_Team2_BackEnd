@@ -39,14 +39,24 @@ public class RegistersService {
 		return registersList;
 	}
 
-	public int createNewRegister(Registers register) {
-		int result = registersDao.insertNewRegister(register);
-		return result;
+	public String createNewRegister(Registers register) {
+		int row = registersDao.checkRegister(register);
+		if(row > 0) {
+			return "중복";
+		} else {
+			int result = registersDao.insertNewRegister(register);
+			return "성공";
+		}
 	}
 	
-	public int changeRegister(Registers register) {
+	public String changeRegister(Registers register) {
+		int row = registersDao.checkRegister(register);
+		if(row > 0) {
+			return "중복";
+		} else {
 		int result = registersDao.updateRegister(register);
-		return result;
+		return "성공";
+		}
 	}
 
 	public int changeStateRegister(Registers register) {

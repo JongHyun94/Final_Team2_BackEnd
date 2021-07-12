@@ -43,7 +43,7 @@
       		treatment_id=#{treatment_id};
    </update>
    
-	<select id="selectByPatientId" resultType="treatment">
+	<select id="selectByPatientId" resultType="treatment" parameterType="int">
 		select
 		t.treatment_id,
 		t.treatment_date,
@@ -62,7 +62,7 @@
 		from treatments t, users u where t.treatment_user_id = u.user_id and treatment_id=#{treatment_id} 
 		</select> -->
 
-	<select id="selectByTreatmentSoap" resultType="treatment">
+	<select id="selectByTreatmentSoap" resultType="treatment" parameterType="int">
 		select
 		treatment_smemo,treatment_omemo,treatment_amemo,treatment_pmemo,treatment_communication,
 		treatment_id,treatment_patient_id,treatment_date,treatment_user_id,
