@@ -34,7 +34,7 @@
 		<security:intercept-url pattern="/patient/**" access="hasAnyRole('ROLE_NURSE','ROLE_DOCTOR','ROLE_INSPECTOR','ROLE_MASTER')" />
 		<security:intercept-url pattern="/register/**" access="hasAnyRole('ROLE_NURSE','ROLE_DOCTOR','ROLE_INSPECTOR','ROLE_MASTER')" />
 		<security:intercept-url pattern="/treatment/**" access="hasAnyRole('ROLE_DOCTOR','ROLE_MASTER')" />
-		<security:intercept-url pattern="/user/**" access="hasAnyRole('ROLE_NURSE','ROLE_DOCTOR','ROLE_INSPECTOR','ROLE_MASTER')" />
+		<security:intercept-url pattern="/user/**" access="hasAnyRole('ROLE_MASTER')" />
 		
 		<security:intercept-url pattern="/**" access="permitAll"/>
 	</security:http>
