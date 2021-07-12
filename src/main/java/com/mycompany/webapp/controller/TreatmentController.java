@@ -35,6 +35,7 @@ import com.mycompany.webapp.dto.InspectionLists;
 import com.mycompany.webapp.dto.Inspections;
 import com.mycompany.webapp.dto.Patients;
 import com.mycompany.webapp.dto.Treatments;
+import com.mycompany.webapp.dto.Users;
 import com.mycompany.webapp.service.TreatmentsService;
 
 @CrossOrigin(origins="*")
@@ -154,7 +155,7 @@ public class TreatmentController {
 	}
 
 	@PutMapping("")
-	public void update(@RequestBody Treatments treatment, HttpServletResponse response) {
+	public void update(@RequestBody Treatments treatment,  @RequestBody Users user,HttpServletResponse response) {
 
 //		logger.info(""+treatment.getSelectedInspection()[0]);
 //		logger.info(""+treatment.getSelectedDrug()[0]);
@@ -176,6 +177,9 @@ public class TreatmentController {
 		logger.info("카테고리 뭐냐: "+treatment.getInspectionOption());
 		/* 검사 */
 		int Inspection_id = 0;
+		String hcode ="138010";
+		String uauth = user.getUser_authority();
+		String user_id = "";		
 		for(int i=0; i<treatment.getSelectedInspection().length;i++) {
 			Inspections newInspection = new Inspections();
 			newInspection.setInspection_patient_id(treatment.getTreatment_patient_id());
@@ -183,6 +187,9 @@ public class TreatmentController {
 			newInspection.setInspection_treatment_id(treatment.getTreatment_id());
 			newInspection.setInspection_state("대기");
 			newInspection.setInspection_result("");
+			
+			user_id = treatmentsService.getInspectorId(hcode, uauth);
+			
 			newInspection.setInspection_inspector_id("I138010001");
 			newInspection.setInspection_list_category(treatment.getInspectionOption());
 //			newInspection.setInspection_lab("혈액검사실88");

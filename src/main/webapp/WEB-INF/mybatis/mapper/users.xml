@@ -136,4 +136,14 @@
 		from users
 		where user_id = #{user_id}
 	</select>
+	
+	<!--  지현 -->
+	<select id="getInspectorId" resultType="int">
+		
+		<if test='uauth == "ROLE_INSPECTOR"'>
+			select user_id
+		</if>
+		from users
+		where hospital_id = #{hcode}
+	</select>
 </mapper>
