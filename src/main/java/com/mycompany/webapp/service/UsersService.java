@@ -23,8 +23,8 @@ public class UsersService {
 		return usersList;
 	}
 	
-	public List<Users> getUsers(String keyword, String authority) {
-		List<Users> usersList = usersDao.selectUsers(keyword, authority);
+	public List<Users> getUsers(String keyword, String condition) {
+		List<Users> usersList = usersDao.selectUsers(keyword, condition);
 		return usersList;
 	}
 
@@ -60,5 +60,9 @@ public class UsersService {
 	// 로그인 시 병원 이름 가져오기
 	public String getHname(String hid) {
 		return hospitalsDao.getHname(hid);
+	}
+
+	public void updateEnabled(Users user) {
+		usersDao.updateEnabled(user);
 	}
 }

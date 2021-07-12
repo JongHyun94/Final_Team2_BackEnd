@@ -1,13 +1,14 @@
 package com.mycompany.webapp.controller;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintWriter;
+import java.util.Date;
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.json.JSONObject;
@@ -16,11 +17,16 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.mycompany.webapp.dto.InspectionImgs;
 import com.mycompany.webapp.dto.Inspections;
@@ -37,8 +43,8 @@ public class InspectionController {
 	private InspectionsService inspectionsService;
 	
 	@GetMapping("")
-	public void readPatient(HttpServletRequest request, HttpServletResponse response, @RequestParam String treatmentDate) {
-		List<Treatments> treatmentList = inspectionsService.getPatients(treatmentDate);
+	public void readPatient(HttpServletResponse response, @RequestParam String treatmentDate, @RequestParam(defaultValue = "") String state) {
+		List<Treatments> treatmentList = inspectionsService.getPatients(treatmentDate, state);
 		
 		response.setContentType("application/json;charset=UTF-8");
 		JSONObject jsonObj = new JSONObject();
@@ -56,7 +62,7 @@ public class InspectionController {
 	}
 	
 	@PutMapping("/istateI")
-	public void updateIstateI(HttpServletRequest request, HttpServletResponse response, @RequestParam int treatmentId) {
+	public void updateIstateI(@RequestParam int treatmentId) {
 		boolean result = inspectionsService.istateI(treatmentId);
 
 		if(result) {
@@ -67,7 +73,7 @@ public class InspectionController {
 	}
 	
 	@PutMapping("/istateC")
-	public void updateIstateC(HttpServletRequest request, HttpServletResponse response, @RequestParam int treatmentId) {
+	public void updateIstateC(@RequestParam int treatmentId) {
 		boolean result = inspectionsService.istateC(treatmentId);
 
 		if(result) {
@@ -78,7 +84,7 @@ public class InspectionController {
 	}
 	
 	@GetMapping("/inspections")
-	public void readPatient(HttpServletRequest request, HttpServletResponse response, @RequestParam int treatmentId) {
+	public void readPatient(HttpServletResponse response, @RequestParam int treatmentId) {
 		List<Inspections> inspectionList = inspectionsService.getInspections(treatmentId);
 		
 		response.setContentType("application/json;charset=UTF-8");
@@ -97,7 +103,7 @@ public class InspectionController {
 	}
 	
 	@PutMapping("/state")
-	public void updateStateI(HttpServletRequest request, HttpServletResponse response, @RequestParam int inspectionId, @RequestParam String state) {
+	public void updateStateI(@RequestParam int inspectionId, @RequestParam String state) {
 		boolean result = inspectionsService.state(inspectionId, state);
 
 		if(result) {
@@ -108,7 +114,7 @@ public class InspectionController {
 	}
 	
 	@PutMapping("/result")
-	public void updateResult(HttpServletRequest request, HttpServletResponse response, @RequestParam int inspectionId, @RequestParam String inspectionResult) {
+	public void updateResult(@RequestParam int inspectionId, @RequestParam String inspectionResult) {
 		boolean result = inspectionsService.result(inspectionId, inspectionResult);
 		
 		if(result) {
@@ -118,46 +124,89 @@ public class InspectionController {
 		}
 	}
 	
-	@GetMapping("/images")
-	public void readImage(HttpServletRequest request, HttpServletResponse response, @RequestParam int inspectionId) {
-		logger.info("" + inspectionId);
-		List<InspectionImgs> inspectionImgList = inspectionsService.getInspectionImg(inspectionId);
-		logger.info("kk" + inspectionImgList);
+	//수정필요
+	@GetMapping("/imgId")
+	public void selectImgId(HttpServletResponse response, @RequestParam int inspectionId) {
+		List<InspectionImgs> inspectionImgList = inspectionsService.getInspectionImgId(inspectionId);
 		
 		response.setContentType("application/json;charset=UTF-8");
 		JSONObject jsonObj = new JSONObject();
 		jsonObj.put("inspectionImgList", inspectionImgList);
 	
 		try {
-			response.setHeader("Content-Disposition", "attachment; filename=\"" + "xray" + "\";");
-			response.setContentType("image/jpeg");
+			PrintWriter pw = response.getWriter();
+			pw.write(jsonObj.toString());
+			pw.flush();
+			pw.close();
 			
-//			for(InspectionImgs inspectionImg : inspectionImgList) {
-//				InputStream is = new FileInputStream(inspectionImg.getInspection_img_path().toString());
-				InputStream is = new FileInputStream("D:/img/xray.jpg");
-
-//				logger.info("" + inspectionImg.getInspection_img_path().toString());
-				OutputStream os = response.getOutputStream();
-				FileCopyUtils.copy(is, os);
-				is.close();
-				os.flush();
-				os.close();
-//			}
-		} catch(Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-//		try {
-//			PrintWriter pw = response.getWriter();
-//			pw.write(jsonObj.toString());
-//			pw.flush();
-//			pw.close();
-//			
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-		
-		
 	}
+	
+	@GetMapping("/images/{inspectionImgId}")
+	public void downloadImg(HttpServletResponse response, @PathVariable("inspectionImgId") int inspectionImgId) {
+		inspectionsService.downloadImg(response, inspectionImgId);
+	}
+	
+	@GetMapping("/images")
+	public void readImage(HttpServletResponse response, @RequestParam int inspectionId) {
+		logger.info("" + inspectionId);
+		List<InspectionImgs> inspectionImgList = inspectionsService.getInspectionImg(inspectionId);
+		
+		response.setContentType("application/json;charset=UTF-8");
+		JSONObject jsonObj = new JSONObject();
+		jsonObj.put("inspectionImgList", inspectionImgList);
+	
+		try {
+			PrintWriter pw = response.getWriter();
+			pw.write(jsonObj.toString());
+			pw.flush();
+			pw.close();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@PostMapping("/images")
+	public void createImage(MultipartHttpServletRequest request, InspectionImgs inspectionImgs) {
+	  if(inspectionImgs.getInspection_img_attach() != null && !inspectionImgs.getInspection_img_attach().isEmpty()) {
+	     List<MultipartFile> mpf = request.getFiles("inspection_img_attach");
+	     
+	     for(MultipartFile mf : mpf) {
+	    	 inspectionImgs.setInspection_img_inspection_id(inspectionImgs.getInspection_img_inspection_id());
+		     inspectionImgs.setInspection_img_oname(mf.getOriginalFilename().substring(0, mf.getOriginalFilename().lastIndexOf(".")));
+			 inspectionImgs.setInspection_img_sname(new Date().getTime() + "-" + mf.getOriginalFilename());
+			 inspectionImgs.setInspection_img_type(mf.getOriginalFilename().substring(mf.getOriginalFilename().lastIndexOf(".")));
+			 try {
+			    File file = new File("D:/uploadfiles/" + inspectionImgs.getInspection_img_sname());
+			        mf.transferTo(file);
+			     } catch (Exception e) {
+			        e.printStackTrace();
+			     }
+			 
+			 boolean result = inspectionsService.createImgs(inspectionImgs);
+			 
+			 if(result) {
+			    logger.info("img 추가 성공");
+			 } else {
+			    logger.info("img 추가 실패");
+			 }
+	     }
+	  }
+	}
+	
+	@DeleteMapping("/images")
+	public void deleteImage(@RequestParam int inspectionId) {
+		boolean result = inspectionsService.deleteImage(inspectionId);
+		
+		if(result) {
+			logger.info("img 삭제 성공");
+		} else {
+			logger.info("img 삭제 실패");
+		}
+	}
+
 	
 }

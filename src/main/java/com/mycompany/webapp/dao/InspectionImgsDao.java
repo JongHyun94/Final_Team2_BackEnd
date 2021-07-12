@@ -11,5 +11,11 @@ import com.mycompany.webapp.dto.InspectionImgs;
 public interface InspectionImgsDao {
 
 	List<InspectionImgs> selectInspectionImgs(int inspectionId);
+
+	int insertImg(InspectionImgs inspectionImgs);
+
+	int deleteImg(int inspectionId);
+
+	InspectionImgs selectByInspectionImgId(int inspectionImgId);
 	
 }

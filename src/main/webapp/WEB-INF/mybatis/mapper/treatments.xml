@@ -92,13 +92,22 @@
 		t.treatment_date,
 		t.treatment_communication, t.treatment_istate, t.treatment_type,
 		p.patient_name, p.patient_ssn, p.patient_sex
-
 		from treatments t, patients p
+		<if test='state=="" '>
 		where
 		treatment_patient_id = patient_id
 		and str_to_date(treatment_date, '%Y-%m-%d') =
 		str_to_date(#{treatmentDate}, '%Y-%m-%d')
 		order by treatment_id
+		</if>
+		<if test='state!="" '>
+		where
+		treatment_patient_id = patient_id
+		and str_to_date(treatment_date, '%Y-%m-%d') =
+		str_to_date(#{treatmentDate}, '%Y-%m-%d')
+		and treatment_istate = #{state}
+		order by treatment_id
+		</if>
 	</select>
 	
 	<update id="updateIstateI">
