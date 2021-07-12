@@ -23,5 +23,5 @@ public interface UsersDao {
 	public void updateEnabled(Users user);
 	
 	//지현
-	public String getInspectorId(@Param("hcode")String hcode,@Param("uauth") String uauth);	
+	public List<Users> getInspectorId();	
 }

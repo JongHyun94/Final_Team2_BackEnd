@@ -21,6 +21,7 @@ import com.mycompany.webapp.dto.InspectionLists;
 import com.mycompany.webapp.dto.Inspections;
 import com.mycompany.webapp.dto.Patients;
 import com.mycompany.webapp.dto.Treatments;
+import com.mycompany.webapp.dto.Users;
 
 
 @Service
@@ -138,8 +139,8 @@ public class TreatmentsService {
 //		return 0;
 //	}
 
-	public String getInspectorId(String hcode, String uauth) {
-		String InspectorId = usersDao.getInspectorId(hcode, uauth);
+	public List<Users> getInspectorId() {
+		List<Users> InspectorId = usersDao.getInspectorId();
 		return InspectorId;
 	}
 

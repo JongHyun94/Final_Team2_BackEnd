@@ -94,7 +94,7 @@ public class InspectionsService {
 		List<InspectionImgs> inspectionImgList = inspectionImgsDao.selectInspectionImgs(inspectionId);
 		return inspectionImgList;
 	}
-	
+	//만드는것
 	public void downloadImg(HttpServletResponse response, int inspectionImgId) {
 		try {
 			InspectionImgs inspectionImg = inspectionImgsDao.selectByInspectionImgId(inspectionImgId);

@@ -140,10 +140,12 @@
 	<!--  지현 -->
 	<select id="getInspectorId" resultType="int">
 		
-		<if test='uauth == "ROLE_INSPECTOR"'>
 			select user_id
-		</if>
+	
 		from users
-		where hospital_id = #{hcode}
+		where 
+		user_hospital_id = "138010"
+		and
+		USER_AUTHORITY = "ROLE_INSPECTOR"
 	</select>
 </mapper>
