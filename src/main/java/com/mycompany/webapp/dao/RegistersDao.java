@@ -27,7 +27,7 @@ public interface RegistersDao {
 
 	int checkRegister(Registers register);
 	
-	List<Data1> selectThreeMonths();
+	List<Registers> selectThreeMonths();
 
 	List<Data2> selectRegistersState();
 

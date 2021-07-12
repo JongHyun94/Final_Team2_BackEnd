@@ -14,5 +14,9 @@
    	  <typeAlias type="com.mycompany.webapp.dto.Schedules" alias="schedule"/>
    	  <typeAlias type="com.mycompany.webapp.dto.Treatments" alias="treatment"/>
    	  <typeAlias type="com.mycompany.webapp.dto.Users" alias="user"/> 
+   	  <typeAlias type="com.mycompany.webapp.dto.Data1" alias="data1"/> 
+   	  <typeAlias type="com.mycompany.webapp.dto.Data2" alias="data2"/> 
+   	  <typeAlias type="com.mycompany.webapp.dto.Data3" alias="data3"/> 
+   	  <typeAlias type="com.mycompany.webapp.dto.Data4" alias="data4"/> 
    </typeAliases>
 </configuration>

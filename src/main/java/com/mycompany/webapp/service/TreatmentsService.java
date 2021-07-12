@@ -14,12 +14,14 @@ import com.mycompany.webapp.dao.DrugsInjectionsListsDao;
 import com.mycompany.webapp.dao.InspectionListsDao;
 import com.mycompany.webapp.dao.InspectionsDao;
 import com.mycompany.webapp.dao.TreatmentsDao;
+import com.mycompany.webapp.dao.UsersDao;
 import com.mycompany.webapp.dto.DrugsInjections;
 import com.mycompany.webapp.dto.DrugsInjectionsLists;
 import com.mycompany.webapp.dto.InspectionLists;
 import com.mycompany.webapp.dto.Inspections;
 import com.mycompany.webapp.dto.Patients;
 import com.mycompany.webapp.dto.Treatments;
+import com.mycompany.webapp.dto.Users;
 
 
 @Service
@@ -35,6 +37,8 @@ public class TreatmentsService {
 	private InspectionsDao inspectionsDao;
 	@Autowired
 	private DrugsInjectionsDao drugsInjectionsDao;
+	@Autowired
+	private UsersDao usersDao;
 	
 	public List<Treatments> getAllTreatment(String date_time, String state) {
 		List<Treatments> treatmentslist = treatmentsDao.selectAllTreatment(date_time, state);
@@ -135,6 +139,10 @@ public class TreatmentsService {
 //		return 0;
 //	}
 
+	public List<Users> getInspectorId() {
+		List<Users> InspectorId = usersDao.getInspectorId();
+		return InspectorId;
+	}
 
 
 }
