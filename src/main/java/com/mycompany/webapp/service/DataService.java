@@ -12,6 +12,7 @@ import com.mycompany.webapp.dto.Data1;
 import com.mycompany.webapp.dto.Data2;
 import com.mycompany.webapp.dto.Data3;
 import com.mycompany.webapp.dto.Data4;
+import com.mycompany.webapp.dto.Registers;
 
 @Service
 public class DataService {
@@ -23,9 +24,9 @@ public class DataService {
 	@Autowired
 	private RegistersDao registersDao;
 	
-	public List<Data1> getData1() {
-		List<Data1> data1 = registersDao.selectThreeMonths();
-		return data1;
+	public List<Registers> getData1() {
+		List<Registers> registers = registersDao.selectThreeMonths();
+		return registers;
 	}
 	
 	public List<Data2> getData2() {

@@ -20,6 +20,7 @@ import com.mycompany.webapp.dto.Data1;
 import com.mycompany.webapp.dto.Data2;
 import com.mycompany.webapp.dto.Data3;
 import com.mycompany.webapp.dto.Data4;
+import com.mycompany.webapp.dto.Registers;
 import com.mycompany.webapp.service.DataService;
 
 @CrossOrigin(origins="*")
@@ -33,16 +34,16 @@ public class DataController {
 	@GetMapping("")
 	public void getData(HttpServletRequest request, HttpServletResponse response) {
 		
-		List<Data1> data1 = dataService.getData1();
-		List<Data2> data2 = dataService.getData2();
-		List<Data3> data3 = dataService.getData3();
-		List<Data4> data4 = dataService.getData4();
+		List<Registers> data1 = dataService.getData1();
+		//List<Data2> data2 = dataService.getData2();
+		//List<Data3> data3 = dataService.getData3();
+		//List<Data4> data4 = dataService.getData4();
 		response.setContentType("application/json;charset=UTF-8");
 		JSONObject jObj = new JSONObject();
 		jObj.put("data1", data1);
-		jObj.put("data2", data2);
-		jObj.put("data3", data3);
-		jObj.put("data4", data4);
+		//jObj.put("data2", data2);
+		//jObj.put("data3", data3);
+		//jObj.put("data4", data4);
 		try {
 			Writer writer = response.getWriter();
 			writer.write(jObj.toString());
