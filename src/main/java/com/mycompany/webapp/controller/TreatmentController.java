@@ -157,18 +157,9 @@ public class TreatmentController {
 	@PutMapping("")
 	public void update(@RequestBody Treatments treatment,HttpServletResponse response) {
 
-//		logger.info(""+treatment.getSelectedInspection()[0]);
-//		logger.info(""+treatment.getSelectedDrug()[0]);
-
-		//		List <Treatments> list = treatmentsService.update(treatment);
-		//		
-		//		for(int i = 0; i< list.size(); i++) {
-		//			 treatmentsService.createDrugsInjections(treatment.getSelectedDrug()[i]);
-		//		}
-		//		
+	
 		logger.info("의사임: " +treatment.getTreatment_user_id());
-//		Inspections newInspection = new Inspections();
-		//DrugsInjections newDrugInjections = new DrugsInjections();
+
 		List<Inspections> InspectionList = new ArrayList<Inspections>();
 		List<DrugsInjections> DrugInjectionsList = new ArrayList<DrugsInjections>();
 
@@ -176,12 +167,11 @@ public class TreatmentController {
 		logger.info("카테고리 뭐냐: "+treatment.getInspectionOption());
 		/* 검사 */
 		int Inspection_id = 0;
-//		String hcode ="138010";
-//		String uauth = "ROLE_INSPECTOR";
+
 		List<Users> userid = treatmentsService.getInspectorId();
 		
 		logger.info("userlist:::"+userid);
-//		String user_id = "";		
+		
 		for(int i=0; i<treatment.getSelectedInspection().length;i++) {
 			Inspections newInspection = new Inspections();
 			newInspection.setInspection_patient_id(treatment.getTreatment_patient_id());
