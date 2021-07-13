@@ -75,12 +75,16 @@ public class AuthController {
 		String hname = hospital.getHospital_name();
 		String haddress = hospital.getHospital_address();
 		String hurl = hospital.getHospital_url();
+		String hlat = hospital.getHospital_lat();
+		String hlong = hospital.getHospital_long();
 		
 		map.put("hid", hid);
 		map.put("hname", hname);
 		map.put("haddress", haddress);
 		map.put("hurl", hurl);
-		
+		map.put("hlat", hlat);
+		map.put("hlong", hlong);
+		//37.52684965592309, 127.10834881127674
 		//사용자 인증
 	    UsernamePasswordAuthenticationToken upat = new UsernamePasswordAuthenticationToken(uid, upassword);			
 		//Authentication 	authentication = authenticationManager.authenticate(upat);

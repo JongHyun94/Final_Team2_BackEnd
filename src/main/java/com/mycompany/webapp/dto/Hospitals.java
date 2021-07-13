@@ -12,6 +12,8 @@ public class Hospitals {
 	private int hospital_nurses;
 	private int hospital_inspectors;
 	private String hospital_url;
+	private String hospital_lat;
+	private String hospital_long;
 	
 	public String getHospital_id() {
 		return hospital_id;
@@ -79,7 +81,16 @@ public class Hospitals {
 	public void setHospital_url(String hospital_url) {
 		this.hospital_url = hospital_url;
 	}
-	
-
-	
+	public String getHospital_lat() {
+		return hospital_lat;
+	}
+	public void setHospital_lat(String hospital_lat) {
+		this.hospital_lat = hospital_lat;
+	}
+	public String getHospital_long() {
+		return hospital_long;
+	}
+	public void setHospital_long(String hospital_long) {
+		this.hospital_long = hospital_long;
+	}
 }

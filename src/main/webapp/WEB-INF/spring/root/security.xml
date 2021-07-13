@@ -74,6 +74,7 @@
 		</property>
 	</bean>
 	
+	
 	<bean id="jwtAuthenticationFilter" class="com.mycompany.webapp.security.JwtAuthenticationFilter">
 		<constructor-arg name="userDetailsService" ref="jdbcUserService"/>
 	</bean>
@@ -111,6 +112,9 @@
 				</property>
 			</bean>
 		</constructor-arg>
+	</bean>
+	<bean id="egovStrictHttpFirewall" class="org.springframework.security.web.firewall.StrictHttpFirewall">
+		<property name="allowSemicolon" value="true"/>
 	</bean>
 </beans>
 
