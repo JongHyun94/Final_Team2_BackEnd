@@ -20,12 +20,16 @@ public interface RegistersDao {
 	List<Registers> selectRegistersByDate(@Param("register_date")String register_date,@Param("state") String state);
 
 	int insertNewRegister(Registers register);
+	
+	int insertNewRegister2(Registers register);
 
 	int updateRegister(Registers register);
 
 	int updateStateRegister(Registers register);
 
 	int checkRegister(Registers register);
+	
+	int checkSameRegister(Registers register);
 	
 	List<Registers> selectThreeMonths();
 
@@ -35,5 +39,6 @@ public interface RegistersDao {
 
 	List<Data4> selectQuatersState();
 
+	int deleteRegister(Registers register);
 
 }

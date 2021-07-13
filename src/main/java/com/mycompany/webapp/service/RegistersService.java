@@ -3,9 +3,12 @@ package com.mycompany.webapp.service;
 import java.util.Date;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.mycompany.webapp.controller.RegisterController;
 import com.mycompany.webapp.dao.PatientsDao;
 import com.mycompany.webapp.dao.RegistersDao;
 import com.mycompany.webapp.dao.SchedulesDao;
@@ -28,6 +31,8 @@ public class RegistersService {
 	private SchedulesDao schedulesDao;
 	@Autowired
 	private TreatmentsDao treatmentsDao;
+	
+	private static final Logger logger = LoggerFactory.getLogger(RegistersService.class);
 
 	public List<Registers> getAllRegisters() {
 		List<Registers> registersList = registersDao.selectAllRegisters();
@@ -40,22 +45,38 @@ public class RegistersService {
 	}
 
 	public String createNewRegister(Registers register) {
+		logger.info(register.getRegister_state());
 		int row = registersDao.checkRegister(register);
 		if(row > 0) {
-			return "중복";
+			if(register.getRegister_state().equals("취소")) {
+				logger.info("if안");
+				int delete = registersDao.deleteRegister(register);
+				//register.setRegister_state("대기");
+				int result = registersDao.insertNewRegister2(register);
+				return "성공";
+			} else {
+				return "중복";				
+			}
 		} else {
+			logger.info("if밖");
 			int result = registersDao.insertNewRegister(register);
 			return "성공";
 		}
 	}
-	
+
 	public String changeRegister(Registers register) {
 		int row = registersDao.checkRegister(register);
 		if(row > 0) {
-			return "중복";
+			int count = registersDao.checkSameRegister(register);
+			if(count > 0) {
+				int result = registersDao.updateRegister(register);
+				return "성공";
+			} else {
+				return "중복";				
+			}
 		} else {
-		int result = registersDao.updateRegister(register);
-		return "성공";
+			int result = registersDao.updateRegister(register);
+			return "성공";
 		}
 	}
 
@@ -63,42 +84,42 @@ public class RegistersService {
 		int result = registersDao.updateStateRegister(register);
 		return result;
 	}
-	
+
 	// 진료 생성
 	public int createNewTreatment(Registers register) {
 		int result = treatmentsDao.insertNewTreatment(register);
 		return result;
 	}
 
-// User ----------------------------------------------------------
-	
+	// User ----------------------------------------------------------
+
 	public List<Users> getAllDoctors() {
 		List<Users> doctorList = usersDao.selectAllDoctors();
 		return doctorList;
 	}
-	
+
 	public List<Patients> getAllPatients() {
 		List<Patients> patientList = patientsDao.selectAllPatients();
 		return patientList;
 	}
-	
 
-// To Do List ----------------------------------------------------------
+
+	// To Do List ----------------------------------------------------------
 	public List<Schedules> getToDoList(Schedules schedule) {
 		List<Schedules> todolist = schedulesDao.selectToDoList(schedule);
 		return todolist;
 	}
-	
+
 	public int createNewToDoList(Schedules schedule) {
 		int result = schedulesDao.insertNewToDoList(schedule);
 		return result;
 	}
-	
+
 	public int updateToDoList(Schedules schedule) {
 		int result = schedulesDao.updateToDoList(schedule);
 		return result;
 	}
-	
+
 	public int deleteToDoList(int schedule_id) {
 		int result = schedulesDao.deleteToDoList(schedule_id);
 		return result;

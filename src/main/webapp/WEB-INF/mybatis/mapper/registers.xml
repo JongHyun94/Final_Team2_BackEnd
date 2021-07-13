@@ -30,6 +30,28 @@
 		</if>
 		)
 	</insert>
+	
+		<insert id="insertNewRegister2" parameterType="register">
+		insert into
+		registers
+		(
+		register_patient_id, register_user_id,
+		register_regdate,
+		register_date,
+		register_starttime,
+		register_memo,
+		register_communication,
+		register_state)
+		values
+		(
+		#{register_patient_id},
+		#{register_user_id},
+		now(), #{register_date},
+		null,
+		#{register_memo}, #{register_communication},
+		"대기"
+		)
+	</insert>
 
 	<!-- Read -->
 
@@ -66,7 +88,8 @@
 			register_patient_id=patient_id
 			and
 			register_user_id=user_id
-			order by register_date asc
+			order by
+			register_date asc
 		</if>
 		<if test='state!="" '>
 			where
@@ -86,15 +109,27 @@
 	<select id="checkRegister" parameterType="register"
 		resultType="int">
 		select count(*) from registers
-		where register_date=#{register_date}
+		where
+		register_date=#{register_date}
 		and register_user_id=#{register_user_id}
 	</select>
+	
+	<select id="checkSameRegister" parameterType="register"
+		resultType="int">
+		select count(*) from registers
+		where
+		register_date=#{register_date}
+		and register_user_id=#{register_user_id}
+		and register_patient_id=#{register_patient_id}
+	</select>
+
 
 	<!-- Update -->
 
 	<update id="updateRegister" parameterType="register">
 		update registers
 		set
+		register_patient_id=#{register_patient_id},
 		register_user_id=#{register_user_id},
 		register_date=#{register_date},
 		register_memo=#{register_memo},
@@ -113,12 +148,17 @@
 		register_id=#{register_id}
 	</update>
 	<!-- Delete -->
-
+	
+	<delete id="deleteRegister" parameterType="int">
+		delete from registers
+		where register_id=#{register_id}
+	</delete>
 
 
 	<!-- 데이터 분석실 -->
 	<select id="selectThreeMonths" resultType="register">
-		SELECT register_id, register_starttime FROM team2_douzone.registers where
+		SELECT register_id,
+		register_starttime FROM team2_douzone.registers where
 		date(register_starttime) &gt; date_format(date_add(now(), interval -2
 		month), '%Y-%m-01') and date(register_starttime) &lt;= last_day(now())
 		and register_state="완료"
