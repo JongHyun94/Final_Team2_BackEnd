@@ -68,7 +68,7 @@ public class AuthController {
 				}
 			}
 		}
-			
+					
 		String hid = dbUser.getUser_hospital_id();
 		Hospitals hospital = usersService.getHospital(hid);
 		
