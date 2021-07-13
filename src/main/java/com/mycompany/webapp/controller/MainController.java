@@ -26,9 +26,6 @@ import com.mycompany.webapp.mqtt.MqttTemplate;
 public class MainController {
 	private static final Logger logger = LoggerFactory.getLogger(MainController.class);
 	
-//	@Autowired
-//	private RedisTemplate<String, String> redisTemplate;
-//	
 	@Autowired
 	private MqttTemplate mqttTemplate;
 	
@@ -48,25 +45,7 @@ public class MainController {
 		
 		return "home";
 	}
-	
-//	@RequestMapping("/sendRedisMessage")
-//	public void sendRedisMessage(String topic, String content, HttpServletResponse res) {
-//		logger.info("sendMessage");
-//		try {
-//			redisTemplate.convertAndSend(topic, content);
-//		
-//			JSONObject json = new JSONObject();
-//			json.put("result", "success");
-//			res.setContentType("application/json; charset=UTF-8");
-//			PrintWriter writer = res.getWriter();
-//			writer.write(json.toString());
-//			writer.flush();
-//			writer.close();
-//		} catch(Exception e) {
-//			e.printStackTrace();
-//		}
-//	}
-//	
+
 	@RequestMapping("/sendMqttMessage")
 	public void sendMqttMessage(String topic, String content, HttpServletResponse res) {
 		logger.info("sendMessage");
