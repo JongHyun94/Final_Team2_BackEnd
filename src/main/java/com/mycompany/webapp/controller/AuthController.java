@@ -115,12 +115,12 @@ public class AuthController {
 	
 	// 회원 정보 수정
 	@PutMapping("/update")
-	public String updateUser (HttpServletRequest request, HttpServletResponse response, @RequestBody Users user) {	
+	public String updateUser (HttpServletRequest request, HttpServletResponse response, @RequestBody Users user) {
 		BCryptPasswordEncoder bpe = new BCryptPasswordEncoder();
 		boolean result = bpe.matches(user.getOld_password(), user.getUser_password());
 		if (result) {
 			user.setUser_password(bpe.encode(user.getNew_password()));
-			usersService.updateUser(user);
+//			usersService.updateUser(user);
 			return "success";
 		} else {
 			return "notCorrectPW";
