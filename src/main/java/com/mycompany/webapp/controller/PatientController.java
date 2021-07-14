@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.mycompany.webapp.dto.Patients;
 import com.mycompany.webapp.service.PatientsService;
+import com.mycompany.webapp.twilio.SendMessage;
 
 @CrossOrigin(origins="*")
 @RestController
@@ -78,6 +79,9 @@ public class PatientController {
 		patient.setPatient_tel(patient.getPatient_tel1() + "-" + patient.getPatient_tel2() + "-" + patient.getPatient_tel3());
 		
 		patientsService.createPatient(patient);
+		
+//		SendMessage msg = new SendMessage();
+//		msg.send("환자가 등록되었습니다.");
 		
 		return patient;
 	}

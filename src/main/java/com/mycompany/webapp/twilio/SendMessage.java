@@ -14,7 +14,7 @@ public class SendMessage {
     public static final String ACCOUNT_SID = "AC77a3eeaa3988e77f2276aa6720fc492c"; 
     public static final String AUTH_TOKEN = "696196505df800fc9d521ed950eee9b5"; 
  
-    public static void main(String[] args) { 
+    public void send(String msg) { 
         Twilio.init(ACCOUNT_SID, AUTH_TOKEN); 
     	
         Message message = Message.creator( 
@@ -23,6 +23,7 @@ public class SendMessage {
                 //from
                 new PhoneNumber("+13305097162"),
                 //message
-                "예약이 완료되었습니다.").create(); 
+                msg).create(); 
+        System.out.println("내용: " + msg);
     } 
 }

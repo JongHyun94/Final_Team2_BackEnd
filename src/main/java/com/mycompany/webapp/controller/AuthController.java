@@ -46,8 +46,6 @@ public class AuthController {
 		//인증 데이터 얻기
 		String uid = user.get("userId");
 		String upassword = user.get("userPassword");
-		logger.info(uid);
-		logger.info(upassword);		
 
 		Map<String, String> map = new HashMap<String, String>();
 		
