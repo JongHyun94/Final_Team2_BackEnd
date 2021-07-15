@@ -33,12 +33,12 @@ public class DataService {
 		List<Data2> data2 = registersDao.selectRegistersState();
 		return data2;
 	}
-	public List<Data3> getData3() {
-		List<Data3> data3 = registersDao.selectPatientsByDays();
+	public List<Registers> getData3() {
+		List<Registers> data3 = registersDao.selectPatientsByDays();
 		return data3;
 	}
-	public List<Data4> getData4() {
-		List<Data4> data4 = registersDao.selectQuatersState();
+	public List<Registers> getData4() {
+		List<Registers> data4 = registersDao.selectQuatersState();
 		return data4;
 	}
 }

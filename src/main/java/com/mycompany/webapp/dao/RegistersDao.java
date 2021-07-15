@@ -35,9 +35,9 @@ public interface RegistersDao {
 
 	List<Data2> selectRegistersState();
 
-	List<Data3> selectPatientsByDays();
+	List<Registers> selectPatientsByDays();
 
-	List<Data4> selectQuatersState();
+	List<Registers> selectQuatersState();
 
 	int deleteRegister(Registers register);
 

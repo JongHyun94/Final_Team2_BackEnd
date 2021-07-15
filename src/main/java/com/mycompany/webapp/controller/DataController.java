@@ -36,14 +36,14 @@ public class DataController {
 		
 		List<Registers> data1 = dataService.getData1();
 		//List<Data2> data2 = dataService.getData2();
-		//List<Data3> data3 = dataService.getData3();
-		//List<Data4> data4 = dataService.getData4();
+		List<Registers> data3 = dataService.getData3();
+		List<Registers> data4 = dataService.getData4();
 		response.setContentType("application/json;charset=UTF-8");
 		JSONObject jObj = new JSONObject();
 		jObj.put("data1", data1);
 		//jObj.put("data2", data2);
-		//jObj.put("data3", data3);
-		//jObj.put("data4", data4);
+		jObj.put("data3", data3);
+		jObj.put("data4", data4);
 		try {
 			Writer writer = response.getWriter();
 			writer.write(jObj.toString());
