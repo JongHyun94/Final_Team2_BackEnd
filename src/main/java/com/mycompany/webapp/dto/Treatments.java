@@ -27,6 +27,7 @@ public class Treatments {
 	private String register_starttime;
 	
 	private String[] selectedInspection;
+	private String[] selectedInspection2;
 	private String[] selectedDrug;
 	private String inspectionOption;
 
@@ -165,6 +166,12 @@ public class Treatments {
 	}
 	public void setPatient_ssn(String patient_ssn) {
 		this.patient_ssn = patient_ssn;
+	}
+	public String[] getSelectedInspection2() {
+		return selectedInspection2;
+	}
+	public void setSelectedInspection2(String[] selectedInspection2) {
+		this.selectedInspection2 = selectedInspection2;
 	}
 	
 	

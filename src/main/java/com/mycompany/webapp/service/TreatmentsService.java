@@ -89,12 +89,19 @@ public class TreatmentsService {
 	}
 
 	
-	public List<InspectionLists> getInspection(String categoryValue) {
+//	public List<InspectionLists> getInspection(String categoryValue) {
+////		logger.info("서비스 카테고리"+categoryValue);
+//		List<InspectionLists> list = inspectionListsDao.selectByInspectionlist(categoryValue);
+////		logger.info("서비스 리스트"+list);
+//		return list;
+//	}
+	public List<InspectionLists> getInspection() {
 //		logger.info("서비스 카테고리"+categoryValue);
-		List<InspectionLists> list = inspectionListsDao.selectByInspectionlist(categoryValue);
+		List<InspectionLists> list = inspectionListsDao.selectByInspectionlist();
 //		logger.info("서비스 리스트"+list);
 		return list;
 	}
+
 
 	public List<Inspections> getTreatmentInspection(int treatment_id) {
 		List<Inspections> list = inspectionsDao.selectByTreatmentInspection(treatment_id);
@@ -132,7 +139,15 @@ public class TreatmentsService {
 		}
 		return count;
 	}
-
+	public int createInspections2(List<Inspections> InspectionList2) {
+		int result = 0;
+		int count = 0;
+		for(int i = 0; i< InspectionList2.size(); i++) {
+			count = inspectionsDao.insertInspections2(InspectionList2.get(i));
+			result = result + count;
+		}
+		return count;
+	}
 
 //	public int createInspections(String string) {
 //		// TODO Auto-generated method stub
@@ -143,6 +158,9 @@ public class TreatmentsService {
 		List<Users> InspectorId = usersDao.getInspectorId();
 		return InspectorId;
 	}
+
+
+	
 
 
 }

@@ -15,7 +15,7 @@
 		</if>
 		<if test='keyword!=""'>
 		where
-			drug_injection_list_category LIKE CONCAT('%',#{keyword},'%')
+			drug_injection_list_name LIKE CONCAT('%',#{keyword},'%')
 		</if>
 		
 		

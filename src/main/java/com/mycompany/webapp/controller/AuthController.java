@@ -46,8 +46,6 @@ public class AuthController {
 		//인증 데이터 얻기
 		String uid = user.get("userId");
 		String upassword = user.get("userPassword");
-		logger.info(uid);
-		logger.info(upassword);		
 
 		Map<String, String> map = new HashMap<String, String>();
 		
@@ -68,7 +66,7 @@ public class AuthController {
 				}
 			}
 		}
-			
+					
 		String hid = dbUser.getUser_hospital_id();
 		Hospitals hospital = usersService.getHospital(hid);
 		
@@ -121,12 +119,12 @@ public class AuthController {
 	
 	// 회원 정보 수정
 	@PutMapping("/update")
-	public String updateUser (HttpServletRequest request, HttpServletResponse response, @RequestBody Users user) {	
+	public String updateUser (HttpServletRequest request, HttpServletResponse response, @RequestBody Users user) {
 		BCryptPasswordEncoder bpe = new BCryptPasswordEncoder();
 		boolean result = bpe.matches(user.getOld_password(), user.getUser_password());
 		if (result) {
 			user.setUser_password(bpe.encode(user.getNew_password()));
-			usersService.updateUser(user);
+//			usersService.updateUser(user);
 			return "success";
 		} else {
 			return "notCorrectPW";

@@ -40,24 +40,24 @@
 			user_regdate, user_enabled, user_authority
 		from users
 		where not user_authority = "ROLE_MASTER"
-		<if test='keyword != "" and condition == ""'>
-			and user_name regexp #{keyword}
-				<!-- or user_ssn like concat(#{keyword},'%') -->
+		<if test='keyword != "" and condition != "1" and condition != "0" and condition != "all"'>
+			and (user_name regexp #{keyword}
+				or user_ssn like concat(#{keyword},'%'))
+				and user_authority = #{condition}
 		</if>
+		<if test='keyword != "" and condition == "all"'>
+			and user_name regexp #{keyword}			
+			or user_ssn like concat(#{keyword},'%')
+		</if>		
 		<if test='keyword != "" and condition == "1"'>
-			and user_name regexp #{keyword}
-				<!-- or user_ssn like concat(#{keyword},'%') -->
+			and (user_name regexp #{keyword}
+				or user_ssn like concat(#{keyword},'%'))
 				and user_enabled = 1
 		</if>
 		<if test='keyword != "" and condition == "0"'>
-			and user_name regexp #{keyword}
-				<!-- or user_ssn like concat(#{keyword},'%') -->
+			and (user_name regexp #{keyword}
+				or user_ssn like concat(#{keyword},'%'))
 				and user_enabled = 0
-		</if>
-		<if test='keyword != "" and condition != "1" and condition != "0"'>
-			and user_name regexp #{keyword}
-				<!-- or user_ssn like concat(#{keyword},'%') -->
-				and user_authority = #{condition}
 		</if>
 		<if test='keyword == "" and condition == "1"'>
 			and user_enabled = 1
@@ -65,7 +65,7 @@
 		<if test='keyword == "" and condition == "0"'>
 			and user_enabled = 0
 		</if>
-		<if test='keyword == "" and condition != "1" and condition != "0"'>
+		<if test='keyword == "" and condition != "1" and condition != "0" and condition != "all"'>
 			and user_authority = #{condition}
 		</if>
 		order by user_regdate asc
@@ -138,7 +138,7 @@
 	</select>
 	
 	<!--  지현 -->
-	<select id="getInspectorId" resultType="int">
+	<select id="getInspectorId" resultType="String">
 		
 			select user_id
 	

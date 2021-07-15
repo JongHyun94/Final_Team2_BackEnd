@@ -4,6 +4,8 @@ import java.io.File;
 
 import java.io.Writer;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -97,10 +99,26 @@ public class TreatmentController {
 	}
 
 	/* 진단 검사별 검사 리스트 */
+//	@GetMapping("/categoryValue")
+//	public void categoryInspectionList(@RequestParam String categoryValue,
+//			HttpServletRequest request, HttpServletResponse response) {
+//		List<InspectionLists> inspectionList = treatmentsService.getInspection(categoryValue);
+//		response.setContentType("application/json;charset=UTF-8");
+//		JSONObject jObj = new JSONObject();
+//		jObj.put("inspectionList", inspectionList);
+//		try {
+//			Writer writer = response.getWriter();
+//			writer.write(jObj.toString());
+//			writer.flush();
+//			writer.close();
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//	}
 	@GetMapping("/categoryValue")
-	public void categoryInspectionList(@RequestParam String categoryValue,
+	public void categoryInspectionList(
 			HttpServletRequest request, HttpServletResponse response) {
-		List<InspectionLists> inspectionList = treatmentsService.getInspection(categoryValue);
+		List<InspectionLists> inspectionList = treatmentsService.getInspection();
 		response.setContentType("application/json;charset=UTF-8");
 		JSONObject jObj = new JSONObject();
 		jObj.put("inspectionList", inspectionList);
@@ -114,6 +132,10 @@ public class TreatmentController {
 		}
 	}
 
+
+	
+	
+	
 	/* 환자 번호 별 진료 기록리스트 */
 	@GetMapping("/historyList")
 	public void read(@RequestParam int treatment_patient_id, HttpServletRequest request, HttpServletResponse response) {
@@ -157,21 +179,23 @@ public class TreatmentController {
 	@PutMapping("")
 	public void update(@RequestBody Treatments treatment,HttpServletResponse response) {
 
-	
-		logger.info("의사임: " +treatment.getTreatment_user_id());
-
 		List<Inspections> InspectionList = new ArrayList<Inspections>();
+		List<Inspections> InspectionList2 = new ArrayList<Inspections>();
 		List<DrugsInjections> DrugInjectionsList = new ArrayList<DrugsInjections>();
+		List<Users> Userlist = new ArrayList<Users>();
+		List<Users> Userlist2 = new ArrayList<Users>();
+		Userlist = treatmentsService.getInspectorId();
+		logger.info("userlist:2"+Userlist);
+		Collections.shuffle(Userlist);
+		Userlist2 = treatmentsService.getInspectorId();
+		Collections.shuffle(Userlist2);
+		logger.info("//////Collections.shuffle(Userlist)/////");
+		logger.info("userlist///"+Userlist);
 
-		int result1 = treatmentsService.update(treatment);
-		logger.info("카테고리 뭐냐: "+treatment.getInspectionOption());
 		/* 검사 */
+		int result1 = treatmentsService.update(treatment);
+		
 		int Inspection_id = 0;
-
-		List<Users> userid = treatmentsService.getInspectorId();
-		
-		logger.info("userlist:::"+userid);
-		
 		for(int i=0; i<treatment.getSelectedInspection().length;i++) {
 			Inspections newInspection = new Inspections();
 			newInspection.setInspection_patient_id(treatment.getTreatment_patient_id());
@@ -179,27 +203,45 @@ public class TreatmentController {
 			newInspection.setInspection_treatment_id(treatment.getTreatment_id());
 			newInspection.setInspection_state("대기");
 			newInspection.setInspection_result("");
-//			newInspection.setInspection_inspector_id();
-//			user_id = treatmentsService.getInspectorId(hcode, uauth);
-//			logger.info("user_id 뭐시당가?"+user_id);
-			
-			newInspection.setInspection_inspector_id("I138010001");
+//			newInspection.setInspection_inspector_id("I138010001");
 			newInspection.setInspection_list_category(treatment.getInspectionOption());
-//			newInspection.setInspection_lab("혈액검사실88");
-//			newInspection.setInspection_lab("영상검사실88");
-//			newInspection.setInspection_lab("");
-//			newInspection.setInspection_list_category(treatment.get);
-//			logger.info(""+newInspection.setInspection_list_category(treatment.getSelectedInspection()[i]));
-			logger.info("treatment.getSelectedInspection()[i] : "+treatment.getSelectedInspection()[i]);
 			Inspection_id = Integer.parseInt(treatment.getSelectedInspection()[i]);
-			logger.info("Inspection_id : "+Inspection_id);
-			
 			newInspection.setInspection_inspection_list_id(Inspection_id);
 			InspectionList.add(newInspection);
-			logger.info("InspectionList.get(i).getInspection_inspection_list_id(): "+InspectionList.get(i).getInspection_inspection_list_id());
+			for(int j=0; j< Userlist.size(); j++) {
+				String value1 = String.valueOf(Userlist.get(j));
+				newInspection.setInspection_inspector_id(value1);
+			}
 		}
 		int result2 = treatmentsService.createInspections(InspectionList);
+		
+		int Inspection_id2 = 0;
+		for(int i=0; i<treatment.getSelectedInspection2().length;i++) {
+			Inspections newInspection2 = new Inspections();
+			newInspection2.setInspection_patient_id(treatment.getTreatment_patient_id());
+			newInspection2.setInspection_doctor_id(treatment.getTreatment_user_id());
+			newInspection2.setInspection_treatment_id(treatment.getTreatment_id());
+			newInspection2.setInspection_state("대기");
+			newInspection2.setInspection_result("");
 
+			newInspection2.setInspection_list_category(treatment.getInspectionOption());
+			Inspection_id2 = Integer.parseInt(treatment.getSelectedInspection2()[i]);
+			newInspection2.setInspection_inspection_list_id(Inspection_id2);
+			InspectionList2.add(newInspection2);
+			for(int j=0; j< Userlist2.size(); j++) {
+				String value2 = String.valueOf(Userlist2.get(j));
+				newInspection2.setInspection_inspector_id(value2);
+			}
+		}
+		int result4 = treatmentsService.createInspections2(InspectionList2);
+
+		
+		
+		
+		
+		
+		
+		
 		/* 처방 */
 		for(int i=0; i<treatment.getSelectedDrug().length;i++) {
 			DrugsInjections newDrugInjections = new DrugsInjections();
@@ -218,6 +260,7 @@ public class TreatmentController {
 		jObj.put("result1", result1);
 		jObj.put("result2", result2);
 		jObj.put("result3", result3);
+		jObj.put("result4", result4);
 		try {
 			Writer writer = response.getWriter();
 			writer.write(jObj.toString());
