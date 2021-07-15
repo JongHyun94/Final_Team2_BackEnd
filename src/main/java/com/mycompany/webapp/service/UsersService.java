@@ -68,7 +68,6 @@ public class UsersService {
 	}
 
 	public Hospitals getHospital(String hid) {
-		// TODO Auto-generated method stub
 		return hospitalsDao.getHospital(hid);
 	}
 }

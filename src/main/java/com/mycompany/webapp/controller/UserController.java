@@ -23,11 +23,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.mycompany.webapp.dto.Users;
 import com.mycompany.webapp.service.UsersService;
 
-import com.twilio.*;
-import com.twilio.rest.api.*;
-import com.twilio.type.*;
-import com.twilio.twiml.*;
-
 
 @CrossOrigin(origins="*")
 @RestController
@@ -69,12 +64,10 @@ public class UserController {
 	// 검색 및 직책 선택 시 직원 목록
 	@GetMapping("/select")
 	public void list(HttpServletRequest request, HttpServletResponse response, 
-					@RequestParam(defaultValue = "") String keyword,
-					@RequestParam(defaultValue = "") String condition) {
-		List<Users> userList = usersService.getUsers(keyword, condition);
-//		logger.info(condition);
-		logger.info("조건: "+condition);
-		
+					@RequestParam String keyword,
+					@RequestParam String condition) {		
+		 List<Users> userList = usersService.getUsers(keyword, condition);
+			
 		for (int i = 0; i < userList.size(); i++) {
 			userList.get(i).setUser_tel1(userList.get(i).getUser_tel().split("-")[0]);
 			userList.get(i).setUser_tel2(userList.get(i).getUser_tel().split("-")[1]);
@@ -163,21 +156,8 @@ public class UserController {
 		usersService.createUser(user);
 		usersService.updateUsercount(hcode, uauth);
 		
+		
 		return user;
 	}	
 	
-//	public static final String ACCOUNT_SID = System.getenv("TWILIO_ACCOUNT_SID");
-//    public static final String AUTH_TOKEN = System.getenv("TWILIO_AUTH_TOKEN");
-//
-//    @GetMapping("/test")
-//    public static void main(String[] args) {
-//        Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
-//        Message message = Message.creator(
-//                new com.twilio.type.PhoneNumber("+820154872834"),
-//                new com.twilio.type.PhoneNumber("+15017122661"),
-//                "Hi there")
-//            .create();
-//
-//        System.out.println(message.getSid());
-//    }
 }
