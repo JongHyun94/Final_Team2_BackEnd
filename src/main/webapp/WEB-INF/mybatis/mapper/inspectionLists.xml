@@ -5,15 +5,23 @@
 <mapper namespace="com.mycompany.webapp.dao.InspectionListsDao">
 
 <!-- 지현 시작 -->
-	<select id="selectByInspectionlist" resultType="inspectionList">
+<!-- 	<select id="selectByInspectionlist" resultType="inspectionList">
 		select 
 			inspection_list_name,inspection_list_category, inspection_list_id
 		from 
 			inspection_lists
 		where
 			inspection_list_category = #{categoryValue}
-	</select>
+	</select> -->
 	<!-- inspection_list_category LIKE CONCAT('%',#{categoryValue},'%') -->
+	
+		<select id="selectByInspectionlist" resultType="inspectionList">
+		select 
+			inspection_list_name,inspection_list_category, inspection_list_id
+		from 
+			inspection_lists
+	
+	</select>
 <!-- 지현 끝 -->	
 
 </mapper>

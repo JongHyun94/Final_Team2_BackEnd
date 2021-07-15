@@ -15,4 +15,5 @@ public interface InspectionsDao {
 	public int updateState(@Param("inspectionId") int inspectionId, @Param("state") String state);
 	public int updateResult(@Param("inspectionId") int inspectionId, @Param("inspectionResult") String inspectionResult);
 	public int insertInspections(Inspections inspection);
+	public int insertInspections2(Inspections inspection);
 }

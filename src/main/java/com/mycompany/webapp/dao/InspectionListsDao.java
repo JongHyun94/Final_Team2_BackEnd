@@ -10,8 +10,8 @@ import com.mycompany.webapp.dto.InspectionLists;
 @Mapper
 public interface InspectionListsDao {
 
-	public List<InspectionLists> selectByInspectionlist(String categoryValue);
+	public List<InspectionLists> selectByInspectionlist();
 	
-	
+//	public List<InspectionLists> selectByInspectionlist(String categoryValue);
 
 }
