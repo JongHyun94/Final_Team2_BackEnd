@@ -66,7 +66,10 @@ public class AuthController {
 				}
 			}
 		}
-					
+		
+		String uauthority = dbUser.getUser_authority();
+		map.put("uauthority", uauthority);
+		
 		String hid = dbUser.getUser_hospital_id();
 		Hospitals hospital = usersService.getHospital(hid);
 		
@@ -83,9 +86,9 @@ public class AuthController {
 		map.put("hlat", hlat);
 		map.put("hlong", hlong);
 		//37.52684965592309, 127.10834881127674
+		
 		//사용자 인증
-	    UsernamePasswordAuthenticationToken upat = new UsernamePasswordAuthenticationToken(uid, upassword);			
-		//Authentication 	authentication = authenticationManager.authenticate(upat);
+	    UsernamePasswordAuthenticationToken upat = new UsernamePasswordAuthenticationToken(uid, upassword);		
 		
 		//Spring Security에 인증 객체 등록
 	    Authentication authentication = authenticationManager.authenticate(upat);
