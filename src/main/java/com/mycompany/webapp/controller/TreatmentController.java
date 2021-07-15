@@ -52,14 +52,10 @@ public class TreatmentController {
 	/* 진료대기환자 리스트 */
 	@GetMapping("/treatmentlist") 
 	public void list(HttpServletRequest request, HttpServletResponse response,
-			@RequestParam String date, @RequestParam(defaultValue = "") String state){ 
+			@RequestParam String date, @RequestParam(defaultValue = "") String state, @RequestParam String globalUid ){ 
 
 		// 해당 날짜의 접수 내역 불러오기
-		List<Treatments> treatmentlist = treatmentsService.getAllTreatment(date, state);
-
-		//		logger.info("" + treatmentlist.get(0).getTreatment_omemo());
-		//		logger.info("" + treatmentlist.get(1).getTreatment_amemo());
-
+		List<Treatments> treatmentlist = treatmentsService.getAllTreatment(date, state, globalUid);
 		for(int i = 0; i< treatmentlist.size(); i++) {
 			treatmentlist.get(i).setPatient_ssn(treatmentlist.get(i).getPatient_ssn().split("-")[0]);
 		}
@@ -79,6 +75,31 @@ public class TreatmentController {
 
 	}
 
+//	/* 진료대기환자 리스트 */
+//	@GetMapping("/treatmentlist") 
+//	public void list(HttpServletRequest request, HttpServletResponse response,
+//			@RequestParam String date, @RequestParam(defaultValue = "") String state){ 
+//
+//		// 해당 날짜의 접수 내역 불러오기
+//		List<Treatments> treatmentlist = treatmentsService.getAllTreatment(date, state);
+//		for(int i = 0; i< treatmentlist.size(); i++) {
+//			treatmentlist.get(i).setPatient_ssn(treatmentlist.get(i).getPatient_ssn().split("-")[0]);
+//		}
+//
+//		response.setContentType("application/json;charset=UTF-8");
+//
+//		JSONObject jObj = new JSONObject();
+//		jObj.put("treatmentlist", treatmentlist);
+//		try {
+//			Writer writer = response.getWriter();
+//			writer.write(jObj.toString());
+//			writer.flush();
+//			writer.close();
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//
+//	}
 	/* 약/주사 키워드 검색 */
 	@GetMapping("/keyword")
 	public void searchDrug(@RequestParam(defaultValue = "") String keyword, HttpServletRequest request,
@@ -184,10 +205,10 @@ public class TreatmentController {
 		List<DrugsInjections> DrugInjectionsList = new ArrayList<DrugsInjections>();
 		List<Users> Userlist = new ArrayList<Users>();
 		List<Users> Userlist2 = new ArrayList<Users>();
-		Userlist = treatmentsService.getInspectorId();
+		Userlist = treatmentsService.getBloodInspectorId();
 		logger.info("userlist:2"+Userlist);
 		Collections.shuffle(Userlist);
-		Userlist2 = treatmentsService.getInspectorId();
+		Userlist2 = treatmentsService.getImgInspectorId();
 		Collections.shuffle(Userlist2);
 		logger.info("//////Collections.shuffle(Userlist)/////");
 		logger.info("userlist///"+Userlist);

@@ -40,11 +40,14 @@ public class TreatmentsService {
 	@Autowired
 	private UsersDao usersDao;
 	
-	public List<Treatments> getAllTreatment(String date_time, String state) {
-		List<Treatments> treatmentslist = treatmentsDao.selectAllTreatment(date_time, state);
+//	public List<Treatments> getAllTreatment(String date_time, String state) {
+//		List<Treatments> treatmentslist = treatmentsDao.selectAllTreatment(date_time, state);
+//		return treatmentslist;
+//	}
+	public List<Treatments> getAllTreatment(String date_time, String state,String globalUid) {
+		List<Treatments> treatmentslist = treatmentsDao.selectAllTreatment(date_time, state, globalUid);
 		return treatmentslist;
 	}
-	
 	
 //	 public List<Treatments> getAllTreatment() { List<Treatments> treatmentslist =
 //	 treatmentsDao.selectAllTreatment(); return treatmentslist; }
@@ -154,9 +157,14 @@ public class TreatmentsService {
 //		return 0;
 //	}
 
-	public List<Users> getInspectorId() {
-		List<Users> InspectorId = usersDao.getInspectorId();
-		return InspectorId;
+	public List<Users> getBloodInspectorId() {
+		List<Users> BloodInspectorId = usersDao.getBloodInspectorId();
+		return BloodInspectorId;
+	}
+	
+	public List<Users> getImgInspectorId() {
+		List<Users> ImgInspectorId = usersDao.getImgInspectorId();
+		return ImgInspectorId;
 	}
 
 
