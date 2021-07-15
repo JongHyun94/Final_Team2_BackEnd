@@ -138,7 +138,7 @@
 	</select>
 	
 	<!--  지현 -->
-	<select id="getInspectorId" resultType="int">
+	<select id="getInspectorId" resultType="String">
 		
 			select user_id
 	
