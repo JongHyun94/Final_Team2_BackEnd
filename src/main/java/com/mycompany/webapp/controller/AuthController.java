@@ -127,6 +127,8 @@ public class AuthController {
 		boolean result = bpe.matches(user.getOld_password(), user.getUser_password());
 		if (result) {
 			user.setUser_password(bpe.encode(user.getNew_password()));
+			user.setUser_tel(user.getUser_tel1() + "-" + user.getUser_tel2() + "-" + user.getUser_tel3());
+			user.setUser_email(user.getUser_email1() + "@" + user.getUser_email2());
 //			usersService.updateUser(user);
 			return "success";
 		} else {
