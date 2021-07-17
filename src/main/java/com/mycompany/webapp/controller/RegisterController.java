@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.mycompany.webapp.dto.Patients;
 import com.mycompany.webapp.dto.Registers;
+import com.mycompany.webapp.dto.RegistersCountByDate;
 import com.mycompany.webapp.dto.Schedules;
 import com.mycompany.webapp.dto.Users;
 import com.mycompany.webapp.service.RegistersService;
@@ -237,6 +238,24 @@ public class RegisterController {
 		response.setContentType("application/json;charset=UTF-8");
 		JSONObject jObj = new JSONObject();
 		jObj.put("result", result);
+		try {
+			Writer writer = response.getWriter();
+			writer.write(jObj.toString());
+			writer.flush();
+			writer.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	// 해당 날짜의 접수 내역 불러오기
+	@GetMapping("/calendar")
+	public void getRegisterByDoctor(HttpServletRequest request, HttpServletResponse response, @RequestParam String date, @RequestParam String user_id){ 	
+		logger.info(date);
+		List<RegistersCountByDate> registerList = registersService.getRegisterByDoctor(user_id, date);
+		response.setContentType("application/json;charset=UTF-8");
+		JSONObject jObj = new JSONObject();
+		jObj.put("registerList", registerList);
 		try {
 			Writer writer = response.getWriter();
 			writer.write(jObj.toString());

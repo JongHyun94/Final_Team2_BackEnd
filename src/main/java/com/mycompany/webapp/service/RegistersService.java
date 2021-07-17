@@ -16,6 +16,7 @@ import com.mycompany.webapp.dao.TreatmentsDao;
 import com.mycompany.webapp.dao.UsersDao;
 import com.mycompany.webapp.dto.Patients;
 import com.mycompany.webapp.dto.Registers;
+import com.mycompany.webapp.dto.RegistersCountByDate;
 import com.mycompany.webapp.dto.Schedules;
 import com.mycompany.webapp.dto.Users;
 
@@ -49,16 +50,13 @@ public class RegistersService {
 		int row = registersDao.checkRegister(register);
 		if(row > 0) {
 			if(register.getRegister_state().equals("취소")) {
-				logger.info("if안");
-				int delete = registersDao.deleteRegister(register);
-				//register.setRegister_state("대기");
+				//int delete = registersDao.deleteRegister(register);
 				int result = registersDao.insertNewRegister2(register);
 				return "성공";
 			} else {
 				return "중복";				
 			}
 		} else {
-			logger.info("if밖");
 			int result = registersDao.insertNewRegister(register);
 			return "성공";
 		}
@@ -69,10 +67,10 @@ public class RegistersService {
 		if(row > 0) {
 			int count = registersDao.checkSameRegister(register);
 			if(count > 0) {
+				return "중복";				
+			} else {
 				int result = registersDao.updateRegister(register);
 				return "성공";
-			} else {
-				return "중복";				
 			}
 		} else {
 			int result = registersDao.updateRegister(register);
@@ -123,5 +121,10 @@ public class RegistersService {
 	public int deleteToDoList(int schedule_id) {
 		int result = schedulesDao.deleteToDoList(schedule_id);
 		return result;
+	}
+
+	public List<RegistersCountByDate> getRegisterByDoctor(String user_id, String date) {
+		List<RegistersCountByDate> registerList = registersDao.selectRegisterByDoctor(user_id, date);
+		return registerList;
 	}
 }

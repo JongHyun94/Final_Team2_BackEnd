@@ -6,11 +6,8 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
-import com.mycompany.webapp.dto.Data1;
-import com.mycompany.webapp.dto.Data2;
-import com.mycompany.webapp.dto.Data3;
-import com.mycompany.webapp.dto.Data4;
 import com.mycompany.webapp.dto.Registers;
+import com.mycompany.webapp.dto.RegistersCountByDate;
 
 @Mapper
 public interface RegistersDao {
@@ -33,12 +30,14 @@ public interface RegistersDao {
 	
 	List<Registers> selectThreeMonths();
 
-	List<Data2> selectRegistersState();
+	List<Registers> selectRegistersState();
 
 	List<Registers> selectPatientsByDays();
 
 	List<Registers> selectQuatersState();
 
 	int deleteRegister(Registers register);
+
+	List<RegistersCountByDate> selectRegisterByDoctor(@Param("register_user_id")String user_id, @Param("register_date")String date);
 
 }
