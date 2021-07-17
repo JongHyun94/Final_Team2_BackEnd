@@ -139,7 +139,6 @@
 		where
 		register_date=#{register_date}
 		and register_user_id=#{register_user_id}
-		and register_patient_id=#{register_patient_id}
 		and register_state!="Ãë¼Ò"
 	</select>
 
