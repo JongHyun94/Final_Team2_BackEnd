@@ -8,10 +8,6 @@ import org.springframework.stereotype.Service;
 import com.mycompany.webapp.dao.PatientsDao;
 import com.mycompany.webapp.dao.RegistersDao;
 import com.mycompany.webapp.dao.TreatmentsDao;
-import com.mycompany.webapp.dto.Data1;
-import com.mycompany.webapp.dto.Data2;
-import com.mycompany.webapp.dto.Data3;
-import com.mycompany.webapp.dto.Data4;
 import com.mycompany.webapp.dto.Registers;
 
 @Service
@@ -29,8 +25,8 @@ public class DataService {
 		return registers;
 	}
 	
-	public List<Data2> getData2() {
-		List<Data2> data2 = registersDao.selectRegistersState();
+	public List<Registers> getData2() {
+		List<Registers> data2 = registersDao.selectRegistersState();
 		return data2;
 	}
 	public List<Registers> getData3() {

@@ -16,10 +16,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.mycompany.webapp.dto.Data1;
-import com.mycompany.webapp.dto.Data2;
-import com.mycompany.webapp.dto.Data3;
-import com.mycompany.webapp.dto.Data4;
 import com.mycompany.webapp.dto.Registers;
 import com.mycompany.webapp.service.DataService;
 
@@ -35,13 +31,13 @@ public class DataController {
 	public void getData(HttpServletRequest request, HttpServletResponse response) {
 		
 		List<Registers> data1 = dataService.getData1();
-		//List<Data2> data2 = dataService.getData2();
+		List<Registers> data2 = dataService.getData2();
 		List<Registers> data3 = dataService.getData3();
 		List<Registers> data4 = dataService.getData4();
 		response.setContentType("application/json;charset=UTF-8");
 		JSONObject jObj = new JSONObject();
 		jObj.put("data1", data1);
-		//jObj.put("data2", data2);
+		jObj.put("data2", data2);
 		jObj.put("data3", data3);
 		jObj.put("data4", data4);
 		try {
