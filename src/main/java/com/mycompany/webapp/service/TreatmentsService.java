@@ -40,11 +40,14 @@ public class TreatmentsService {
 	@Autowired
 	private UsersDao usersDao;
 	
-	public List<Treatments> getAllTreatment(String date_time, String state) {
-		List<Treatments> treatmentslist = treatmentsDao.selectAllTreatment(date_time, state);
+//	public List<Treatments> getAllTreatment(String date_time, String state) {
+//		List<Treatments> treatmentslist = treatmentsDao.selectAllTreatment(date_time, state);
+//		return treatmentslist;
+//	}
+	public List<Treatments> getAllTreatment(String date_time, String state,String globalUid) {
+		List<Treatments> treatmentslist = treatmentsDao.selectAllTreatment(date_time, state, globalUid);
 		return treatmentslist;
 	}
-	
 	
 //	 public List<Treatments> getAllTreatment() { List<Treatments> treatmentslist =
 //	 treatmentsDao.selectAllTreatment(); return treatmentslist; }
@@ -81,12 +84,20 @@ public class TreatmentsService {
 
 
 	
-	public List<DrugsInjectionsLists> getDrug(String keyword) {
+//	public List<DrugsInjectionsLists> getDrug(String keyword) {
+////		logger.info("asddsdddaaaaa"+keyword);
+//		List<DrugsInjectionsLists> list = drugsInjectionsListsDao.selectByDruglist(keyword);
+////		logger.info("aaaaaaaaa"+list.get(1).getDrug_injection_list_category());
+//		return list;
+//	}
+	
+	public List<DrugsInjectionsLists> getDrug(String keyword, String condition) {
 //		logger.info("asddsdddaaaaa"+keyword);
-		List<DrugsInjectionsLists> list = drugsInjectionsListsDao.selectByDruglist(keyword);
+		List<DrugsInjectionsLists> list = drugsInjectionsListsDao.selectByDruglist(keyword, condition);
 //		logger.info("aaaaaaaaa"+list.get(1).getDrug_injection_list_category());
 		return list;
 	}
+
 
 	
 //	public List<InspectionLists> getInspection(String categoryValue) {
@@ -154,9 +165,14 @@ public class TreatmentsService {
 //		return 0;
 //	}
 
-	public List<Users> getInspectorId() {
-		List<Users> InspectorId = usersDao.getInspectorId();
-		return InspectorId;
+	public List<Users> getBloodInspectorId() {
+		List<Users> BloodInspectorId = usersDao.getBloodInspectorId();
+		return BloodInspectorId;
+	}
+	
+	public List<Users> getImgInspectorId() {
+		List<Users> ImgInspectorId = usersDao.getImgInspectorId();
+		return ImgInspectorId;
 	}
 
 

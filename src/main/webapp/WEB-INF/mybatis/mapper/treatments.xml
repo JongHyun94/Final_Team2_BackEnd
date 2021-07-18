@@ -14,6 +14,30 @@
 
 
 	<select id="selectAllTreatment" resultType="treatment">
+		select
+		t.treatment_id,t.treatment_register_id, t.treatment_user_id,
+		t.treatment_patient_id,
+		r.register_communication, p.patient_name, p.patient_sex,p.patient_ssn,
+		r.register_starttime, t.treatment_state
+		from treatments t, registers r, patients p
+		where 
+		str_to_date(register_starttime,'%Y-%m-%d')=str_to_date(#{register_starttime},'%Y-%m-%d') 
+		and treatment_register_id = register_id 
+		and treatment_patient_id = patient_id
+		<if test="state=='' and globalUid != 'D138010001'">
+		and treatment_user_id = #{globalUid}
+		</if> 
+		<if test="state!='' and globalUid != 'D138010001'">
+		and treatment_state=#{state}
+		and treatment_user_id = #{globalUid}
+		</if>	
+
+		<if test="state!='' and globalUid == 'D138010001'">
+		and treatment_state=#{state}
+		</if>	
+	</select>
+	
+	<!-- 	<select id="selectAllTreatment" resultType="treatment">
 
 		select
 		t.treatment_id,t.treatment_register_id, t.treatment_user_id,
@@ -38,7 +62,7 @@
 		and treatment_patient_id = patient_id
 		and treatment_state=#{state}
 		</if>
-	</select>
+	</select> -->
 
 	<update id="update" parameterType="treatment">
 

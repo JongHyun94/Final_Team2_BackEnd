@@ -105,18 +105,9 @@ public class UserController {
 	//직원 활성화 및 비활성화
 	@PutMapping("/enabled")
 	public void updateEnabled(HttpServletRequest request, HttpServletResponse response, @RequestBody Users user) {
-		logger.info("활성화"+user.getUser_id());
-		logger.info("활성화"+user.getUser_enabled());
 		usersService.updateEnabled(user);
 	}
-	
-	//직원 삭제
-//	@DeleteMapping("")
-//	public void delete(HttpServletRequest request, HttpServletResponse response, @RequestParam String user_id) {
-//		logger.info("직원삭제:" + user_id);
-//		usersService.deleteUser(user_id);
-//	}
-	
+		
 	//직원 등록
 	@PostMapping("")
 	public Users create(HttpServletRequest request, HttpServletResponse response, @RequestBody Users user) {		
@@ -150,12 +141,14 @@ public class UserController {
 		
 		user.setUser_id(user_id);
 		user.setUser_password(password);
+		user.setUser_ssn(user.getUser_ssn1() + "-" + user.getUser_ssn2());
+		user.setUser_tel(user.getUser_tel1() + "-" + user.getUser_tel2() + "-" + user.getUser_tel3());
+		user.setUser_email(user.getUser_email1() + "@" + user.getUser_email2());
 		
 		logger.info("count: " + count);
 		
 		usersService.createUser(user);
-		usersService.updateUsercount(hcode, uauth);
-		
+		usersService.updateUsercount(hcode, uauth);		
 		
 		return user;
 	}	

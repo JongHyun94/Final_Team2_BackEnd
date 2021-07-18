@@ -13,7 +13,7 @@ import com.mycompany.webapp.dto.Treatments;
 @Mapper
 public interface TreatmentsDao {
 	
-	public List<Treatments> selectAllTreatment(@Param("register_starttime")String date_time,@Param("state") String state);
+//	public List<Treatments> selectAllTreatment(@Param("register_starttime")String date_time,@Param("state") String state);
 //	 public List<Treatments> selectAllTreatment(); 
 	
 	/* public int insert(Treatments treatment); */

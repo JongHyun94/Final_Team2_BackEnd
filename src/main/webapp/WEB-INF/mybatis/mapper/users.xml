@@ -139,14 +139,25 @@
 	</select>
 	
 	<!--  지현 -->
-	<select id="getInspectorId" resultType="String">
-		
-			select user_id
-	
+	<select id="getBloodInspectorId" resultType="String">	
+		select user_id
 		from users
 		where 
 		user_hospital_id = "138010"
 		and
 		USER_AUTHORITY = "ROLE_INSPECTOR"
+		and
+		user_id between "I138010001" and "I138010005"
 	</select>
+		<select id="getImgInspectorId" resultType="String">	
+		select user_id
+		from users
+		where 
+		user_hospital_id = "138010"
+		and
+		USER_AUTHORITY = "ROLE_INSPECTOR"
+		and
+		user_id between "I138010006" and "I138010010"
+	</select>
+	
 </mapper>
