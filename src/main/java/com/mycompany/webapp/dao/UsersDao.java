@@ -23,5 +23,7 @@ public interface UsersDao {
 	public void updateEnabled(Users user);
 	
 	//지현
-	public List<Users> getInspectorId();		
+//	public List<Users> getInspectorId();
+	public List<Users> getBloodInspectorId();
+	public List<Users> getImgInspectorId();
 }

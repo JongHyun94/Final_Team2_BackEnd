@@ -14,7 +14,7 @@ import com.mycompany.webapp.dto.Treatments;
 @Mapper
 public interface TreatmentsDao {
 	
-	public List<Treatments> selectAllTreatment(@Param("register_starttime")String date_time,@Param("state") String state);
+//	public List<Treatments> selectAllTreatment(@Param("register_starttime")String date_time,@Param("state") String state);
 //	 public List<Treatments> selectAllTreatment(); 
 	
 	/* public int insert(Treatments treatment); */
@@ -38,5 +38,7 @@ public interface TreatmentsDao {
 
 	// 최근 3달 진료수
 	public List<Data1> selectThreeMonths();
+
+	public List<Treatments> selectAllTreatment(@Param("register_starttime")String date_time,@Param("state") String state,@Param("globalUid") String globalUid);
 	
 }
