@@ -102,10 +102,10 @@ public class TreatmentController {
 //	}
 	/* 약/주사 키워드 검색 */
 	@GetMapping("/keyword")
-	public void searchDrug(@RequestParam(defaultValue = "") String keyword, HttpServletRequest request,
+	public void searchDrug(@RequestParam(defaultValue = "") String keyword,@RequestParam(defaultValue = "") String condition, HttpServletRequest request,
 			HttpServletResponse response) {
 		//		logger.info("qtqtqt"+keyword);
-		List<DrugsInjectionsLists> druglist = treatmentsService.getDrug(keyword);
+		List<DrugsInjectionsLists> druglist = treatmentsService.getDrug(keyword, condition);
 		response.setContentType("application/json;charset=UTF-8");
 		JSONObject jObj = new JSONObject();
 		jObj.put("druglist", druglist);
@@ -118,6 +118,25 @@ public class TreatmentController {
 			e.printStackTrace();
 		}
 	}
+	
+//	/* 약/주사 키워드 검색 */
+//	@GetMapping("/keyword")
+//	public void searchDrug(@RequestParam(defaultValue = "") String keyword, HttpServletRequest request,
+//			HttpServletResponse response) {
+//		//		logger.info("qtqtqt"+keyword);
+//		List<DrugsInjectionsLists> druglist = treatmentsService.getDrug(keyword);
+//		response.setContentType("application/json;charset=UTF-8");
+//		JSONObject jObj = new JSONObject();
+//		jObj.put("druglist", druglist);
+//		try {
+//			Writer writer = response.getWriter();
+//			writer.write(jObj.toString());
+//			writer.flush();
+//			writer.close();
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//	}
 
 	/* 진단 검사별 검사 리스트 */
 //	@GetMapping("/categoryValue")

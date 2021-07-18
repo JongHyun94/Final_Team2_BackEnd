@@ -84,12 +84,20 @@ public class TreatmentsService {
 
 
 	
-	public List<DrugsInjectionsLists> getDrug(String keyword) {
+//	public List<DrugsInjectionsLists> getDrug(String keyword) {
+////		logger.info("asddsdddaaaaa"+keyword);
+//		List<DrugsInjectionsLists> list = drugsInjectionsListsDao.selectByDruglist(keyword);
+////		logger.info("aaaaaaaaa"+list.get(1).getDrug_injection_list_category());
+//		return list;
+//	}
+	
+	public List<DrugsInjectionsLists> getDrug(String keyword, String condition) {
 //		logger.info("asddsdddaaaaa"+keyword);
-		List<DrugsInjectionsLists> list = drugsInjectionsListsDao.selectByDruglist(keyword);
+		List<DrugsInjectionsLists> list = drugsInjectionsListsDao.selectByDruglist(keyword, condition);
 //		logger.info("aaaaaaaaa"+list.get(1).getDrug_injection_list_category());
 		return list;
 	}
+
 
 	
 //	public List<InspectionLists> getInspection(String categoryValue) {
