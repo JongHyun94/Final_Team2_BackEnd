@@ -146,7 +146,7 @@
 		str_to_date(#{treatmentDate}, '%Y-%m-%d')
 		and treatment_istate = #{state}
 		</if>
-		<!-- and treatment_type = 1 -->
+		and treatment_type = 1
 		order by treatment_id
 	</select>
 	
