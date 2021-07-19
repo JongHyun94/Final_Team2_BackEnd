@@ -27,6 +27,8 @@ public interface TreatmentsDao {
 //	public Treatments selectByTreatment(int treatment_id);
 	
 	public List<Treatments> selectTreatments(@Param("treatmentDate") String treatmentDate, @Param("state") String state);
+	
+	public int updateIstateW(int treatmentId);
 
 	public int updateIstateI(int treatmentId);
 	

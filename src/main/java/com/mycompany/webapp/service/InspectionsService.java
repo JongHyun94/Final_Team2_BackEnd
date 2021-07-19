@@ -35,6 +35,18 @@ public class InspectionsService {
 		List<Treatments> treatmentsList = treatmentsDao.selectTreatments(treatmentDate, state);
 		return treatmentsList;
 	}
+	
+	public boolean istateW(int treatmentId) {
+		try {
+			int row = treatmentsDao.updateIstateW(treatmentId);
+			if(row != 1) {
+				return false;
+			}
+		} catch(NullPointerException e) {
+			return false;
+		}
+		return true;
+	}
 
 	public boolean istateI(int treatmentId) {
 		try {
@@ -89,7 +101,6 @@ public class InspectionsService {
 		return true;
 	}
 
-	//수정필요
 	public List<InspectionImgs> getInspectionImgId(int inspectionId) {
 		List<InspectionImgs> inspectionImgList = inspectionImgsDao.selectInspectionImgs(inspectionId);
 		return inspectionImgList;
@@ -107,7 +118,7 @@ public class InspectionsService {
 			
 			response.setHeader("Content-Disposition", "attachment; filename=\"" + inspection_img_oname + inspection_img_type + "\";");
 			
-			InputStream is = new FileInputStream("C:/Users/ant94/Documents/JavaProject/uploadfiles/" + inspectionImg.getInspection_img_sname());
+			InputStream is = new FileInputStream("D:/uploadfiles/" + inspectionImg.getInspection_img_sname());
 			OutputStream os = response.getOutputStream();
 			FileCopyUtils.copy(is, os);
 			os.flush();
