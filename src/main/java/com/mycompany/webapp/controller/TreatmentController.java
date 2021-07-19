@@ -225,13 +225,14 @@ public class TreatmentController {
 		List<Users> Userlist = new ArrayList<Users>();
 		List<Users> Userlist2 = new ArrayList<Users>();
 		Userlist = treatmentsService.getBloodInspectorId();
-		logger.info("userlist:2"+Userlist);
-		Collections.shuffle(Userlist);
 		Userlist2 = treatmentsService.getImgInspectorId();
+		logger.info("userlist///"+Userlist);
+		logger.info("userlist:2"+Userlist2);
+		Collections.shuffle(Userlist);
 		Collections.shuffle(Userlist2);
 		logger.info("//////Collections.shuffle(Userlist)/////");
 		logger.info("userlist///"+Userlist);
-
+		logger.info("userlist:2"+Userlist2);
 		/* 검사 */
 		int result1 = treatmentsService.update(treatment);
 		

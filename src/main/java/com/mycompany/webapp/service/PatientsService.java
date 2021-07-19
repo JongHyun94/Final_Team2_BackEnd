@@ -31,4 +31,8 @@ public class PatientsService {
 		return count;
 	}
 
+	public int getUnique(String patient_ssn2) {
+		return patientsDao.getUnique(patient_ssn2);
+	}
+
 }
