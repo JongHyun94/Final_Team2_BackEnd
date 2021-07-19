@@ -62,6 +62,12 @@ public class TreatmentsService {
 //		logger.info("맵맵맵");
 		return treatmentsDao.update(treatment);
 	}
+	
+	public int update1(Treatments treatment) {
+		// TODO Auto-generated method stub
+		return treatmentsDao.update1(treatment);
+	}
+
 
 
 	public List<Treatments> getHistoryList(int treatment_patient_id) {
@@ -148,6 +154,7 @@ public class TreatmentsService {
 			count = inspectionsDao.insertInspections(inspections.get(i));
 			result = result + count;
 		}
+		logger.info("cpun"+count);
 		return count;
 	}
 	public int createInspections2(List<Inspections> InspectionList2) {
@@ -174,6 +181,7 @@ public class TreatmentsService {
 		List<Users> ImgInspectorId = usersDao.getImgInspectorId();
 		return ImgInspectorId;
 	}
+
 
 
 	

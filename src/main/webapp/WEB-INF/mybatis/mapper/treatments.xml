@@ -73,7 +73,23 @@
       		treatment_amemo = #{treatment_amemo},treatment_pmemo = #{treatment_pmemo},
       		treatment_communication = #{treatment_communication},
       		treatment_date=now(),
-      		treatment_state="완료"		
+      		treatment_state="완료",
+      		TREATMENT_TYPE = "0"		
+      where 
+      		treatment_id=#{treatment_id};
+   </update>
+   
+   <update id="update1" parameterType="treatment">
+
+      update 
+      		treatments 
+      set 
+      		treatment_smemo = #{treatment_smemo},treatment_omemo = #{treatment_omemo},
+      		treatment_amemo = #{treatment_amemo},treatment_pmemo = #{treatment_pmemo},
+      		treatment_communication = #{treatment_communication},
+      		treatment_date=now(),
+      		treatment_state="완료",
+      		TREATMENT_TYPE = "1"		
       where 
       		treatment_id=#{treatment_id};
    </update>

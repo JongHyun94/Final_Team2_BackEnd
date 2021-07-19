@@ -233,8 +233,7 @@ public class TreatmentController {
 		logger.info("//////Collections.shuffle(Userlist)/////");
 		logger.info("userlist///"+Userlist);
 		logger.info("userlist:2"+Userlist2);
-		/* 검사 */
-		int result1 = treatmentsService.update(treatment);
+	
 		
 		int Inspection_id = 0;
 		for(int i=0; i<treatment.getSelectedInspection().length;i++) {
@@ -275,14 +274,6 @@ public class TreatmentController {
 			}
 		}
 		int result4 = treatmentsService.createInspections2(InspectionList2);
-
-		
-		
-		
-		
-		
-		
-		
 		/* 처방 */
 		for(int i=0; i<treatment.getSelectedDrug().length;i++) {
 			DrugsInjections newDrugInjections = new DrugsInjections();
@@ -295,7 +286,20 @@ public class TreatmentController {
 
 		}
 		int result3 = treatmentsService.createDrugsInjections(DrugInjectionsList);
-
+		logger.info("약품"+result3);
+		
+		logger.info("혈액"+result2);
+		logger.info("영상"+result4);
+		
+		int result1 = 0;
+	 
+			/* 검사 */
+			result1 = treatmentsService.update(treatment);
+		
+			if(result2 == 1 || result4 == 1) {
+				result1 = treatmentsService.update1(treatment);
+			}
+		
 		response.setContentType("application/json;charset=UTF-8");
 		JSONObject jObj = new JSONObject();
 		jObj.put("result1", result1);
