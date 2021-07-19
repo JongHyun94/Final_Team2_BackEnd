@@ -61,6 +61,17 @@ public class InspectionController {
 		}
 	}
 	
+	@PutMapping("/istateW")
+	public void updateIstateW(@RequestParam int treatmentId) {
+		boolean result = inspectionsService.istateW(treatmentId);
+
+		if(result) {
+			logger.info("istate 대기 변경 성공");
+		} else {
+			logger.info("istate 대기 변경 실패");
+		}
+	}
+	
 	@PutMapping("/istateI")
 	public void updateIstateI(@RequestParam int treatmentId) {
 		boolean result = inspectionsService.istateI(treatmentId);
@@ -124,7 +135,6 @@ public class InspectionController {
 		}
 	}
 	
-	//수정필요
 	@GetMapping("/imgId")
 	public void selectImgId(HttpServletResponse response, @RequestParam int inspectionId) {
 		List<InspectionImgs> inspectionImgList = inspectionsService.getInspectionImgId(inspectionId);
@@ -180,7 +190,7 @@ public class InspectionController {
 			 inspectionImgs.setInspection_img_sname(new Date().getTime() + "-" + mf.getOriginalFilename());
 			 inspectionImgs.setInspection_img_type(mf.getOriginalFilename().substring(mf.getOriginalFilename().lastIndexOf(".")));
 			 try {
-			    File file = new File("C:/Users/ant94/Documents/JavaProject/uploadfiles/" + inspectionImgs.getInspection_img_sname());
+			    File file = new File("D:/uploadfiles/" + inspectionImgs.getInspection_img_sname());
 			        mf.transferTo(file);
 			     } catch (Exception e) {
 			        e.printStackTrace();

@@ -138,7 +138,6 @@
 		treatment_patient_id = patient_id
 		and str_to_date(treatment_date, '%Y-%m-%d') =
 		str_to_date(#{treatmentDate}, '%Y-%m-%d')
-		order by treatment_id
 		</if>
 		<if test='state!="" '>
 		where
@@ -146,10 +145,16 @@
 		and str_to_date(treatment_date, '%Y-%m-%d') =
 		str_to_date(#{treatmentDate}, '%Y-%m-%d')
 		and treatment_istate = #{state}
-		order by treatment_id
 		</if>
+		<!-- and treatment_type = 1 -->
+		order by treatment_id
 	</select>
 	
+	<update id="updateIstateW">
+		update treatments set
+		treatment_istate = "대기"
+		where treatment_id = #{treatmentId}
+	</update>
 	<update id="updateIstateI">
 		update treatments set
 		treatment_istate = "검사"
