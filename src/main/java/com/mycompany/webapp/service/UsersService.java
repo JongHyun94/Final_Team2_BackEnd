@@ -70,4 +70,8 @@ public class UsersService {
 	public Hospitals getHospital(String hid) {
 		return hospitalsDao.getHospital(hid);
 	}
+
+	public int getSsnUniqe(String user_ssn2) {
+		return usersDao.selectSsnUnique(user_ssn2);
+	}
 }

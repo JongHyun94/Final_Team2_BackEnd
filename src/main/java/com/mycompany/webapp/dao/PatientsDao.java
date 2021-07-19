@@ -16,4 +16,5 @@ public interface PatientsDao {
 	public void updatePatient(Patients patient);
 	public void insertPatient(Patients patient);
 	public int getCount();
+	public int getUnique(String patient_ssn2);
 }

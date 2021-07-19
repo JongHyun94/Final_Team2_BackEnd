@@ -1,7 +1,9 @@
 package com.mycompany.webapp.controller;
 
 import java.io.Writer;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -110,47 +112,55 @@ public class UserController {
 		
 	//직원 등록
 	@PostMapping("")
-	public Users create(HttpServletRequest request, HttpServletResponse response, @RequestBody Users user) {		
-		String hcode = user.getUser_hospital_id();
-		String uauth = user.getUser_authority();
-		String user_id = "";		
+	public Map<String, String> create(HttpServletRequest request, HttpServletResponse response, @RequestBody Users user) {
+		Map<String, String> map = new HashMap<String, String>();
 		
-		int count = usersService.getCount(hcode, uauth) + 1;
-		
-		String index = "";
-		
-		if (count < 10 ) {
-			index = "00" + count;
-		} else if (count < 100) {
-			index = "0" + count;
+		if (usersService.getSsnUniqe(user.getUser_ssn2()) == 0) {				
+			String hcode = user.getUser_hospital_id();
+			String uauth = user.getUser_authority();
+			String user_id = "";		
+			
+			int count = usersService.getCount(hcode, uauth) + 1;
+			
+			String index = "";
+			
+			if (count < 10 ) {
+				index = "00" + count;
+			} else if (count < 100) {
+				index = "0" + count;
+			} else {
+				index = Integer.toString(count);
+			}
+			
+			if(uauth.equals("ROLE_DOCTOR")) {
+				user_id = "D" + hcode + index;
+			} else if(uauth.equals("ROLE_NURSE")) {
+				user_id = "N" + hcode + index;
+			} else if(uauth.equals("ROLE_INSPECTOR")) {
+				user_id = "I" + hcode + index;
+			}
+			
+			// 비밀번호 암호화
+			BCryptPasswordEncoder bpe = new BCryptPasswordEncoder();
+			String password = bpe.encode(user_id);
+			
+			user.setUser_id(user_id);
+			user.setUser_password(password);
+			user.setUser_ssn(user.getUser_ssn1() + "-" + user.getUser_ssn2());
+			user.setUser_tel(user.getUser_tel1() + "-" + user.getUser_tel2() + "-" + user.getUser_tel3());
+			user.setUser_email(user.getUser_email1() + "@" + user.getUser_email2());
+			
+			logger.info("count: " + count);
+			
+			usersService.createUser(user);
+			usersService.updateUsercount(hcode, uauth);	
+			
+			map.put("result", "success");
 		} else {
-			index = Integer.toString(count);
-		}
-		
-		if(uauth.equals("ROLE_DOCTOR")) {
-			user_id = "D" + hcode + index;
-		} else if(uauth.equals("ROLE_NURSE")) {
-			user_id = "N" + hcode + index;
-		} else if(uauth.equals("ROLE_INSPECTOR")) {
-			user_id = "I" + hcode + index;
-		}
-		
-		// 비밀번호 암호화
-		BCryptPasswordEncoder bpe = new BCryptPasswordEncoder();
-		String password = bpe.encode(user_id);
-		
-		user.setUser_id(user_id);
-		user.setUser_password(password);
-		user.setUser_ssn(user.getUser_ssn1() + "-" + user.getUser_ssn2());
-		user.setUser_tel(user.getUser_tel1() + "-" + user.getUser_tel2() + "-" + user.getUser_tel3());
-		user.setUser_email(user.getUser_email1() + "@" + user.getUser_email2());
-		
-		logger.info("count: " + count);
-		
-		usersService.createUser(user);
-		usersService.updateUsercount(hcode, uauth);		
-		
-		return user;
+			map.put("result", "notUnique");			
+		}	
+		return map;
 	}	
+	
 	
 }

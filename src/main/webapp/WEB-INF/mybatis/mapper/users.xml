@@ -83,7 +83,8 @@
 			user_address = #{user_address}, 
 			user_detailaddress1 = #{user_detailaddress1},
 			user_detailaddress2 = #{user_detailaddress2}, 
-			user_authority = #{user_authority}
+			user_authority = #{user_authority},
+			user_ssn = #{user_ssn}
 		<if test='user_password != null'>
 			, user_password = #{user_password}
 		</if>
@@ -127,6 +128,13 @@
 				#{user_authority},
 				#{user_ssn})
 	</insert>
+	
+	<!-- 주민등록번호 중복 검사 -->
+	<select id="selectSsnUnique" resultType="int">
+		select count(*)
+		from users
+		where user_ssn like concat('%', #{user_ssn2})
+	</select>
 
 	<!-- 회원 정보 읽기 -->
 	<select id="selectUser" resultType="user">
