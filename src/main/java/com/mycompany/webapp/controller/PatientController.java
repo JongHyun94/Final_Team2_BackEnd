@@ -1,7 +1,9 @@
 package com.mycompany.webapp.controller;
 
 import java.io.Writer;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -72,17 +74,24 @@ public class PatientController {
 	
 	//환자 등록
 	@PostMapping("") 
-	public Patients create(HttpServletRequest request, HttpServletResponse response, @RequestBody Patients patient) {
-		int count = patientsService.getCount() + 1;
-		patient.setPatient_id(count);
-		patient.setPatient_ssn(patient.getPatient_ssn1() + "-" + patient.getPatient_ssn2());
-		patient.setPatient_tel(patient.getPatient_tel1() + "-" + patient.getPatient_tel2() + "-" + patient.getPatient_tel3());
+	public Map<String, String> create(HttpServletRequest request, HttpServletResponse response, @RequestBody Patients patient) {
+		Map<String, String> map = new HashMap<String, String>();
 		
-		patientsService.createPatient(patient);
+		if (patientsService.getUnique(patient.getPatient_ssn2()) == 0) {				
+			int count = patientsService.getCount() + 1;
+			patient.setPatient_id(count);
+			patient.setPatient_ssn(patient.getPatient_ssn1() + "-" + patient.getPatient_ssn2());
+			patient.setPatient_tel(patient.getPatient_tel1() + "-" + patient.getPatient_tel2() + "-" + patient.getPatient_tel3());
+			
+			patientsService.createPatient(patient);
+			map.put("result", "success");
+		} else {
+			map.put("result", "notUnique");	
+		}
 		
 //		SendMessage msg = new SendMessage();
 //		msg.send("환자가 등록되었습니다.");
 		
-		return patient;
+		return map;
 	}
 }

@@ -26,4 +26,5 @@ public interface UsersDao {
 //	public List<Users> getInspectorId();
 	public List<Users> getBloodInspectorId();
 	public List<Users> getImgInspectorId();
+	public int selectSsnUnique(String user_ssn2);
 }
