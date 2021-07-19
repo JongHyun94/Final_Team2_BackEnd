@@ -106,6 +106,7 @@
 		where
 		t.treatment_user_id = u.user_id and
 		treatment_patient_id=#{treatment_patient_id}
+		order by treatment_date desc
 	</select>
 
 	<!-- <select id="selectByTreatment" resultType="treatment"> select t.treatment_id, 
