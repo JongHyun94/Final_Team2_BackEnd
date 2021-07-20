@@ -39,9 +39,8 @@ public class TreatmentController {
 
 	/* 진료대기환자 리스트 */
 	@GetMapping("/treatmentlist")
-	public void list(HttpServletRequest request, HttpServletResponse response,
-			String date,  String state,
-			@RequestParam String globalUid) {
+	public void list(HttpServletRequest request, HttpServletResponse response,String date, 
+			@RequestParam(defaultValue = "") String state, @RequestParam String globalUid) {
 
 		// 해당 날짜의 접수 내역 불러오기
 		List<Treatments> treatmentlist = treatmentsService.getAllTreatment(date, state, globalUid);
