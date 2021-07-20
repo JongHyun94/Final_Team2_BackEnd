@@ -40,7 +40,7 @@ public class TreatmentController {
 	/* 진료대기환자 리스트 */
 	@GetMapping("/treatmentlist")
 	public void list(HttpServletRequest request, HttpServletResponse response,
-			@RequestParam(defaultValue = "") String date, @RequestParam(defaultValue = "") String state,
+			String date,  String state,
 			@RequestParam String globalUid) {
 
 		// 해당 날짜의 접수 내역 불러오기
@@ -119,7 +119,7 @@ public class TreatmentController {
 
 	/* 환자 번호 별 진료 기록리스트 */
 	@GetMapping("/historyList")
-	public void read(@RequestParam(defaultValue = "0") int treatment_patient_id, HttpServletRequest request,
+	public void read(int treatment_patient_id, HttpServletRequest request,
 			HttpServletResponse response) {
 		List<Treatments> historylist = treatmentsService.getHistoryList(treatment_patient_id);
 		response.setContentType("application/json;charset=UTF-8");
@@ -138,7 +138,7 @@ public class TreatmentController {
 
 	/* 진료 번호 별 진료 상세 보기 (soap, 검사기록, 약처방기록) */
 	@GetMapping("/historyRead")
-	public void historyread(@RequestParam(defaultValue = "0") int treatment_id, HttpServletRequest request,
+	public void historyread(int treatment_id, HttpServletRequest request,
 			HttpServletResponse response) {
 		List<Treatments> treatmentSoaplist = treatmentsService.getTreatmentSoap(treatment_id);
 		List<Inspections> treatmentInspectionlist = treatmentsService.getTreatmentInspection(treatment_id);
