@@ -46,7 +46,7 @@ public class AuthController {
 		//인증 데이터 얻기
 		String uid = user.get("userId");
 		String upassword = user.get("userPassword");
-
+		
 		Map<String, String> map = new HashMap<String, String>();
 		
 		Users dbUser = usersService.getUser(uid);	
@@ -61,31 +61,29 @@ public class AuthController {
 			} else {
 				if (result) {			
 					map.put("result","success");
+					String uauthority = dbUser.getUser_authority();
+					map.put("uauthority", uauthority);
+					
+					String hid = dbUser.getUser_hospital_id();
+					Hospitals hospital = usersService.getHospital(hid);
+					
+					String hname = hospital.getHospital_name();
+					String haddress = hospital.getHospital_address();
+					String hurl = hospital.getHospital_url();
+					String hlat = hospital.getHospital_lat();
+					String hlong = hospital.getHospital_long();
+					
+					map.put("hid", hid);
+					map.put("hname", hname);
+					map.put("haddress", haddress);
+					map.put("hurl", hurl);
+					map.put("hlat", hlat);
+					map.put("hlong", hlong);
 				} else {
 					map.put("result", "notCorrectPW");
 				}
 			}
 		}
-		
-		String uauthority = dbUser.getUser_authority();
-		map.put("uauthority", uauthority);
-		
-		String hid = dbUser.getUser_hospital_id();
-		Hospitals hospital = usersService.getHospital(hid);
-		
-		String hname = hospital.getHospital_name();
-		String haddress = hospital.getHospital_address();
-		String hurl = hospital.getHospital_url();
-		String hlat = hospital.getHospital_lat();
-		String hlong = hospital.getHospital_long();
-		
-		map.put("hid", hid);
-		map.put("hname", hname);
-		map.put("haddress", haddress);
-		map.put("hurl", hurl);
-		map.put("hlat", hlat);
-		map.put("hlong", hlong);
-		//37.52684965592309, 127.10834881127674
 		
 		//사용자 인증
 	    UsernamePasswordAuthenticationToken upat = new UsernamePasswordAuthenticationToken(uid, upassword);		
@@ -129,7 +127,7 @@ public class AuthController {
 			user.setUser_password(bpe.encode(user.getNew_password()));
 			user.setUser_tel(user.getUser_tel1() + "-" + user.getUser_tel2() + "-" + user.getUser_tel3());
 			user.setUser_email(user.getUser_email1() + "@" + user.getUser_email2());
-//			usersService.updateUser(user);
+			usersService.updateUser(user);
 			return "success";
 		} else {
 			return "notCorrectPW";
