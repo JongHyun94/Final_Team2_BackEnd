@@ -150,7 +150,7 @@ public class UserController {
 			user.setUser_tel(user.getUser_tel1() + "-" + user.getUser_tel2() + "-" + user.getUser_tel3());
 			user.setUser_email(user.getUser_email1() + "@" + user.getUser_email2());
 			
-			logger.info("count: " + count);
+//			logger.info("count: " + count);
 			
 			usersService.createUser(user);
 			usersService.updateUsercount(hcode, uauth);	
