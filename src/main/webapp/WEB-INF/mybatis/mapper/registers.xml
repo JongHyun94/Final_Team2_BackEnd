@@ -131,6 +131,7 @@
 		where
 		register_date=#{register_date}
 		and register_user_id=#{register_user_id}
+		and (register_state="대기" or register_state="완료")
 	</select>
 
 	<select id="checkSameRegister" parameterType="register"
@@ -139,7 +140,8 @@
 		where
 		register_date=#{register_date}
 		and register_user_id=#{register_user_id}
-		and register_state!="취소"
+		and register_patient_id=#{register_patient_id}
+		and register_state="대기"
 	</select>
 
 
