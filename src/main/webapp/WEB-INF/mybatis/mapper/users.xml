@@ -151,21 +151,25 @@
 		select user_id
 		from users
 		where 
+		user_enabled = 1
+		and 
 		user_hospital_id = "138010"
 		and
 		USER_AUTHORITY = "ROLE_INSPECTOR"
 		and
-		user_id between "I138010001" and "I138010005"
+		user_id between "I138010001" and "I138010006"
 	</select>
-		<select id="getImgInspectorId" resultType="String">	
+	<select id="getImgInspectorId" resultType="String">	
 		select user_id
 		from users
-		where 
+		where
+		user_enabled = 1
+		and 
 		user_hospital_id = "138010"
 		and
 		USER_AUTHORITY = "ROLE_INSPECTOR"
 		and
-		user_id between "I138010006" and "I138010010"
+		user_id between "I138010007" and "I138010012"
 	</select>
 	
 </mapper>

@@ -19,6 +19,8 @@ public interface TreatmentsDao {
 	/* public int insert(Treatments treatment); */
 	
 	public int update(Treatments treatment);
+	
+	public int update1(Treatments treatment);
 
 	public List<Treatments> selectByPatientId(int treatment_patient_id);
 
@@ -27,6 +29,8 @@ public interface TreatmentsDao {
 //	public Treatments selectByTreatment(int treatment_id);
 	
 	public List<Treatments> selectTreatments(@Param("treatmentDate") String treatmentDate, @Param("state") String state);
+	
+	public int updateIstateW(int treatmentId);
 
 	public int updateIstateI(int treatmentId);
 	
@@ -36,5 +40,7 @@ public interface TreatmentsDao {
 	public int insertNewTreatment(Registers register);
 
 	public List<Treatments> selectAllTreatment(@Param("register_starttime")String date_time,@Param("state") String state,@Param("globalUid") String globalUid);
+
+	
 	
 }
