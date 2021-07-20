@@ -32,7 +32,7 @@ public class RegistersService {
 	private SchedulesDao schedulesDao;
 	@Autowired
 	private TreatmentsDao treatmentsDao;
-	
+
 	private static final Logger logger = LoggerFactory.getLogger(RegistersService.class);
 
 	public List<Registers> getAllRegisters() {
@@ -47,15 +47,11 @@ public class RegistersService {
 
 	public String createNewRegister(Registers register) {
 		logger.info(register.getRegister_state());
+		// 해당 시간에 해당 의사의 대기 완료 진료가 있니?
 		int row = registersDao.checkRegister(register);
+		// 있으면 
 		if(row > 0) {
-			if(register.getRegister_state().equals("취소")) {
-				//int delete = registersDao.deleteRegister(register);
-				int result = registersDao.insertNewRegister2(register);
-				return "성공";
-			} else {
-				return "중복";				
-			}
+			return "중복";				
 		} else {
 			int result = registersDao.insertNewRegister(register);
 			return "성공";
@@ -63,19 +59,36 @@ public class RegistersService {
 	}
 
 	public String changeRegister(Registers register) {
-		int row = registersDao.checkRegister(register);
-		if(row > 0) {
-			int count = registersDao.checkSameRegister(register);
-			if(count > 0) {
-				return "중복";				
+		// 같은 거니?
+		int count = registersDao.checkSameRegister(register);
+		// 맞으면 변경해
+		if(count>0) {
+			int result = registersDao.updateRegister(register);
+			return "성공";
+		} else {
+			// 다르면 바뀌는 곳을 체크해
+			int row = registersDao.checkRegister(register);
+			// 이미 있니?
+			if(row > 0) {
+				return "중복";
 			} else {
 				int result = registersDao.updateRegister(register);
 				return "성공";
 			}
-		} else {
-			int result = registersDao.updateRegister(register);
-			return "성공";
 		}
+//		int row = registersDao.checkRegister(register);
+//		if(row > 0) {
+//			int count = registersDao.checkSameRegister(register);
+//			if(count > 0) {
+//				return "중복";				
+//			} else {
+//				int result = registersDao.updateRegister(register);
+//				return "성공";
+//			}
+//		} else {
+//			int result = registersDao.updateRegister(register);
+//			return "성공";
+//		}
 	}
 
 	public int changeStateRegister(Registers register) {
