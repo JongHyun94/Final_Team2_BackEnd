@@ -32,7 +32,7 @@ public class PatientsService {
 	}
 
 	public int getUnique(String patient_ssn2) {
-		return patientsDao.getUnique(patient_ssn2);
+		return patientsDao.selectUnique(patient_ssn2);
 	}
 
 }
