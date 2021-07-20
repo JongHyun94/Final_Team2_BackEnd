@@ -95,8 +95,8 @@ public class InspectionController {
 	}
 	
 	@GetMapping("/inspections")
-	public void readPatient(HttpServletResponse response, @RequestParam int treatmentId, @RequestParam String globalUid) {
-		List<Inspections> inspectionList = inspectionsService.getInspections(treatmentId, globalUid);
+	public void readPatient(HttpServletResponse response, @RequestParam int treatmentId) {
+		List<Inspections> inspectionList = inspectionsService.getInspections(treatmentId);
 		
 		response.setContentType("application/json;charset=UTF-8");
 		JSONObject jsonObj = new JSONObject();

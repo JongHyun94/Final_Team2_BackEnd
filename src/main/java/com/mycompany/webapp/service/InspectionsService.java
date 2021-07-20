@@ -72,8 +72,8 @@ public class InspectionsService {
 		return true;
 	}
 
-	public List<Inspections> getInspections(int treatmentId, String globalUid) {
-		List<Inspections> inspectionList = inspectionsDao.selectInspections(treatmentId, globalUid);
+	public List<Inspections> getInspections(int treatmentId) {
+		List<Inspections> inspectionList = inspectionsDao.selectInspections(treatmentId);
 		return inspectionList;
 	}
 
