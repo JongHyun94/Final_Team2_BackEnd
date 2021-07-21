@@ -154,7 +154,7 @@ public class TreatmentsService {
 			count = inspectionsDao.insertInspections(inspections.get(i));
 			result = result + count;
 		}
-		logger.info("cpun"+count);
+		//logger.info("cpun"+count);
 		return count;
 	}
 	public int createInspections2(List<Inspections> InspectionList2) {

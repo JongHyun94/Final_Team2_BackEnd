@@ -27,6 +27,7 @@ import com.mycompany.webapp.dto.Inspections;
 import com.mycompany.webapp.dto.Treatments;
 import com.mycompany.webapp.dto.Users;
 import com.mycompany.webapp.service.TreatmentsService;
+import com.mycompany.webapp.twilio.SendMessage;
 
 @CrossOrigin(origins = "*")
 @RestController
@@ -168,13 +169,13 @@ public class TreatmentController {
 		List<Users> Userlist2 = new ArrayList<Users>();
 		Userlist = treatmentsService.getBloodInspectorId();
 		Userlist2 = treatmentsService.getImgInspectorId();
-		logger.info("userlist///" + Userlist);
-		logger.info("userlist:2" + Userlist2);
+		//logger.info("userlist///" + Userlist);
+		//logger.info("userlist:2" + Userlist2);
 		Collections.shuffle(Userlist);
 		Collections.shuffle(Userlist2);
-		logger.info("//////Collections.shuffle(Userlist)/////");
-		logger.info("userlist///" + Userlist);
-		logger.info("userlist:2" + Userlist2);
+		//logger.info("//////Collections.shuffle(Userlist)/////");
+		//logger.info("userlist///" + Userlist);
+		//logger.info("userlist:2" + Userlist2);
 
 		int Inspection_id = 0;
 		for (int i = 0; i < treatment.getSelectedInspection().length; i++) {
@@ -227,10 +228,10 @@ public class TreatmentController {
 
 		}
 		int result3 = treatmentsService.createDrugsInjections(DrugInjectionsList);
-		logger.info("약품" + result3);
+		//logger.info("약품" + result3);
 
-		logger.info("혈액" + result2);
-		logger.info("영상" + result4);
+		//logger.info("혈액" + result2);
+		//logger.info("영상" + result4);
 
 		int result1 = 0;
 
@@ -239,6 +240,9 @@ public class TreatmentController {
 
 		if (result2 == 1 || result4 == 1) {
 			result1 = treatmentsService.update1(treatment);
+			
+//			SendMessage msg = new SendMessage();
+//			msg.send("검사가 등록되었습니다.");
 		}
 
 		response.setContentType("application/json;charset=UTF-8");

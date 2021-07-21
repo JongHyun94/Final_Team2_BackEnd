@@ -1,8 +1,6 @@
 package com.mycompany.webapp.controller;
 
 import java.io.Writer;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -15,7 +13,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -29,6 +26,7 @@ import com.mycompany.webapp.dto.RegistersCountByDate;
 import com.mycompany.webapp.dto.Schedules;
 import com.mycompany.webapp.dto.Users;
 import com.mycompany.webapp.service.RegistersService;
+import com.mycompany.webapp.twilio.SendMessage;
 
 @CrossOrigin(origins="*")
 @RestController
@@ -62,6 +60,8 @@ public class RegisterController {
 		//logger.info(register.getRegister_date());
 		//logger.info(register.getRegister_user_id());
 		String result = registersService.createNewRegister(register);
+//		SendMessage msg = new SendMessage();
+//		msg.send("접수가 등록 되었습니다.");
 		response.setContentType("application/json;charset=UTF-8");
 		JSONObject jObj = new JSONObject();
 		jObj.put("result", result);
@@ -103,10 +103,11 @@ public class RegisterController {
 		if(register.getRegister_state().equals("완료")) {
 			//logger.info("완료");
 			int newTreatment = registersService.createNewTreatment(register);
-			
+
 		} else if(register.getRegister_state().equals("취소")) {
 			//logger.info("취소");
-			
+//			SendMessage msg = new SendMessage();
+//			msg.send("접수가 취소되었습니다.");
 		} 
 		
 		response.setContentType("application/json;charset=UTF-8");
@@ -251,7 +252,7 @@ public class RegisterController {
 	// 해당 날짜의 접수 내역 불러오기
 	@GetMapping("/calendar")
 	public void getRegisterByDoctor(HttpServletRequest request, HttpServletResponse response, @RequestParam String date, @RequestParam String user_id){ 	
-		logger.info(date);
+		//logger.info(date);
 		List<RegistersCountByDate> registerList = registersService.getRegisterByDoctor(user_id, date);
 		response.setContentType("application/json;charset=UTF-8");
 		JSONObject jObj = new JSONObject();

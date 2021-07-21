@@ -48,7 +48,7 @@ public class MainController {
 
 	@RequestMapping("/sendMqttMessage")
 	public void sendMqttMessage(String topic, String content, HttpServletResponse res) {
-		logger.info("sendMessage");
+		//logger.info("sendMessage");
 		try {
 			mqttTemplate.sendMessage(topic, content);
 		

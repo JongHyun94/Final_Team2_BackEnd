@@ -46,7 +46,7 @@ public class RegistersService {
 	}
 
 	public String createNewRegister(Registers register) {
-		logger.info(register.getRegister_state());
+		//logger.info(register.getRegister_state());
 		// 해당 시간에 해당 의사의 대기 완료 진료가 있니?
 		int row = registersDao.checkRegister(register);
 		// 있으면 

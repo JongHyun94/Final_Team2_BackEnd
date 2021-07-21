@@ -31,7 +31,7 @@ public class MqttTemplate {
 	
 	public void sendMessage(String topic, String content) {
 		try {
-			logger.info("mqqq");
+			//logger.info("mqqq");
 			logger.info(topic);
 			logger.info(content);
 			MqttMessage message = new MqttMessage();
