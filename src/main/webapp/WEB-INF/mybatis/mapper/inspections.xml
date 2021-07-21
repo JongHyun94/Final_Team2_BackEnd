@@ -5,7 +5,7 @@
 <mapper namespace="com.mycompany.webapp.dao.InspectionsDao">
 	<!-- ºû³ª ½ÃÀÛ -->
 	<select id="selectInspections" resultType="inspection" parameterType="int">
-		select i.inspection_id as inspection_id, i.inspection_result as inspection_result, i.inspection_date as inspection_date, i.inspection_lab as inspection_lab, i.inspection_state as inspection_state, 
+		select i.inspection_id as inspection_id, i.inspection_result as inspection_result, i.inspection_date as inspection_date, i.inspection_lab as inspection_lab, i.inspection_state as inspection_state, i.inspection_inspector_id as inspection_inspector_id,
 				u1.user_name as inspection_doctor_name, u2.user_name as inspection_inspector_name, 
 				l.inspection_list_category as inspection_list_category, l.inspection_list_specimen as inspection_list_specimen, l.inspection_list_name as inspection_list_name, l.inspection_list_reference as inspection_list_reference, l.inspection_list_container as inspeciton_list_container,
 				p.patient_name
