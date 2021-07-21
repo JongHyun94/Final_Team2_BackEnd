@@ -69,6 +69,9 @@ public class PatientController {
 		
 		patientsService.updatePatient(patient);
 		
+//		SendMessage msg = new SendMessage();
+//		msg.send("환자정보가 수정 되었습니다.");
+		
 		return patient;
 	}
 	
@@ -88,10 +91,6 @@ public class PatientController {
 		} else {
 			map.put("result", "notUnique");	
 		}
-		
-		SendMessage msg = new SendMessage();
-		msg.send("환자가 등록되었습니다.");
-		
 		return map;
 	}
 }
