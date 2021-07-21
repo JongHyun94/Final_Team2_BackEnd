@@ -54,11 +54,10 @@ public class AuthController {
 			map.put("result","notFindID");
 			return map;
 		} else {
-			BCryptPasswordEncoder bpe = new BCryptPasswordEncoder();
-			boolean result = bpe.matches(upassword, dbUser.getUser_password());
-			if (dbUser.getUser_enabled() == 0) {
-				map.put("result", "notEnabled");
-			} else {
+			if (dbUser.getUser_enabled() == 1) {
+				BCryptPasswordEncoder bpe = new BCryptPasswordEncoder();
+				boolean result = bpe.matches(upassword, dbUser.getUser_password());
+			
 				if (result) {			
 					map.put("result","success");
 					String uauthority = dbUser.getUser_authority();
@@ -79,12 +78,15 @@ public class AuthController {
 					map.put("hurl", hurl);
 					map.put("hlat", hlat);
 					map.put("hlong", hlong);
-				} else {
+				} else if(result == false) {					
 					map.put("result", "notCorrectPW");
+					return map;
 				}
+			} else {
+				map.put("result", "notEnabled");	
+				return map;			
 			}
 		}
-		
 		
 		//사용자 인증
 	    UsernamePasswordAuthenticationToken upat = new UsernamePasswordAuthenticationToken(uid, upassword);		
