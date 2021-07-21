@@ -118,7 +118,7 @@ public class TreatmentController {
 
 	/* 환자 번호 별 진료 기록리스트 */
 	@GetMapping("/historyList")
-	public void read(int treatment_patient_id, HttpServletRequest request,
+	public void read(@RequestParam(defaultValue = "0") int treatment_patient_id, HttpServletRequest request,
 			HttpServletResponse response) {
 		List<Treatments> historylist = treatmentsService.getHistoryList(treatment_patient_id);
 		response.setContentType("application/json;charset=UTF-8");
@@ -137,7 +137,7 @@ public class TreatmentController {
 
 	/* 진료 번호 별 진료 상세 보기 (soap, 검사기록, 약처방기록) */
 	@GetMapping("/historyRead")
-	public void historyread(int treatment_id, HttpServletRequest request,
+	public void historyread(@RequestParam(defaultValue = "0") int treatment_id, HttpServletRequest request,
 			HttpServletResponse response) {
 		List<Treatments> treatmentSoaplist = treatmentsService.getTreatmentSoap(treatment_id);
 		List<Inspections> treatmentInspectionlist = treatmentsService.getTreatmentInspection(treatment_id);
