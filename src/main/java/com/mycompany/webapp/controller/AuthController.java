@@ -85,6 +85,7 @@ public class AuthController {
 			}
 		}
 		
+		
 		//사용자 인증
 	    UsernamePasswordAuthenticationToken upat = new UsernamePasswordAuthenticationToken(uid, upassword);		
 		
