@@ -39,7 +39,7 @@ public class InspectionsService {
    //3.
    //kosa3.iptime.org
    // "C:/Users/COM/Documents/uploadfiles/"
-   private final String imgUrl = "C:/Users/ant94/Documents/JavaProject/uploadfiles/";
+   private final String imgUrl = "D:/uploadfiles/";
    
    //http://localhost:8080
    //http://kosa3.iptime.org:50002

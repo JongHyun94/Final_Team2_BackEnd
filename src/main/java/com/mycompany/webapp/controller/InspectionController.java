@@ -49,7 +49,7 @@ public class InspectionController {
    //3.
    //kosa3.iptime.org
    // "C:/Users/COM/Documents/uploadfiles/"
-   private final String imgUrl = "C:/Users/ant94/Documents/JavaProject/uploadfiles/";
+   private final String imgUrl = "D:/uploadfiles/";
    
    @Autowired
    private InspectionsService inspectionsService;
