@@ -4,7 +4,7 @@
 					 
 <mapper namespace="com.mycompany.webapp.dao.InspectionsDao">
 	<!-- ºû³ª ½ÃÀÛ -->
-	<select id="selectInspections" resultType="inspection">
+	<select id="selectInspections" resultType="inspection" parameterType="int">
 		select i.inspection_id as inspection_id, i.inspection_result as inspection_result, i.inspection_date as inspection_date, i.inspection_lab as inspection_lab, i.inspection_state as inspection_state, 
 				u1.user_name as inspection_doctor_name, u2.user_name as inspection_inspector_name, 
 				l.inspection_list_category as inspection_list_category, l.inspection_list_specimen as inspection_list_specimen, l.inspection_list_name as inspection_list_name, l.inspection_list_reference as inspection_list_reference, l.inspection_list_container as inspeciton_list_container,
@@ -13,9 +13,6 @@
 		where inspection_treatment_id = #{treatmentId}
 			and inspection_inspection_list_id = inspection_list_id
 			and inspection_doctor_id = u1.user_id
-			<if test='globalUid != "D138010001"'>
-				and inspection_inspector_id = #{globalUid}
-			</if>
 			and inspection_inspector_id = u2.user_id
 			and inspection_patient_id = patient_id
 		order by inspection_list_category
