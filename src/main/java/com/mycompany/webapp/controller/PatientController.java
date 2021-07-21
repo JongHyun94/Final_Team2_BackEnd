@@ -89,8 +89,8 @@ public class PatientController {
 			map.put("result", "notUnique");	
 		}
 		
-//		SendMessage msg = new SendMessage();
-//		msg.send("환자가 등록되었습니다.");
+		SendMessage msg = new SendMessage();
+		msg.send("환자가 등록되었습니다.");
 		
 		return map;
 	}
