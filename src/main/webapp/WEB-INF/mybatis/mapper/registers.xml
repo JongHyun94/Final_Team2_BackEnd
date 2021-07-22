@@ -110,6 +110,19 @@
 	<!-- 해달 날짜 타임 테이블 가져오기 -->
 
 	<select id="selectRegistersByDateForTable" resultType="register">
+		select register_id, register_patient_id,
+		register_user_id,
+		register_regdate,
+		register_date,
+		register_starttime,
+		register_memo,
+		register_communication,
+		register_state,
+		patient_name, patient_ssn,
+		patient_sex,
+		patient_tel,
+		user_name
+		from (
 		select
 		r.register_id, r.register_patient_id,
 		r.register_user_id,
@@ -129,9 +142,11 @@
 		register_patient_id=patient_id
 		and
 		register_user_id=user_id
-		group by register_date
 		order by
-		register_starttime asc
+		register_regdate desc
+		limit 18446744073709551615
+		) t
+		group by register_date
 	</select>
 
 	<!-- 의사별 한달치 접수 완료 불러오기 -->
