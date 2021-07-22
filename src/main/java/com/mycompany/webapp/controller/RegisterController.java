@@ -40,10 +40,12 @@ public class RegisterController {
 	@GetMapping("")
 	public void getRegisterList(HttpServletRequest request, HttpServletResponse response, @RequestParam String date, @RequestParam(defaultValue = "") String state){ 
 		List<Registers> registerList = registersService.getTodayRegisters(date, state);
+		List<Registers> tableRegisterList = registersService.getTableRegisters(date);
 		//List<Registers> timeRegisterList = new 
 		response.setContentType("application/json;charset=UTF-8");
 		JSONObject jObj = new JSONObject();
 		jObj.put("registerList", registerList);
+		jObj.put("tableRegisterList", tableRegisterList);
 		try {
 			Writer writer = response.getWriter();
 			writer.write(jObj.toString());

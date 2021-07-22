@@ -107,6 +107,33 @@
 		</if>
 	</select>
 
+	<!-- 해달 날짜 타임 테이블 가져오기 -->
+
+	<select id="selectRegistersByDateForTable" resultType="register">
+		select
+		r.register_id, r.register_patient_id,
+		r.register_user_id,
+		r.register_regdate, r.register_date,
+		r.register_starttime,
+		r.register_memo, r.register_communication,
+		r.register_state,
+		p.patient_name, p.patient_ssn, p.patient_sex,
+		p.patient_tel,
+		u.user_name
+		from registers r, patients p, users u
+		where
+		str_to_date(register_date,
+		'%Y-%m-%d')=str_to_date(#{register_date},
+		'%Y-%m-%d')
+		and
+		register_patient_id=patient_id
+		and
+		register_user_id=user_id
+		group by register_date
+		order by
+		register_starttime asc
+	</select>
+
 	<!-- 의사별 한달치 접수 완료 불러오기 -->
 	<select id="selectRegisterByDoctor"
 		resultType="registersCountByDate">
@@ -118,7 +145,8 @@
 		register_user_id=#{register_user_id}
 		and
 		year(register_starttime)=year(#{register_date})
-		and month(register_starttime)=month(#{register_date})
+		and
+		month(register_starttime)=month(#{register_date})
 		group by
 		DATE_FORMAT(register_starttime, "%d")
 		order by date asc
@@ -177,7 +205,7 @@
 
 
 	<!-- 데이터 분석실 -->
-	
+
 	<!-- 1번 -->
 	<select id="selectThreeMonths" resultType="register">
 		select register_id,
@@ -190,14 +218,15 @@
 		date(register_starttime) &lt;= last_day(now())
 		and register_state="완료"
 	</select>
-	
+
 	<!-- 2번 -->
 	<select id="selectRegistersState" resultType="register">
 		select register_id,
 		register_regdate,
 		register_state
 		from registers
-		where YEAR(register_regdate)=YEAR(CURDATE())
+		where
+		YEAR(register_regdate)=YEAR(CURDATE())
 	</select>
 
 	<!-- 3번 -->
@@ -212,13 +241,14 @@
 		and register_state="완료"
 		and register_patient_id=patient_id
 	</select>
-	
+
 	<!-- 4번 -->
 	<select id="selectQuatersState" resultType="register">
 		select register_id,
 		register_starttime
 		from registers
-		where YEAR(register_starttime)=YEAR(CURDATE())
+		where
+		YEAR(register_starttime)=YEAR(CURDATE())
 		and register_state="완료"
 	</select>
 </mapper>
