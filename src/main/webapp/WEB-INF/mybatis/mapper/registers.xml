@@ -146,7 +146,7 @@
 		register_regdate desc
 		limit 18446744073709551615
 		) t
-		group by register_date
+		group by register_date, register_user_id 
 	</select>
 
 	<!-- 의사별 한달치 접수 완료 불러오기 -->
