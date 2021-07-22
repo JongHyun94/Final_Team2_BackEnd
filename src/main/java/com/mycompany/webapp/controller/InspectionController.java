@@ -39,13 +39,13 @@ public class InspectionController {
    // 이미지 파일 폴더 경로 
    //1. 
    //localhost: 종현
-   private final String imgUrl = "C:/Users/ant94/Documents/JavaProject/uploadfiles/";
+   // private final String imgUrl = "C:/Users/ant94/Documents/JavaProject/uploadfiles/";
    //2.
    //localhost: 빛나 , 서영, 지현
    // private final String imgUrl = "D:/uploadfiles/";
    //3.
    //kosa3.iptime.org
-   // private final String imgUrl = "C:/Users/COM/Documents/uploadfiles/";
+    private final String imgUrl = "C:/Users/COM/Documents/uploadfiles/";
    
    @Autowired
    private InspectionsService inspectionsService;

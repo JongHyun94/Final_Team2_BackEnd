@@ -32,16 +32,16 @@ public class InspectionsService {
    // 이미지 파일 폴더 경로 
    //1. 
    //localhost: 종현
-   private final String imgUrl = "C:/Users/ant94/Documents/JavaProject/uploadfiles/";
+   // private final String imgUrl = "C:/Users/ant94/Documents/JavaProject/uploadfiles/";
    //2.
    //localhost: 빛나 , 서영, 지현
    // private final String imgUrl = "D:/uploadfiles/";
    //3.
    //kosa3.iptime.org
-   // private final String imgUrl = "C:/Users/COM/Documents/uploadfiles/";
+    private final String imgUrl = "C:/Users/COM/Documents/uploadfiles/";
    
-   private final String url = "http://localhost:8080";
-   //private final String url = "http://kosa3.iptime.org:50002";
+   // private final String url = "http://localhost:8080";
+    private final String url = "http://kosa3.iptime.org:50002";
 
    public List<Treatments> getPatients(String treatmentDate, String state) {
       List<Treatments> treatmentsList = treatmentsDao.selectTreatments(treatmentDate, state);
