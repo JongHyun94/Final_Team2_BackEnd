@@ -32,11 +32,7 @@ public class MainController {
 	@Autowired
 	private DataSource dataSource;
 	
-	@RequestMapping(value={"/"})
-	public String mainPage() {
-		
-		return "/index.html";
-	}
+	
 //	@RequestMapping("/home")
 //	public String home() {
 //		try {
