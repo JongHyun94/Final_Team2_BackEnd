@@ -35,6 +35,7 @@
       <if test="state!='' and globalUid == 'D138010001'">
       and treatment_state=#{state}
       </if>   
+      order by register_starttime desc 
    </select>
    
    <!--    <select id="selectAllTreatment" resultType="treatment">
