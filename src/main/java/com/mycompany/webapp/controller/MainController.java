@@ -32,19 +32,20 @@ public class MainController {
 	@Autowired
 	private DataSource dataSource;
 	
-	@RequestMapping("/home")
-	public String home() {
-		try {
-		      Connection conn = (Connection) dataSource.getConnection();
-		      System.out.println("성공: " + conn);
-		      
-		      } catch (Exception ex){
-		         System.out.println("실패..!");
-		         ex.printStackTrace();
-		      }
-		
-		return "home";
-	}
+
+//	@RequestMapping("/home")
+//	public String home() {
+//		try {
+//		      Connection conn = (Connection) dataSource.getConnection();
+//		      System.out.println("성공: " + conn);
+//		      
+//		      } catch (Exception ex){
+//		         System.out.println("실패..!");
+//		         ex.printStackTrace();
+//		      }
+//		
+//		return "home";
+//	}
 
 	@RequestMapping("/sendMqttMessage")
 	public void sendMqttMessage(String topic, String content, HttpServletResponse res) {

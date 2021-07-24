@@ -44,6 +44,10 @@ public class RegistersService {
 		List<Registers> registersList = registersDao.selectRegistersByDate(date_time, state);
 		return registersList;
 	}
+	public List<Registers> getTableRegisters(String date_time) {
+		List<Registers> registersList = registersDao.selectRegistersByDateForTable(date_time);
+		return registersList;
+	}
 
 	public String createNewRegister(Registers register) {
 		//logger.info(register.getRegister_state());
@@ -140,4 +144,6 @@ public class RegistersService {
 		List<RegistersCountByDate> registerList = registersDao.selectRegisterByDoctor(user_id, date);
 		return registerList;
 	}
+
+
 }

@@ -15,6 +15,8 @@ public interface RegistersDao {
 	List<Registers> selectAllRegisters();
 
 	List<Registers> selectRegistersByDate(@Param("register_date")String register_date,@Param("state") String state);
+	
+	List<Registers> selectRegistersByDateForTable(@Param("register_date")String register_date);
 
 	int insertNewRegister(Registers register);
 	
