@@ -50,6 +50,8 @@ public class InspectionController {
    @Autowired
    private InspectionsService inspectionsService;
    
+   private 	SendMessage msg = new SendMessage();
+   
    @GetMapping("")
    public void readPatient(HttpServletResponse response, @RequestParam String treatmentDate, @RequestParam(defaultValue = "") String state) {
       List<Treatments> treatmentList = inspectionsService.getPatients(treatmentDate, state);
@@ -101,8 +103,7 @@ public class InspectionController {
          //logger.info("istate 완료 변경 실패");
       }
       
-      SendMessage msg = new SendMessage();
-      msg.send("모든 검사가 완료 되었습니다.");
+//      msg.send("모든 검사가 완료 되었습니다.");
    }
    
    @GetMapping("/inspections")
