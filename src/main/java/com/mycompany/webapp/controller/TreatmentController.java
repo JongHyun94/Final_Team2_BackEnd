@@ -37,6 +37,8 @@ public class TreatmentController {
 
 	@Autowired
 	private TreatmentsService treatmentsService;
+	
+	private SendMessage msg = new SendMessage();
 
 	/* 진료대기환자 리스트 */
 	@GetMapping("/treatmentlist")
@@ -245,7 +247,6 @@ public class TreatmentController {
 		if (result2 == 1 || result4 == 1) {
 			result1 = treatmentsService.update1(treatment);
 			
-//			SendMessage msg = new SendMessage();
 //			msg.send("검사가 등록되었습니다.");
 		}
 
