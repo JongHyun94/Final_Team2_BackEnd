@@ -119,9 +119,11 @@ public class TreatmentController {
 
 	/* 환자 번호 별 진료 기록리스트 */
 	@GetMapping("/historyList")
-	public void read(int treatment_patient_id, HttpServletRequest request,
+	public void read(String treatment_patient_id, HttpServletRequest request,
 			HttpServletResponse response) {
-		List<Treatments> historylist = treatmentsService.getHistoryList(treatment_patient_id);
+		
+		int treatmentPatientId = Integer.parseInt(treatment_patient_id);
+		List<Treatments> historylist = treatmentsService.getHistoryList(treatmentPatientId);
 		response.setContentType("application/json;charset=UTF-8");
 		JSONObject jObj = new JSONObject();
 		jObj.put("historylist", historylist);
@@ -138,11 +140,13 @@ public class TreatmentController {
 
 	/* 진료 번호 별 진료 상세 보기 (soap, 검사기록, 약처방기록) */
 	@GetMapping("/historyRead")
-	public void historyread(int treatment_id, HttpServletRequest request,
+	public void historyread(String treatment_id, HttpServletRequest request,
 			HttpServletResponse response) {
-		List<Treatments> treatmentSoaplist = treatmentsService.getTreatmentSoap(treatment_id);
-		List<Inspections> treatmentInspectionlist = treatmentsService.getTreatmentInspection(treatment_id);
-		List<DrugsInjections> treatmentDrugsInjectionlist = treatmentsService.getTreatmentDrugsInjection(treatment_id);
+		
+		int treatmentId = Integer.parseInt(treatment_id);
+		List<Treatments> treatmentSoaplist = treatmentsService.getTreatmentSoap(treatmentId);
+		List<Inspections> treatmentInspectionlist = treatmentsService.getTreatmentInspection(treatmentId);
+		List<DrugsInjections> treatmentDrugsInjectionlist = treatmentsService.getTreatmentDrugsInjection(treatmentId);
 
 		response.setContentType("application/json;charset=UTF-8");
 		JSONObject jObj = new JSONObject();
