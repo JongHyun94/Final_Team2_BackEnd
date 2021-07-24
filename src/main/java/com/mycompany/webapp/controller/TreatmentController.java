@@ -241,8 +241,8 @@ public class TreatmentController {
 		if (result2 == 1 || result4 == 1) {
 			result1 = treatmentsService.update1(treatment);
 			
-//			SendMessage msg = new SendMessage();
-//			msg.send("검사가 등록되었습니다.");
+			SendMessage msg = new SendMessage();
+			msg.send("검사가 등록되었습니다.");
 		}
 
 		response.setContentType("application/json;charset=UTF-8");

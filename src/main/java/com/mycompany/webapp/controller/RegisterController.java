@@ -60,8 +60,8 @@ public class RegisterController {
 		//logger.info(register.getRegister_date());
 		//logger.info(register.getRegister_user_id());
 		String result = registersService.createNewRegister(register);
-//		SendMessage msg = new SendMessage();
-//		msg.send("접수가 등록 되었습니다.");
+		SendMessage msg = new SendMessage();
+		msg.send("접수가 등록 되었습니다.");
 		response.setContentType("application/json;charset=UTF-8");
 		JSONObject jObj = new JSONObject();
 		jObj.put("result", result);
@@ -106,8 +106,8 @@ public class RegisterController {
 
 		} else if(register.getRegister_state().equals("취소")) {
 			//logger.info("취소");
-//			SendMessage msg = new SendMessage();
-//			msg.send("접수가 취소되었습니다.");
+			SendMessage msg = new SendMessage();
+			msg.send("접수가 취소되었습니다.");
 		} 
 		
 		response.setContentType("application/json;charset=UTF-8");

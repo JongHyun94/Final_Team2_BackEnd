@@ -101,8 +101,8 @@ public class InspectionController {
          //logger.info("istate 완료 변경 실패");
       }
       
-//      SendMessage msg = new SendMessage();
-//      msg.send("모든 검사가 완료 되었습니다.");
+      SendMessage msg = new SendMessage();
+      msg.send("모든 검사가 완료 되었습니다.");
    }
    
    @GetMapping("/inspections")
