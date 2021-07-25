@@ -39,7 +39,7 @@ public interface TreatmentsDao {
 	//진료 시작시 생성되는 함수
 	public int insertNewTreatment(Registers register);
 
-	public List<Treatments> selectAllTreatment(@Param("register_starttime")String date_time,@Param("state") String state,@Param("globalUid") String globalUid);
+	public List<Treatments> selectAllTreatment(@Param("register_starttime")String date,@Param("state") String state,@Param("globalUid") String globalUid);
 
 	
 	

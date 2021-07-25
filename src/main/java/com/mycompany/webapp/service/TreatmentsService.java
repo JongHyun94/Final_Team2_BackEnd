@@ -44,8 +44,8 @@ public class TreatmentsService {
 //		List<Treatments> treatmentslist = treatmentsDao.selectAllTreatment(date_time, state);
 //		return treatmentslist;
 //	}
-	public List<Treatments> getAllTreatment(String date_time, String state,String globalUid) {
-		List<Treatments> treatmentslist = treatmentsDao.selectAllTreatment(date_time, state, globalUid);
+	public List<Treatments> getAllTreatment(String date, String state,String globalUid) {
+		List<Treatments> treatmentslist = treatmentsDao.selectAllTreatment(date, state, globalUid);
 		return treatmentslist;
 	}
 	

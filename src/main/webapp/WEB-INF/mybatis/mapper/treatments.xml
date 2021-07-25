@@ -34,7 +34,7 @@
 
       <if test="state!='' and globalUid == 'D138010001'">
       and treatment_state=#{state}
-      </if>   
+      </if>  
    </select>
    
    <!--    <select id="selectAllTreatment" resultType="treatment">
