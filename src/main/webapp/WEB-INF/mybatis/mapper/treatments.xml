@@ -23,7 +23,7 @@
       where 
       str_to_date(register_starttime,'%Y-%m-%d')=str_to_date(#{register_starttime},'%Y-%m-%d') 
       and treatment_register_id = register_id 
-      and treatment_patient_id = patient_id
+      and treatment_patient_id = patient_id 
       <if test="state=='' and globalUid != 'D138010001'">
       and treatment_user_id = #{globalUid}
       </if> 
@@ -31,10 +31,10 @@
       and treatment_state=#{state}
       and treatment_user_id = #{globalUid}
       </if>   
-
       <if test="state!='' and globalUid == 'D138010001'">
       and treatment_state=#{state}
       </if>  
+      order by register_starttime desc 
    </select>
    
    <!--    <select id="selectAllTreatment" resultType="treatment">

@@ -36,13 +36,18 @@ public class RegisterController {
 	@Autowired
 	private RegistersService registersService;
 
+	private SendMessage msg = new SendMessage();
+
 	// 해당 날짜의 접수 내역 불러오기
 	@GetMapping("")
 	public void getRegisterList(HttpServletRequest request, HttpServletResponse response, @RequestParam String date, @RequestParam(defaultValue = "") String state){ 
 		List<Registers> registerList = registersService.getTodayRegisters(date, state);
+		List<Registers> tableRegisterList = registersService.getTableRegisters(date);
+		//List<Registers> timeRegisterList = new 
 		response.setContentType("application/json;charset=UTF-8");
 		JSONObject jObj = new JSONObject();
 		jObj.put("registerList", registerList);
+		jObj.put("tableRegisterList", tableRegisterList);
 		try {
 			Writer writer = response.getWriter();
 			writer.write(jObj.toString());
@@ -59,9 +64,13 @@ public class RegisterController {
 		//logger.info("create");
 		//logger.info(register.getRegister_date());
 		//logger.info(register.getRegister_user_id());
+		if(register.getRegister_state().equals("취소")) {
+			register.setRegister_state("대기");
+		}
 		String result = registersService.createNewRegister(register);
-//		SendMessage msg = new SendMessage();
+		
 //		msg.send("접수가 등록 되었습니다.");
+		
 		response.setContentType("application/json;charset=UTF-8");
 		JSONObject jObj = new JSONObject();
 		jObj.put("result", result);
@@ -106,7 +115,7 @@ public class RegisterController {
 
 		} else if(register.getRegister_state().equals("취소")) {
 			//logger.info("취소");
-//			SendMessage msg = new SendMessage();
+			
 //			msg.send("접수가 취소되었습니다.");
 		} 
 		
